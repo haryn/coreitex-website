@@ -127,7 +127,7 @@ These items must be addressed during the WordPress → Firebase migration:
 
 ## Phase 4: Local SEO Strategy
 
-### Google Business Profile (GMB)
+### Google Business Profile (GMB) Additional $250 Fee (50% discounted)
 
 **Status**: Not yet created
 
@@ -145,7 +145,7 @@ These items must be addressed during the WordPress → Firebase migration:
 
 ### Local Citations (Free Directories)
 
-Submit COREI™ to:
+Submit COREI™ to: Additional $30 per submission
 - Yelp (free business listing)
 - Yellow Pages
 - Henderson Chamber of Commerce
@@ -169,27 +169,11 @@ Ensure Name, Address, Phone is identical across ALL listings:
 
 ## Phase 5: Content Strategy for SEO
 
-### Blog/News Section (Recommended)
+### Google Calendar Events
 
-A blog section would capture long-tail keywords and establish authority. Suggested topics:
-
-**Construction Updates** (donor engagement):
-- "Construction Progress Update: [Month] [Year]"
-- "What's Happening at the COREI™ Complex Site"
-
-**Community Impact** (volunteer engagement):
-- "How COREI™ is Serving Rural East Texas"
-- "Meet Our Volunteers: [Name/Story]"
-
-**Program Spotlights** (service visibility):
-- "Veteran Services at COREI™: What We Offer"
-- "Youth Education Programs: Building Tomorrow's Leaders"
-- "Childcare Services Coming to Mount Enterprise"
-
-**Local SEO Content**:
-- "Things to Do in Henderson, TX"
-- "Community Resources in Rusk County"
-- "Why Rural Texas Needs Multi-Purpose Community Centers"
+Leverage Google Calendar integration into the website 
+ -for easy Event scheduling and showcasing of upcoming events
+ -Connecting Google services to the website will impact market penetration
 
 ### FAQ Section (For Schema Markup)
 
@@ -214,7 +198,7 @@ Q&As for FAQ schema:
 | **SEO Audit Report** | Full site audit with scores and recommendations | 1 hour |
 | **Keyword Rankings** | Track target keyword positions in Google | 30 min |
 | **Technical Health Check** | Lighthouse scores, broken links, page speed | 30 min |
-| **Content Recommendations** | Suggested blog topics, page updates | 30 min |
+| **Content Recommendations** | Suggested topics, page updates | 30 min |
 | **Competitor Check** | Monitor competitor SEO activity | 15 min |
 | **Implementation** | Apply SEO fixes and improvements | 2 hours |
 
@@ -223,7 +207,7 @@ Q&As for FAQ schema:
 | Deliverable | Description | Estimated Time |
 |-------------|-------------|----------------|
 | **Deep Audit** | Comprehensive SEO review with before/after metrics | 2 hours |
-| **Content Calendar** | 3-month blog/content plan | 1 hour |
+| **Content Calendar** | content plan | 1 hour |
 | **Backlink Analysis** | Review and build quality backlinks | 1 hour |
 | **Schema Updates** | Update structured data as needed | 30 min |
 | **Analytics Review** | GA4 and GSC data analysis | 1 hour |
@@ -270,19 +254,18 @@ Q&As for FAQ schema:
 ## Pricing & Reporting
 
 ### Report Format
-- PDF report delivered via Discord
+- PDF/Text report delivered via Emails
 - Includes: scores, keyword rankings, recommendations, action items
 - Before/after metrics with visualizations
 
 ### Included in Retainer
-- All monthly deliverables listed above
+- All monthly deliverables listed above except from the additional charges services
 - Implementation of SEO fixes (content, meta tags, schema)
-- Blog post writing (up to 2 per month, if content provided)
-- Google Business Profile management
 - Minor content updates
 
 ### Not Included
 - Paid advertising (Google Ads, social media ads)
+- Google Business Profile management - Additional fee
 - Major content creation (photography, video)
 - Third-party tool subscriptions (Ahrefs, SEMrush, etc.)
 - Major website redesigns
@@ -295,7 +278,7 @@ Q&As for FAQ schema:
 1. ✅ Create Gmail account for COREI™
 2. ⏳ Provide Google Analytics access (or create new GA4 property)
 3. ⏳ Create Google Search Console account
-4. ⏳ Create Google Business Profile
+4. ⏳ Create Google Business Profile (once approved)
 5. ⏳ Provide board member emails for forwarding
 
 ### Developer (Me) Will Do:
