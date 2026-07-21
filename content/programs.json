@@ -1,0 +1,50 @@
+[
+  {
+    "id": "education-youth",
+    "title": "Education and Youth Empowerment",
+    "tagline": "UNLOCKING POTENTIAL",
+    "description": "At COREI™, our educational and leadership partners design enrichment initiatives that inspire young people to realize their full potential. These initiatives focus on leadership, motivation, self-esteem, skill-building and confidence, the importance of education, and entrepreneurship to help them construct the best path for their lives and future. We want to ensure that every child is given the same opportunity to achieve and excel.",
+    "image": "https://coreitex.com/wp-content/uploads/2025/10/Education-4-Large-1024x682.jpeg",
+    "order": 1
+  },
+  {
+    "id": "childcare-after-school",
+    "title": "Childcare and After-School Program",
+    "tagline": "A SAFE PLACE FOR EVERY CHILD TO GROW",
+    "description": "Finding quality childcare and Pre-K should not be a struggle. We partner with local educators to provide after-school programs that go beyond basic supervision. We take a heart-centered approach, focusing on each child's unique potential. From developing social skills to fostering emotional well-being, our goal is to create a nurturing environment where children feel safe to be themselves, engage with others, and discover the joy of friendship.",
+    "image": "https://coreitex.com/wp-content/uploads/2025/10/Childcare-5-Large-1024x682.jpeg",
+    "order": 2
+  },
+  {
+    "id": "sports-recreation",
+    "title": "Sports and Recreation",
+    "tagline": "ACTIVE LIVING FOR ALL AGES",
+    "description": "At COREI™, we believe that staying active is the key to a happy and healthy life. COREI™ is committed to fostering active lifestyles for both youth and seniors through comprehensive sports and recreation initiatives. Our sports and recreation programs are designed to bring the community together, helping people of all ages build lasting friendships and strong self-esteem through friendly competition. Whether it is athletic competition, learning to swim safely, or finding a new favorite hobby, we provide a supportive environment where everyone—from children to older adults—can find joy in social, emotional, and physical development.",
+    "image": "https://coreitex.com/wp-content/uploads/2025/10/Sports-1-Large-1024x682.jpeg",
+    "order": 3
+  },
+  {
+    "id": "health-fitness",
+    "title": "Health and Fitness",
+    "tagline": "BUILDING STRONGER COMMUNITIES THROUGH WELLNESS",
+    "description": "COREI™ is dedicated to the well-being of every community we serve. Through strategic partnerships with fitness experts, we provide accessible health programs designed specifically for rural and underserved communities. Whether you prefer a guided plan or a self-designed workout, our goal is to help you achieve total wellness for your body, mind, and soul. We know that when a community stays active together, it builds more than just fitness—it creates stronger social bonds and a more prosperous future for everyone.",
+    "image": "https://coreitex.com/wp-content/uploads/2025/10/Fitness-4-Large-1024x682.jpeg",
+    "order": 4
+  },
+  {
+    "id": "community-social-responsibility",
+    "title": "Community and Social Responsibility",
+    "tagline": "EMPOWERING COMMUNITIES AND CREATING CHANGE",
+    "description": "COREI™ collaborates with strategic partners to design initiatives that strengthen rural and underserved areas. We provide youth and local residents with the essential tools and resources needed to engage, learn, and thrive. By equipping the next generation with confidence and insight, we empower them to tackle local challenges head-on and become true champions for change within their communities.",
+    "image": "https://coreitex.com/wp-content/uploads/2025/10/Education-1-Large-1024x682.jpeg",
+    "order": 5
+  },
+  {
+    "id": "medical-veterans",
+    "title": "Medical and Veterans Services",
+    "tagline": "EMPOWERING VETERANS AND STRENGTHENING COMMUNITIES",
+    "description": "At COREI™, we believe that true healthcare is built on a foundation of trust and local collaboration. Our approach combines clinical services with essential social supports, focusing on preventive care and innovative technology to reach underserved areas. We are especially dedicated to our veterans, helping them overcome the hurdles of transitioning to civilian life, navigating VA benefits, physical health struggles, education, and employment by providing direct access to medical services and administrative tools and resources. By tackling complex issues such as housing stability and mental health alongside government partners, we help veterans reclaim their future with confidence. Our mission is to foster self-esteem and social connection, ensuring every community member has the tools to be an active, empowered participant in their health journey.",
+    "image": "https://coreitex.com/wp-content/uploads/2025/10/Veteran-4-Large-1024x682.jpeg",
+    "order": 6
+  }
+]

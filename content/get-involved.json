@@ -1,0 +1,50 @@
+{
+  "advocate": {
+    "title": "Become an Advocate for Change",
+    "description": "We need advocates for change to assist COREI™ in \"Bringing Urban Innovation to Rural America.\" We need individuals and/or groups to actively work with COREI™ to influence and make impactful transformations in Rural America.",
+    "actions": [
+      "To work and engage with rural community leaders, local representatives, funders and state decision-makers to support and bring to fruition the vision and mission of COREI™.",
+      "To educate and inspire the people of rural communities via COREI™ initiatives, tools and resources to empower, motivate and build self-confidence to strengthen and increase a sense of value and purpose within one's self.",
+      "To foster collaboration between COREI™ and rural community leaders, groups and individuals around issues and concerns that impact rural communities.",
+      "To act as a bridge between COREI™ and rural communities, to guide and build support for the innovative initiatives of COREI™ that would bring impactful economic opportunities within the rural communities."
+    ]
+  },
+  "member": {
+    "title": "Become a Member",
+    "description": "We are looking for members who would like to join us in carrying out the COREI™ vision and mission in \"Bringing Urban Innovation to Rural America.\" The member candidates must be compassionate and willing to serve and help rural communities to become more productive in achieving economic and social sustainability."
+  },
+  "volunteer": {
+    "title": "Get Involved",
+    "description": "We are looking for volunteers to join us to help us serve and empower rural communities to meet the needs that they are lacking. The volunteer candidates must be willing to serve and unite people within the rural communities and strengthen their sense of value and purpose. Also, the volunteers must be willing to give their time and skills to help inspire and create an impactful motivation to help the rural communities achieve at a high level. Become a Volunteer Today!"
+  },
+  "partner": {
+    "title": "Partner with COREI™",
+    "description": "We are looking for partners to help COREI™ expand its reach, increase fundraising, and enhance credibility. The following partner benefits can really help us to reach another level.",
+    "benefits": [
+      {
+        "name": "Expanded network",
+        "description": "COREI™ would like to access a partner's network, customers, and audience to broaden the reach of our vision and mission."
+      },
+      {
+        "name": "Increased revenue",
+        "description": "Establish partnerships to allow funding generation to be created through sponsorships, joint events, and increased donor contributions."
+      },
+      {
+        "name": "Enhanced credibility",
+        "description": "Partnering with reputable organizations to expand public trust in the mission of COREI™."
+      },
+      {
+        "name": "Access to resources",
+        "description": "To gain access to a partner's resources, such as office space, professional expertise, or technology, that would otherwise be difficult to obtain."
+      },
+      {
+        "name": "Improved efficiency",
+        "description": "To allow sharing administrative costs, expertise, and other resources, to enable COREI™ to run more impactful and cost-effective initiatives and/or programs."
+      }
+    ]
+  },
+  "worker": {
+    "title": "Become a Worker",
+    "description": "COREI™ will be looking for nonprofit workers who can perform tasks like content creation, fundraising support, and data analysis to improve efficiency and impact. Also, we are looking for non-profit workers to be able to automate repetitive tasks such as document searching, tagging, sorting, volunteer scheduling, sending donor communications, and freeing up staff to focus on more strategic, mission-driven work. Additionally, we are looking for non-profit workers to help analyze data to identify trends, evaluate program impact, and even help in prospecting potential high-value donors. Further, we are looking for non-profit workers to help with matching volunteers to roles based on skills, availability, schedule shifts, and sending reminders. Finally, COREI™ will be looking for non-profit workers with financial analysis skills to perform the tasks of accounting, financial reporting, analyzing financial data, and budgeting to ensure financial stability."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "images": [
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2025/07/COREI_logo.png",
+      "alt": "COREI™ Logo",
+      "context": "Site-wide logo"
+    },
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2026/01/cropped-icon-32x32.png",
+      "alt": "COREI™ Favicon",
+      "context": "Site favicon"
+    },
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2025/10/Education-4-Large-1024x682.jpeg",
+      "alt": "Education and Youth Empowerment",
+      "context": "What We Do - Program 1"
+    },
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2025/10/Childcare-5-Large-1024x682.jpeg",
+      "alt": "Childcare and After-School Program",
+      "context": "What We Do - Program 2"
+    },
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2025/10/Sports-1-Large-1024x682.jpeg",
+      "alt": "Sports and Recreation",
+      "context": "What We Do - Program 3"
+    },
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2025/10/Fitness-4-Large-1024x682.jpeg",
+      "alt": "Health and Fitness",
+      "context": "What We Do - Program 4"
+    },
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2025/10/Education-1-Large-1024x682.jpeg",
+      "alt": "Community and Social Responsibility",
+      "context": "What We Do - Program 5"
+    },
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2025/10/Veteran-4-Large-1024x682.jpeg",
+      "alt": "Medical and Veterans Services",
+      "context": "What We Do - Program 6"
+    },
+    {
+      "url": "https://coreitex.com/wp-content/uploads/2025/12/Crossroads-Medical-Team-2.png",
+      "alt": "Crossroads Family Care Medical Team",
+      "context": "Homepage - Partner Spotlight"
+    }
+  ]
+}

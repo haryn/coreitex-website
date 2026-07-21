@@ -1,0 +1,10 @@
+{
+  "items": [
+    {"label": "Home", "url": "/"},
+    {"label": "What We Do", "url": "/what-we-do"},
+    {"label": "About COREI", "url": "/about"},
+    {"label": "Get Involved", "url": "/get-involved"},
+    {"label": "Ways To Give", "url": "/ways-to-give"},
+    {"label": "Contact Us", "url": "#contact", "type": "button"}
+  ]
+}

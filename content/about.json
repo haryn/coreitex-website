@@ -1,0 +1,45 @@
+{
+  "vision": "Bringing Urban Innovation to Rural America™",
+  "mission": "To develop a better quality of life for people within underserved communities through initiatives that improve economic and social sustainability. COREI™ will do this through charity, education and training, sports and recreation, medical and health services, fitness, and advocacy.",
+  "missionFocus": [
+    {
+      "title": "Focusing on Empowerment and Action",
+      "description": "To unite residents and provide resources, building a stronger community where empowered individuals create lasting change and shared prosperity together."
+    },
+    {
+      "title": "Focusing on Connection and Belonging",
+      "description": "To cultivate connection and mutual support, weaving together the fabric of the community so that every voice is heard, and every person feels at home."
+    },
+    {
+      "title": "Focusing on Vision and Future",
+      "description": "We are focused on a future built by us, for us—uplifting local voices and driving the initiatives that will define our community's success."
+    }
+  ],
+  "goals": [
+    "Create skilled jobs.",
+    "Establish businesses through leased space.",
+    "Enhance broadband communication.",
+    "Create a state-of-the-art sports, education, fitness, and conference complex.",
+    "Develop sports programs and initiatives.",
+    "Offer vocational and certification programs and virtual educational classes.",
+    "Provide computer labs.",
+    "Build affordable housing for veterans and seniors.",
+    "Provide a medical, wellness, and veteran services center.",
+    "Offer childcare, Pre-K, and Kid Zone services.",
+    "Develop an outdoor kids' playground, park, and event area (weddings, family reunions, concerts, etc.).",
+    "Provide a food service café.",
+    "Build living quarters (hotel, Airbnb, motel, or garden-type units).",
+    "Host church meetings, retreats, and conventions."
+  ],
+  "coreValues": [
+    "Community",
+    "Empowerment",
+    "Integrity",
+    "Innovation"
+  ],
+  "coreValuesDescription": "COREI™ implements a proactive approach that reinforces these core values and embraces change and flexibility. To foster resilience and promote growth, COREI™ seeks to cultivate strong relationships with the community, encouraging residents to embrace change, learn from it, and respond effectively.",
+  "leadership": {
+    "empowerment": "COREI™ is committed to providing community members with the necessary tools, resources, and environment to thrive, leading to increased motivation, productivity, and a strong sense of value and purpose.",
+    "innovation": "COREI™ was founded on the principle of bringing urban innovation to rural America. COREI™ believes that innovation is not a one-time engagement, but an ongoing process to refine products, operations, and services. This commitment is our passion."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "hero": {
+    "title": "Future Home of COREI™ Multi-Purpose Complex",
+    "subtitle": "Check back as we add new photos of the progress on the construction of the COREI™ Multi-Purpose Complex.",
+    "description": "A multi-purpose complex that encompasses medical and veteran services, education and training, sports and recreation, health and fitness, childcare and after-school services, and business and conference services."
+  },
+  "ctaCards": [
+    {
+      "title": "Our Programs",
+      "description": "Learn about our programs and services helping rural Americans."
+    },
+    {
+      "title": "Get Involved",
+      "description": "Become a COREI volunteer today! Help us help our neighbors."
+    }
+  ],
+  "location": {
+    "name": "COREI™ Multi-Purpose Complex",
+    "address": "11989 County Road 482 South\nMount Enterprise, Texas 75681",
+    "description": "COREI™ one-stop multi-purpose Complex will be nestled in the scenic and historical Piney Woods of East Texas. Located just 12 miles south of Henderson and 30 miles north of Nacogdoches, it is a 2‑hour scenic drive from both Dallas and Houston, making the drive both relaxing and picturesque."
+  },
+  "whoWeAre": {
+    "title": "Who We Are",
+    "text": "COREI™ is a non-profit 501(c)(3) organization committed to serving rural and underserved communities by 'Bringing Urban Innovation to Rural America™' through the development of a one-stop multi-purpose complex.\nThis multi-purpose Complex will encompass medical and veteran services, education and training, sports and recreation, health and fitness, childcare and after-school services, business and conference services, and community activities and events.\nWe need the entire community to work with us at the multi-purpose complex to improve economic and social sustainability and encourage business diversification. We are partnering with medical service providers, veteran service officers, federal and state veteran service agencies, and veteran organizations to overcome the many challenges veterans face. We also strive to build more cohesive and stronger communities and to empower young people and families to reach their highest potential and become champions of change."
+  },
+  "coreValues": ["Community", "Education", "Fitness", "Veterans", "Medical", "Sports"],
+  "partnerSpotlight": {
+    "title": "Partner Spotlight",
+    "partner": {
+      "name": "Crossroads Family Care",
+      "description": "COREI™ is proud to collaborate with Crossroads Family Care, a cornerstone of local health services. This partnership is more than a referral; it is a shared commitment for a healthier community. Crossroads Family Care provides essential medical expertise and compassionate care that complements our support services. Together, we are creating a stronger, more resilient network for all who need us. Discover their full range of medical services on their official website.",
+      "url": "https://crossroadsfamilycare.com"
+    }
+  }
+}
