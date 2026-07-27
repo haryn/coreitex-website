@@ -76,8 +76,8 @@ These items must be addressed during the WordPress → Firebase migration:
 - No geo-targeted meta tags
 - Missing structured data for programs/services
 - Image alt tags are mostly empty (`alt=""`)
-- No blog/news content (misses long-tail keyword opportunities)
-- No Google Business Profile (GMB)
+- No events/news content (misses long-tail keyword opportunities)
+- No Google Business Profile (GMB) - Additional Cost
 - No local citations
 - No FAQ schema for common questions
 - Page speed likely poor (WordPress + Elementor overhead)
@@ -132,11 +132,11 @@ These items must be addressed during the WordPress → Firebase migration:
 **Status**: Not yet created
 
 **Action Items:**
-1. Create Google Business Profile for COREI™
+1. Create Google Business Profile for COREI™ If additional cost is approved
 2. Categories: Non-Profit Organization, Community Center
 3. Add address: 11989 County Road 482 South, Mount Enterprise, TX 75681
 4. Add phone: 214-984-2440
-5. Add website: https://coreitex.com
+5. Add website: https://coreitex.org (test new domain on new server/website)
 6. Upload photos (construction progress, team, events)
 7. Add service areas: Henderson, Mount Enterprise, Nacogdoches, Rusk County
 8. Post weekly updates about construction progress
@@ -202,7 +202,7 @@ Q&As for FAQ schema:
 | **Competitor Check** | Monitor competitor SEO activity | 15 min |
 | **Implementation** | Apply SEO fixes and improvements | 2 hours |
 
-### Quarterly
+### Quarterly - Additional Cost
 
 | Deliverable | Description | Estimated Time |
 |-------------|-------------|----------------|
