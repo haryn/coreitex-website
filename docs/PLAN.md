@@ -114,7 +114,7 @@ coreitex-website/
 - Set up project infrastructure
 
 **Tasks**:
-- [ ] Receive WordPress HTML files from client (via Discord)
+- [ ] Receive WordPress HTML files from client website
 - [ ] Create project structure (`coreitex-website/`)
 - [ ] Analyze HTML structure and extract content
 - [ ] Document current pages and content hierarchy
@@ -148,13 +148,12 @@ coreitex-website/
 - [ ] Implement mockups in Next.js (homepage only)
 - [ ] Set up Firebase staging project
 - [ ] Deploy mockups to staging URL
-- [ ] Share staging URL with client via Discord
+- [ ] Share staging URL with client via Email
 - [ ] Collect feedback and iterate
 - [ ] Finalize design direction
 
 **Deliverables**:
 - 3 live mockup previews
-- Screenshots of each variant
 - Staging URL for client review
 - Final design specification
 
@@ -262,7 +261,7 @@ coreitex-website/
   - [ ] How to deploy changes
   - [ ] How to add new pages
   - [ ] SEO best practices
-- [ ] Set up Google Business Profile (if not exists)
+- [ ] Set up Google Business Profile (At additional cost)
 - [ ] Submit sitemap to Google Search Console
 - [ ] Handover to client
 
@@ -393,15 +392,14 @@ jobs:
 
 ### Monthly
 
-- Content updates (text, images, programs)
-- SEO audit and optimization
+- Content updates (text, images, programs) 1 per month plus email triggered automation
+- SEO audit and optimization, once per month
 - Performance monitoring (Lighthouse, Analytics)
 - Bug fixes
 - Dependency updates
 
 ### Quarterly
 
-- Design refresh (minor)
 - New feature suggestions
 - Content strategy review
 
@@ -417,10 +415,8 @@ jobs:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Client doesn't provide HTML export | High | Use web fetch to extract current content |
-| Missing construction photos | Medium | Use placeholder images, client provides later |
-| DNS configuration issues | Medium | Provide clear instructions, offer to assist |
-| Firebase Spark plan limits exceeded | Low | Monitor bandwidth, optimize images |
+| Missing construction/team photos | Medium | Use placeholder images, client provides later |
+| Firebase Spark plan limits exceeded | Low | Monitor bandwidth, optimize images, webpage size |
 | Client requests database features | Medium | Explain Spark plan limits, suggest upgrade |
 
 ---
@@ -441,13 +437,12 @@ jobs:
 ## 11. Next Steps
 
 **Immediate (This Week)**:
-1. Client provides WordPress HTML export files
-2. I analyze files and create content inventory
+1. I analyze files and create content inventory
 3. Set up GitHub repository and Next.js project
 
 **Week 2**:
 1. Create 3 homepage mockups
-2. Deploy to staging Firebase
+2. Deploy to staging hosting
 3. Client reviews and selects direction
 
 **Weeks 3-5**:
