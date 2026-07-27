@@ -194,11 +194,12 @@ COREI™ is a non-profit organization building a multi-purpose complex in East T
 - Construction progress photos (client to provide)
 - Team member bios (if available)
 - Program descriptions expansion
-- Blog/news section (optional, for retainer)
+- Calendar/news section (optional, for retainer)
 
 ### 6.2 Content Management Strategy
 
 **For Firebase Spark Plan** (no database):
+- **Approach 0**: Email Triggered Automation Updates
 - **Approach 1**: JSON content files (easiest for client)
 - **Approach 2**: Markdown files with frontmatter (better for version control)
 - **Approach 3**: Headless CMS with static export (e.g., Contentful, Sanity - free tier)
@@ -241,7 +242,7 @@ COREI™ is a non-profit organization building a multi-purpose complex in East T
 1. Create mockups from WordPress HTML (client-provided)
 2. Deploy to staging Firebase project
 3. Share staging URL with client
-4. Collect feedback via Discord channel
+4. Collect feedback via Email
 5. Iterate on selected mockup
 6. Final approval → full migration
 
@@ -257,7 +258,7 @@ COREI™ is a non-profit organization building a multi-purpose complex in East T
 
 **Business**:
 - Increased volunteer signups (track via form submissions)
-- Improved local search visibility (Google Business profile)
+- Improved local search visibility (Google Business profile - Additional Cost)
 - Reduced bounce rate (Google Analytics)
 - Increased donor engagement (if donation page added)
 
@@ -314,7 +315,7 @@ COREI™ is a non-profit organization building a multi-purpose complex in East T
 
 ## 12. Next Steps
 
-1. **Client Action**: Provide WordPress HTML export files
+1. **Client Action**: Provide Gmail Business Account Access
 2. **My Action**: Analyze files, create 3 mockups
 3. **Client Action**: Review mockups, select direction
 4. **My Action**: Begin full migration
