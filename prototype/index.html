@@ -1,0 +1,1333 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description"
+        content="COREI™ is a non-profit 501(c)(3) organization dedicated to Bringing Urban Innovation to Rural America™ through a multi-purpose complex offering medical, veteran, education, sports, childcare, and business services." />
+    <title>COREI™ | Non-Profit Bringing Urban Innovation to Rural Texas</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+
+    <!-- CDN Libraries -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* ═══════════════════════════════════════════════════
+           PRIMLAND LUXURY DESIGN TOKENS (explore.ownprimland.com)
+        ═══════════════════════════════════════════════════ */
+        :root {
+            --color-main: #344E39;
+            --color-main-dark: #1F3324;
+            --color-white: #FFFBE7;
+            --color-white-50: rgba(255, 251, 231, 0.65);
+            --color-white-pure: #FFFFFF;
+            --color-sage: #798D73;
+            --color-sand: #EFEAE6;
+            --color-bronze: #A8611A;
+            --color-bright-beige: #EAB279;
+            --color-border: rgba(255, 251, 231, 0.18);
+
+            --font-sans: 'Outfit', 'Inter', sans-serif;
+            --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+
+            --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+            --transition-smooth: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           GLOBAL RESET & BASE
+        ═══════════════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: auto;
+            background-color: var(--color-main-dark);
+            color: var(--color-white);
+            font-size: 16px;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: var(--color-main-dark);
+            color: var(--color-white);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           HEADER NAVIGATION
+        ═══════════════════════════════════════════════════ */
+        .header-primland {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 clamp(1.5rem, 4vw, 4rem);
+            pointer-events: none;
+            transition: background 0.4s var(--ease-out);
+        }
+
+        .header-primland.scrolled {
+            background: rgba(31, 51, 36, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .header-control {
+            pointer-events: auto;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sound-toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--color-border);
+            background: rgba(255, 251, 231, 0.06);
+            backdrop-filter: blur(8px);
+            transition: var(--transition-smooth);
+        }
+
+        .sound-toggle-btn:hover {
+            border-color: var(--color-white);
+            background: rgba(255, 251, 231, 0.18);
+        }
+
+        .eq-bar {
+            width: 2px;
+            height: 14px;
+            background: var(--color-white);
+            border-radius: 1px;
+            animation: eqAnim 1.2s ease-in-out infinite alternate;
+        }
+
+        .eq-bar:nth-child(2) { animation-delay: 0.2s; height: 18px; }
+        .eq-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
+        .eq-bar:nth-child(4) { animation-delay: 0.6s; height: 15px; }
+
+        @keyframes eqAnim {
+            0% { transform: scaleY(0.4); }
+            100% { transform: scaleY(1.3); }
+        }
+
+        .sound-toggle-btn.muted .eq-bar {
+            animation: none !important;
+            height: 3px !important;
+            opacity: 0.5;
+        }
+
+        .sound-text {
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .brand-logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: auto;
+        }
+
+        .brand-logo-img {
+            height: 52px;
+            width: auto;
+            filter: brightness(0) invert(1) sepia(0.2) hue-rotate(40deg);
+            transition: transform 0.4s var(--ease-out);
+        }
+
+        .brand-logo-img:hover { transform: scale(1.04); }
+
+        .btn-inquire {
+            pointer-events: auto;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 9px 22px;
+            color: var(--color-white);
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-inquire:hover {
+            border-color: var(--color-white);
+            background: var(--color-white);
+            color: var(--color-main-dark);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           CINEMATIC HERO SECTION
+        ═══════════════════════════════════════════════════ */
+        .hero-primland {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 720px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-visual {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.68) contrast(1.1);
+            transform: scale(1.05);
+        }
+
+        .hero-vignette-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(180deg, rgba(14, 22, 16, 0.75) 0%, rgba(14, 22, 16, 0.25) 50%, rgba(14, 22, 16, 0.95) 100%),
+                radial-gradient(circle at center, transparent 40%, rgba(14, 22, 16, 0.8) 100%);
+        }
+
+        .hero-content-primland {
+            position: relative;
+            z-index: 10;
+            max-width: 950px;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .master-emblem-svg {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 0.25rem;
+            opacity: 0.9;
+        }
+
+        .hero-eyebrow {
+            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--color-white-50);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-eyebrow sup {
+            font-family: var(--font-serif);
+            font-style: italic;
+            text-transform: lowercase;
+            font-size: 1.1em;
+            color: var(--color-bright-beige);
+        }
+
+        .hero-title-serif {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5.8vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.06;
+            letter-spacing: -0.02em;
+            color: var(--color-white);
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.98rem, 1.5vw, 1.25rem);
+            font-weight: 300;
+            color: var(--color-white-50);
+            max-width: 780px;
+            line-height: 1.65;
+        }
+
+        /* Dual-Layer Rolling Text Button */
+        .btn-rolling-primland {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 38px;
+            min-width: 230px;
+            height: 52px;
+            background: var(--color-white);
+            color: var(--color-main-dark);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            overflow: hidden;
+            cursor: pointer;
+            border: none;
+            margin-top: 0.75rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+        }
+
+        .btn-rolling-primland:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-rolling-text-wrap {
+            position: relative;
+            height: 1.2em;
+            overflow: hidden;
+            display: block;
+        }
+
+        .btn-text-primary,
+        .btn-text-secondary {
+            display: block;
+            transition: transform 0.5s var(--ease-out);
+            white-space: nowrap;
+        }
+
+        .btn-text-secondary {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateY(100%);
+            color: var(--color-bronze);
+        }
+
+        .btn-rolling-primland:hover .btn-text-primary { transform: translateY(-100%); }
+        .btn-rolling-primland:hover .btn-text-secondary { transform: translateY(0); }
+
+        .hero-audio-bottom {
+            position: absolute;
+            bottom: 35px;
+            z-index: 10;
+            background: transparent;
+            border: none;
+            color: var(--color-white-50);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 8px;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .hero-audio-bottom:hover { color: var(--color-white); }
+
+        /* ═══════════════════════════════════════════════════
+           WHO WE ARE & BOARD-APPROVED MISSION SECTION
+        ═══════════════════════════════════════════════════ */
+        .section-who-we-are {
+            position: relative;
+            padding: 8rem 2rem;
+            background: #18281B;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .who-grid {
+            max-width: 1250px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .eyebrow-badge {
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-bright-beige);
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+        }
+
+        .title-serif-lg {
+            font-family: var(--font-serif);
+            font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.12;
+            color: var(--color-white);
+            margin-bottom: 1.75rem;
+        }
+
+        .who-body-copy p {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: var(--color-white-50);
+            margin-bottom: 1.25rem;
+            font-weight: 300;
+        }
+
+        .who-location-card {
+            background: rgba(31, 51, 36, 0.5);
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .who-location-title {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--color-white);
+        }
+
+        .who-location-address {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-bright-beige);
+            font-weight: 500;
+        }
+
+        .map-embed-frame {
+            width: 100%;
+            height: 220px;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .map-embed-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           INTERACTIVE SANCTUARY MASTERPLAN (Spatial Hotspots)
+        ═══════════════════════════════════════════════════ */
+        .section-masterplan {
+            position: relative;
+            padding: 8rem 2rem;
+            background: var(--color-main-dark);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .section-header-editorial {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 5rem;
+        }
+
+        .masterplan-map-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
+            background: #152218;
+        }
+
+        .masterplan-img-map {
+            width: 100%;
+            height: auto;
+            min-height: 500px;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.05);
+            display: block;
+        }
+
+        /* Hotspot Pulse Pins */
+        .hotspot-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+
+        .hotspot-ring {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 251, 231, 0.2);
+            border: 1.5px solid var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .hotspot-ring::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid var(--color-bright-beige);
+            opacity: 0.6;
+            animation: pulseRing 2.5s infinite;
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .hotspot-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--color-bright-beige);
+        }
+
+        .hotspot-pin:hover .hotspot-ring {
+            transform: scale(1.25);
+            background: var(--color-white);
+        }
+
+        .hotspot-pin:hover .hotspot-dot { background: var(--color-main-dark); }
+
+        .hotspot-label-tooltip {
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(14, 22, 16, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: var(--color-white);
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, 5px);
+            transition: var(--transition-smooth);
+        }
+
+        .hotspot-pin:hover .hotspot-label-tooltip {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           PARTNER SPOTLIGHT: CROSSROADS FAMILY CARE
+        ═══════════════════════════════════════════════════ */
+        .section-partner {
+            position: relative;
+            padding: 8rem 2rem;
+            background: #142217;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .partner-card-frame {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            background: rgba(31, 51, 36, 0.35);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .partner-img-wrapper {
+            position: relative;
+            min-height: 420px;
+        }
+
+        .partner-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .partner-content-box {
+            padding: 4rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .partner-desc {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: var(--color-white-50);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           EDITORIAL AMENITIES GRID
+        ═══════════════════════════════════════════════════ */
+        .section-amenities {
+            padding: 8rem 2rem;
+            background: var(--color-main-dark);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .amenities-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .amenity-card {
+            position: relative;
+            background: rgba(31, 51, 36, 0.4);
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 251, 231, 0.4);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .amenity-media-container {
+            width: 100%;
+            height: 270px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .amenity-media-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease-out);
+        }
+
+        .amenity-card:hover .amenity-media-container img {
+            transform: scale(1.08);
+        }
+
+        .amenity-content { padding: 2rem; }
+
+        .amenity-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-bright-beige);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .amenity-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--color-white);
+            margin-bottom: 0.75rem;
+        }
+
+        .amenity-desc {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--color-white-50);
+            font-weight: 300;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           FACILITY DETAILS SIDE DRAWER (MODAL)
+        ═══════════════════════════════════════════════════ */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(14, 22, 16, 0.75);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s var(--ease-out);
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer-modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(550px, 90vw);
+            height: 100vh;
+            z-index: 2001;
+            background: var(--color-main-dark);
+            border-left: 1px solid var(--color-border);
+            box-shadow: -30px 0 80px rgba(0, 0, 0, 0.6);
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transform: translateX(100%);
+            transition: transform 0.6s var(--ease-out);
+            overflow-y: auto;
+        }
+
+        .drawer-overlay.active .drawer-modal { transform: translateX(0); }
+
+        .drawer-close-btn {
+            align-self: flex-end;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-white);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        .drawer-close-btn:hover {
+            border-color: var(--color-white);
+            background: var(--color-white);
+            color: var(--color-main-dark);
+        }
+
+        .drawer-img-frame {
+            width: 100%;
+            height: 260px;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .drawer-img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .drawer-category {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-bright-beige);
+            margin-bottom: 0.5rem;
+        }
+
+        .drawer-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--color-white);
+            margin-bottom: 1rem;
+        }
+
+        .drawer-body {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--color-white-50);
+            font-weight: 300;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           LUXURY FOOTER
+        ═══════════════════════════════════════════════════ */
+        .footer-primland {
+            padding: 8rem 2rem 4rem;
+            background: #142217;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-emblem {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+        }
+
+        .footer-headline {
+            font-family: var(--font-serif);
+            font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+            font-weight: 400;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-sub {
+            font-size: 1rem;
+            color: var(--color-white-50);
+            max-width: 620px;
+            margin: 0 auto 3rem;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        .footer-copyright {
+            margin-top: 5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 251, 231, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .who-grid, .partner-card-frame {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════ FIXED HEADER ═══════════════════ -->
+    <header class="header-primland" id="headerNav">
+        <!-- Sound Toggle Button -->
+        <button class="header-control sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <span class="sound-text" id="soundText">Audio On</span>
+        </button>
+
+        <!-- Centered Brand Logo -->
+        <a href="#top" class="brand-logo-container" aria-label="COREI Home">
+            <img src="index/COREI-02-01.svg" alt="COREI Logo" class="brand-logo-img" />
+        </a>
+
+        <!-- Inquire / Donate Action Button -->
+        <a href="https://coreitex.com/ways-to-give/" target="_blank" rel="noopener" class="btn-inquire">
+            Ways To Give
+        </a>
+    </header>
+
+    <main id="top">
+
+        <!-- ═══════════════════ CINEMATIC HERO ═══════════════════ -->
+        <section class="hero-primland" id="hero">
+            <div class="hero-bg-visual">
+                <img src="index/site.webp" alt="COREI East Texas Piney Woods Sanctuary" />
+            </div>
+            <div class="hero-vignette-overlay"></div>
+
+            <div class="hero-content-primland">
+                <!-- Master Emblem SVG -->
+                <svg class="master-emblem-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="46" stroke="#FFFBE7" stroke-width="1.5" stroke-opacity="0.6" />
+                    <path d="M50 18 L55 38 L75 38 L59 50 L65 70 L50 58 L35 70 L41 50 L25 38 L45 38 Z" fill="#FFFBE7"
+                        fill-opacity="0.9" />
+                </svg>
+
+                <p class="hero-eyebrow">
+                    COREI™ · EAST TEXAS PINEY WOODS
+                </p>
+
+                <h1 class="hero-title-serif">
+                    "Bringing Urban Innovation <br>To Rural America"™
+                </h1>
+
+                <p class="hero-subtitle">
+                    A non-profit 501(c)(3) organization building a one-stop multi-purpose complex offering medical and veteran services, education and training, sports and recreation, health and fitness, childcare, and business services.
+                </p>
+
+                <!-- Dual-Layer Rolling Text Button -->
+                <a href="#masterplan" class="btn-rolling-primland">
+                    <span class="btn-rolling-text-wrap">
+                        <span class="btn-text-primary">Explore The Vision</span>
+                        <span class="btn-text-secondary">Explore The Vision</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Bottom Audio Prompt -->
+            <button class="hero-audio-bottom" id="bottomAudioPrompt">
+                Start without audio
+            </button>
+        </section>
+
+
+        <!-- ═══════════════════ WHO WE ARE (BOARD APPROVED COPY) ═══════════════════ -->
+        <section class="section-who-we-are" id="who-we-are">
+            <div class="who-grid">
+                <div>
+                    <span class="eyebrow-badge">WHO WE ARE</span>
+                    <h2 class="title-serif-lg">Empowering Rural Communities to Thrive</h2>
+                    
+                    <div class="who-body-copy">
+                        <p>
+                            <strong>COREI™</strong> is a non-profit 501(c)(3) organization committed to serving rural and underserved communities by <em>'Bringing Urban Innovation to Rural America™'</em> through the development of a one-stop multi-purpose complex.
+                        </p>
+                        <p>
+                            This multi-purpose Complex encompasses medical and veteran services, education and training, sports and recreation, health and fitness, childcare and after-school services, business and conference services, and community activities and events.
+                        </p>
+                        <p>
+                            We are partnering with medical service providers, veteran service officers, federal and state veteran service agencies, and veteran organizations to overcome the many challenges veterans and rural residents face.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Location Card & Google Maps -->
+                <div class="who-location-card">
+                    <h3 class="who-location-title">Piney Woods Complex Site</h3>
+                    <p class="who-location-address">
+                        📍 11989 County Road 482 South<br>
+                        Mount Enterprise, Texas 75681
+                    </p>
+                    <p style="font-size:0.85rem; color:var(--color-white-50); line-height:1.5;">
+                        Located 12 miles south of Henderson and 30 miles north of Nacogdoches — a relaxing 2-hour scenic drive from both Dallas and Houston.
+                    </p>
+
+                    <div class="map-embed-frame">
+                        <iframe loading="lazy"
+                            src="https://maps.google.com/maps?q=11989%20County%20Road%20482%20South%20Mt.%20Enterprise%2C%20TX&t=m&z=10&output=embed&iwloc=near"
+                            title="COREI Location Map"
+                            aria-label="COREI Location Map"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ═══════════════════ INTERACTIVE SANCTUARY MASTERPLAN ═══════════════════ -->
+        <section class="section-masterplan" id="masterplan">
+            <div class="section-header-editorial">
+                <span class="eyebrow-badge">INTERACTIVE MASTERPLAN</span>
+                <h2 class="title-serif-lg">Future Home of COREI™ Multi-Purpose Complex</h2>
+                <p style="color:var(--color-white-50); font-weight:300; font-size:1rem; margin-top:0.75rem;">
+                    Check back as we add new photos of the progress on the construction of the COREI™ Multi-Purpose Complex.
+                </p>
+            </div>
+
+            <!-- Masterplan Map Container with Hotspot Pins -->
+            <div class="masterplan-map-container">
+                <img src="index/corei-complex.webp" alt="COREI Complex Master Plan" class="masterplan-img-map" />
+
+                <!-- Hotspot Pin 1: Medical & Wellness -->
+                <button class="hotspot-pin" style="top: 38%; left: 28%;" data-title="Medical & Veteran Services"
+                    data-category="Healthcare Access" data-img="index/medical.webp"
+                    data-desc="Collaborating with medical service providers, telehealth networks, and veteran service agencies to overcome rural healthcare challenges.">
+                    <div class="hotspot-ring">
+                        <div class="hotspot-dot"></div>
+                    </div>
+                    <span class="hotspot-label-tooltip">🩺 Medical & Veteran</span>
+                </button>
+
+                <!-- Hotspot Pin 2: Veteran Center -->
+                <button class="hotspot-pin" style="top: 48%; left: 45%;" data-title="Veteran Support Center"
+                    data-category="Dedicated Support" data-img="index/veteran.webp"
+                    data-desc="Partnering with federal and state veteran agencies to provide dedicated counseling, reintegration, and support services.">
+                    <div class="hotspot-ring">
+                        <div class="hotspot-dot"></div>
+                    </div>
+                    <span class="hotspot-label-tooltip">🎖 Veteran Support</span>
+                </button>
+
+                <!-- Hotspot Pin 3: Education & Tech Hub -->
+                <button class="hotspot-pin" style="top: 32%; left: 65%;" data-title="Education & Training Hub"
+                    data-category="Lifelong Learning" data-img="index/education.webp"
+                    data-desc="Empowering young people and adults through STEM classrooms, vocational education, and workforce development skills.">
+                    <div class="hotspot-ring">
+                        <div class="hotspot-dot"></div>
+                    </div>
+                    <span class="hotspot-label-tooltip">🎓 Education & Training</span>
+                </button>
+
+                <!-- Hotspot Pin 4: Fitness & Sports Complex -->
+                <button class="hotspot-pin" style="top: 62%; left: 32%;" data-title="Sports & Health Arena"
+                    data-category="Recreation & Health" data-img="index/fitness-center.webp"
+                    data-desc="Promoting physical health and wellness through indoor athletic courts, fitness facilities, and outdoor sports fields.">
+                    <div class="hotspot-ring">
+                        <div class="hotspot-dot"></div>
+                    </div>
+                    <span class="hotspot-label-tooltip">🏋 Sports & Fitness</span>
+                </button>
+
+                <!-- Hotspot Pin 5: Childcare Center -->
+                <button class="hotspot-pin" style="top: 58%; left: 75%;" data-title="Childcare & After-School Services"
+                    data-category="Family Care" data-img="index/childcare.webp"
+                    data-desc="Nurturing early childhood learning and dependable after-school programs supporting working families in East Texas.">
+                    <div class="hotspot-ring">
+                        <div class="hotspot-dot"></div>
+                    </div>
+                    <span class="hotspot-label-tooltip">👶 Childcare Services</span>
+                </button>
+
+                <!-- Hotspot Pin 6: Business & Conference Hub -->
+                <button class="hotspot-pin" style="top: 72%; left: 58%;" data-title="Business & Conference Center"
+                    data-category="Economic Growth" data-img="index/business-community.webp"
+                    data-desc="Encouraging economic sustainability and business diversification through flexible co-working spaces and conference halls.">
+                    <div class="hotspot-ring">
+                        <div class="hotspot-dot"></div>
+                    </div>
+                    <span class="hotspot-label-tooltip">💼 Business & Conference</span>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ═══════════════════ PARTNER SPOTLIGHT: CROSSROADS FAMILY CARE ═══════════════════ -->
+        <section class="section-partner" id="partner-spotlight">
+            <div class="section-header-editorial" style="margin-bottom:3.5rem;">
+                <span class="eyebrow-badge">COMMUNITY COLLABORATION</span>
+                <h2 class="title-serif-lg">Partner Spotlight</h2>
+            </div>
+
+            <div class="partner-card-frame">
+                <div class="partner-img-wrapper">
+                    <img src="index/crossroads-medical-team.webp" alt="Crossroads Family Care Medical Team" />
+                </div>
+                <div class="partner-content-box">
+                    <span class="eyebrow-badge">HEALTHCARE PARTNER</span>
+                    <h3 class="title-serif-lg" style="font-size:2.4rem; margin-bottom:1rem;">Crossroads Family Care</h3>
+                    <p class="partner-desc">
+                        <strong>COREI™</strong> is proud to collaborate with Crossroads Family Care, a cornerstone of local health services. This partnership is more than a referral; it is a shared commitment for a healthier community. Crossroads Family Care provides essential medical expertise and compassionate care that complements our support services. Together, we are creating a stronger, more resilient network for all who need us.
+                    </p>
+
+                    <a href="https://crossroadsfamilycare.com/" target="_blank" rel="noopener" class="btn-rolling-primland">
+                        <span class="btn-rolling-text-wrap">
+                            <span class="btn-text-primary">Visit Crossroads Website ↗</span>
+                            <span class="btn-text-secondary">Visit Crossroads Website ↗</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ═══════════════════ EDITORIAL AMENITIES GRID ═══════════════════ -->
+        <section class="section-amenities" id="services">
+            <div class="section-header-editorial">
+                <span class="eyebrow-badge">WHAT WE DO</span>
+                <h2 class="title-serif-lg">Our Programs & Services</h2>
+            </div>
+
+            <div class="amenities-grid">
+                <!-- Card 1 -->
+                <div class="amenity-card" onclick="openDrawerFromCard('Medical Services', 'Healthcare Access', 'index/medical.webp', 'Collaborating with medical service providers and telehealth networks to bring quality family healthcare to rural East Texas.')">
+                    <div class="amenity-media-container">
+                        <img src="index/medical.webp" alt="Medical Clinic" />
+                    </div>
+                    <div class="amenity-content">
+                        <span class="amenity-tag">HEALTHCARE ACCESS</span>
+                        <h3 class="amenity-title">Medical Services</h3>
+                        <p class="amenity-desc">Comprehensive medical clinics and telehealth partnerships serving rural families.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="amenity-card" onclick="openDrawerFromCard('Veteran Services', 'Dedicated Support', 'index/veteran.webp', 'Partnering with federal and state veteran service agencies to support military veterans and their families.')">
+                    <div class="amenity-media-container">
+                        <img src="index/veteran.webp" alt="Veteran Services" />
+                    </div>
+                    <div class="amenity-content">
+                        <span class="amenity-tag">DEDICATED SUPPORT</span>
+                        <h3 class="amenity-title">Veteran Services</h3>
+                        <p class="amenity-desc">Dedicated counseling, benefit navigation, and reintegration resources for veterans.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="amenity-card" onclick="openDrawerFromCard('Education & Training', 'Lifelong Learning', 'index/education.webp', 'Offering STEM education, vocational training, and digital skills programs for youth and adults.')">
+                    <div class="amenity-media-container">
+                        <img src="index/education.webp" alt="Education Center" />
+                    </div>
+                    <div class="amenity-content">
+                        <span class="amenity-tag">LIFELONG LEARNING</span>
+                        <h3 class="amenity-title">Education & Training</h3>
+                        <p class="amenity-desc">STEM labs, vocational courses, and workforce training empowering rural youth.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="amenity-card" onclick="openDrawerFromCard('Sports & Recreation', 'Health & Fitness', 'index/fitness-center.webp', 'Providing multi-sport athletic courts, fitness equipment, and youth recreation leagues.')">
+                    <div class="amenity-media-container">
+                        <img src="index/fitness-center.webp" alt="Fitness Center" />
+                    </div>
+                    <div class="amenity-content">
+                        <span class="amenity-tag">HEALTH & FITNESS</span>
+                        <h3 class="amenity-title">Sports & Fitness</h3>
+                        <p class="amenity-desc">Modern athletic facilities and wellness spaces fostering community health.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="amenity-card" onclick="openDrawerFromCard('Childcare Services', 'Family Support', 'index/childcare.webp', 'Dependable early childhood education and after-school care supporting local working parents.')">
+                    <div class="amenity-media-container">
+                        <img src="index/childcare.webp" alt="Childcare Facility" />
+                    </div>
+                    <div class="amenity-content">
+                        <span class="amenity-tag">FAMILY SUPPORT</span>
+                        <h3 class="amenity-title">Childcare & After-School</h3>
+                        <p class="amenity-desc">Safe, nurturing childcare and youth learning programs for working families.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="amenity-card" onclick="openDrawerFromCard('Business & Conference', 'Economic Growth', 'index/business-community.webp', 'Modern co-working facilities and conference centers encouraging local business diversification.')">
+                    <div class="amenity-media-container">
+                        <img src="index/business-community.webp" alt="Business Hub" />
+                    </div>
+                    <div class="amenity-content">
+                        <span class="amenity-tag">ECONOMIC GROWTH</span>
+                        <h3 class="amenity-title">Business & Conference</h3>
+                        <p class="amenity-desc">Co-working hubs and meeting spaces promoting economic sustainability in East Texas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ═══════════════════ LUXURY INQUIRE FOOTER ═══════════════════ -->
+        <footer class="footer-primland">
+            <!-- Emblem -->
+            <svg class="footer-emblem" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="46" stroke="#FFFBE7" stroke-width="1.5" stroke-opacity="0.6" />
+                <path d="M50 18 L55 38 L75 38 L59 50 L65 70 L50 58 L35 70 L41 50 L25 38 L45 38 Z" fill="#FFFBE7"
+                    fill-opacity="0.9" />
+            </svg>
+
+            <h2 class="footer-headline">Help Us Help Our Neighbors</h2>
+            <p class="footer-sub">
+                Become a COREI volunteer or donor today. Together, we can build stronger, more cohesive rural communities.
+            </p>
+
+            <a href="https://coreitex.com/ways-to-give/" target="_blank" rel="noopener" class="btn-rolling-primland">
+                <span class="btn-rolling-text-wrap">
+                    <span class="btn-text-primary">Support COREI Today</span>
+                    <span class="btn-text-secondary">Support COREI Today</span>
+                </span>
+            </a>
+
+            <p class="footer-copyright">
+                © 2026 Community One Resources Initiatives Corporation (COREI™). All Rights Reserved.
+            </p>
+        </footer>
+
+    </main>
+
+
+    <!-- ═══════════════════ FACILITY DETAILS SIDE DRAWER ═══════════════════ -->
+    <div class="drawer-overlay" id="drawerOverlay">
+        <div class="drawer-modal">
+            <div>
+                <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Modal">✕</button>
+                <div class="drawer-img-frame">
+                    <img id="drawerImg" src="index/medical.webp" alt="Facility detail image" />
+                </div>
+                <div class="drawer-category" id="drawerCat">HEALTHCARE ACCESS</div>
+                <h3 class="drawer-title" id="drawerTitle">Medical Services</h3>
+                <p class="drawer-body" id="drawerDesc">
+                    Collaborating with medical service providers and telehealth networks to bring quality family healthcare to rural East Texas.
+                </p>
+            </div>
+
+            <div class="drawer-action">
+                <a href="https://coreitex.com/ways-to-give/" target="_blank" rel="noopener" class="btn-rolling-primland" style="width:100%;">
+                    <span class="btn-rolling-text-wrap">
+                        <span class="btn-text-primary">Ways To Give</span>
+                        <span class="btn-text-secondary">Ways To Give</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════ JAVASCRIPT & AUDIO SYNTHESIZER ═══════════════════ -->
+    <script>
+        // Lenis Smooth Scroll Setup
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Header Blur on Scroll
+        const header = document.getElementById('headerNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Web Audio Ambient Synthesizer
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let gainNode = null;
+
+        function initAmbientAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                const bufferSize = 2 * audioCtx.sampleRate;
+                const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+
+                const whiteNoise = audioCtx.createBufferSource();
+                whiteNoise.buffer = noiseBuffer;
+                whiteNoise.loop = true;
+
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.value = 350;
+                filter.Q.value = 3.0;
+
+                gainNode = audioCtx.createGain();
+                gainNode.gain.value = 0.08;
+
+                whiteNoise.connect(filter);
+                filter.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                whiteNoise.start(0);
+            }
+        }
+
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        const soundText = document.getElementById('soundText');
+        const bottomAudioPrompt = document.getElementById('bottomAudioPrompt');
+
+        function toggleAudio(enable) {
+            initAmbientAudio();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            if (enable !== undefined) {
+                isAudioPlaying = enable;
+            } else {
+                isAudioPlaying = !isAudioPlaying;
+            }
+
+            if (isAudioPlaying) {
+                gainNode.gain.setTargetAtTime(0.08, audioCtx.currentTime, 0.5);
+                soundToggleBtn.classList.remove('muted');
+                soundText.textContent = 'Audio On';
+                bottomAudioPrompt.textContent = 'Start without audio';
+            } else {
+                gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5);
+                soundToggleBtn.classList.add('muted');
+                soundText.textContent = 'Audio Muted';
+                bottomAudioPrompt.textContent = 'Start with audio';
+            }
+        }
+
+        soundToggleBtn.addEventListener('click', () => toggleAudio());
+        bottomAudioPrompt.addEventListener('click', () => toggleAudio());
+
+        // Hotspot Drawer Modal Logic
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+        const drawerImg = document.getElementById('drawerImg');
+        const drawerCat = document.getElementById('drawerCat');
+        const drawerTitle = document.getElementById('drawerTitle');
+        const drawerDesc = document.getElementById('drawerDesc');
+
+        function openDrawer(title, category, img, desc) {
+            drawerTitle.textContent = title;
+            drawerCat.textContent = category;
+            drawerImg.src = img;
+            drawerDesc.textContent = desc;
+            drawerOverlay.classList.add('active');
+        }
+
+        function openDrawerFromCard(title, category, img, desc) {
+            openDrawer(title, category, img, desc);
+        }
+
+        drawerCloseBtn.addEventListener('click', () => {
+            drawerOverlay.classList.remove('active');
+        });
+
+        drawerOverlay.addEventListener('click', (e) => {
+            if (e.target === drawerOverlay) {
+                drawerOverlay.classList.remove('active');
+            }
+        });
+
+        document.querySelectorAll('.hotspot-pin').forEach(pin => {
+            pin.addEventListener('click', () => {
+                const title = pin.getAttribute('data-title');
+                const category = pin.getAttribute('data-category');
+                const img = pin.getAttribute('data-img');
+                const desc = pin.getAttribute('data-desc');
+                openDrawer(title, category, img, desc);
+            });
+        });
+    </script>
+</body>
+
+</html>

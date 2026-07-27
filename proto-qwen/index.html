@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COREI™ | Bringing Urban Innovation to Rural America</title>
+    <link rel="icon" href="https://coreitex.com/wp-content/uploads/2026/01/cropped-icon-32x32.png" sizes="32x32">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-dark: #0a1628;
+            --color-navy: #122240;
+            --color-deep: #1a3055;
+            --color-gold: #c8a45c;
+            --color-gold-light: #e8d5a3;
+            --color-cream: #f5f0e8;
+            --color-white: #ffffff;
+            --color-sage: #7a9e7e;
+            --color-sage-light: #a8c5ab;
+            --color-text: #2c3e50;
+            --color-text-light: #6b7c93;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Source Sans 3', 'Helvetica Neue', sans-serif;
+            --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            background: var(--color-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== CONTOUR LINES BACKGROUND ===== */
+        .contour-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.06;
+        }
+
+        .contour-bg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.5s var(--transition);
+            mix-blend-mode: difference;
+        }
+
+        .nav.scrolled {
+            padding: 1rem 3rem;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            mix-blend-mode: normal;
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled .nav-logo img {
+            height: 35px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-gold);
+            transition: width 0.4s var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-gold-light);
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold) !important;
+            border-radius: 2px;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--color-gold);
+            color: var(--color-dark) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        /* Mobile menu */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--color-white);
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg,
+                    rgba(10, 22, 40, 0.7) 0%,
+                    rgba(10, 22, 40, 0.4) 40%,
+                    rgba(10, 22, 40, 0.6) 70%,
+                    rgba(10, 22, 40, 0.95) 100%);
+        }
+
+        .hero-contour {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.12;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900'%3E%3Cpath d='M0,450 Q360,350 720,450 T1440,450' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,400 Q360,300 720,400 T1440,400' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,500 Q360,400 720,500 T1440,500' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,350 Q360,250 720,350 T1440,350' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,550 Q360,450 720,550 T1440,550' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,300 Q360,200 720,300 T1440,300' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,600 Q360,500 720,600 T1440,600' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,250 Q360,150 720,250 T1440,250' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,650 Q360,550 720,650 T1440,650' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,200 Q360,100 720,200 T1440,200' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: cover;
+            animation: contourFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes contourFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-10px) scale(1.02);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            border: 1px solid rgba(200, 164, 92, 0.4);
+            padding: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s var(--transition) 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: var(--color-white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s var(--transition) 0.6s forwards;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--color-gold-light);
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s var(--transition) 0.9s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s var(--transition) 1.2s forwards;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--color-gold);
+            color: var(--color-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(200, 164, 92, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-white);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: fadeUp 1s var(--transition) 1.5s forwards;
+            opacity: 0;
+        }
+
+        .hero-scroll .line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--color-gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scaleY(0.5);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== MARQUEE ===== */
+        .marquee-section {
+            background: var(--color-dark);
+            padding: 1.5rem 0;
+            overflow: hidden;
+            border-top: 1px solid rgba(200, 164, 92, 0.15);
+            border-bottom: 1px solid rgba(200, 164, 92, 0.15);
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-track span {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: rgba(200, 164, 92, 0.6);
+            padding: 0 2rem;
+            font-style: italic;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-dark {
+            background: var(--color-dark);
+            color: var(--color-white);
+        }
+
+        .section-navy {
+            background: var(--color-navy);
+            color: var(--color-white);
+        }
+
+        .section-cream {
+            background: var(--color-cream);
+            color: var(--color-text);
+        }
+
+        .section-white {
+            background: var(--color-white);
+            color: var(--color-text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--color-gold);
+            letter-spacing: 0.15em;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--color-gold);
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text-light);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .section-dark .section-desc,
+        .section-navy .section-desc {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== WHO WE ARE ===== */
+        .about-section {
+            padding: 8rem 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.8s var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid var(--color-gold);
+            border-radius: 4px;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(200, 164, 92, 0.2);
+        }
+
+        .stat-item h4 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== STORY / JOURNEY PARALLAX ===== */
+        .journey-section {
+            padding: 0;
+            position: relative;
+        }
+
+        .journey-panel {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .journey-panel-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            object-fit: cover;
+            will-change: transform;
+        }
+
+        .journey-panel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.85) 0%, rgba(10, 22, 40, 0.5) 100%);
+        }
+
+        .journey-content {
+            position: relative;
+            z-index: 10;
+            padding: 4rem;
+            max-width: 600px;
+        }
+
+        .journey-content.right {
+            margin-left: auto;
+        }
+
+        .journey-phase {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .journey-phase::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--color-gold);
+        }
+
+        .journey-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: var(--color-white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .journey-title em {
+            font-style: italic;
+            color: var(--color-gold-light);
+        }
+
+        .journey-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        .journey-year {
+            font-family: var(--font-serif);
+            font-size: 8rem;
+            color: rgba(200, 164, 92, 0.1);
+            position: absolute;
+            bottom: 2rem;
+            right: 4rem;
+            z-index: 5;
+            font-style: italic;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-section {
+            padding: 8rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 450px;
+            cursor: pointer;
+            group: true;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--transition);
+        }
+
+        .service-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .service-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 30%, rgba(10, 22, 40, 0.9) 100%);
+            transition: background 0.5s ease;
+        }
+
+        .service-card:hover .service-card-overlay {
+            background: linear-gradient(180deg, rgba(10, 22, 40, 0.3) 0%, rgba(10, 22, 40, 0.95) 100%);
+        }
+
+        .service-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            transform: translateY(20px);
+            transition: transform 0.5s var(--transition);
+        }
+
+        .service-card:hover .service-card-content {
+            transform: translateY(0);
+        }
+
+        .service-card-number {
+            font-size: 0.75rem;
+            color: var(--color-gold);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--color-white);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s var(--transition) 0.1s;
+        }
+
+        .service-card:hover .service-card-desc {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card-tag {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-gold);
+            border: 1px solid rgba(200, 164, 92, 0.4);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2px;
+        }
+
+        /* ===== FUTURE HOME / GALLERY ===== */
+        .gallery-section {
+            padding: 8rem 0;
+            overflow: hidden;
+        }
+
+        .gallery-slider {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .gallery-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-item {
+            flex: 0 0 400px;
+            height: 500px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            scroll-snap-align: start;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(10, 22, 40, 0.9));
+            color: var(--color-white);
+        }
+
+        .gallery-item-caption h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-item-caption p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== SITE PLAN ===== */
+        .siteplan-section {
+            padding: 8rem 0;
+        }
+
+        .siteplan-image {
+            width: 100%;
+            border-radius: 4px;
+            margin-top: 3rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .siteplan-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .siteplan-feature {
+            padding: 2rem;
+            border: 1px solid rgba(200, 164, 92, 0.2);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .siteplan-feature:hover {
+            border-color: var(--color-gold);
+            background: rgba(200, 164, 92, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .siteplan-feature h4 {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .siteplan-feature p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+        }
+
+        /* ===== IMPACT SECTION ===== */
+        .impact-section {
+            padding: 8rem 0;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            border-radius: 4px;
+            background: rgba(200, 164, 92, 0.03);
+            border: 1px solid rgba(200, 164, 92, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .impact-card:hover {
+            background: rgba(200, 164, 92, 0.08);
+            border-color: rgba(200, 164, 92, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .impact-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+        }
+
+        .impact-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+        }
+
+        /* ===== PARTNER SECTION ===== */
+        .partner-section {
+            padding: 8rem 0;
+            position: relative;
+            background-image: url('index/crossroads-medical-team.webp');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .partner-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(245, 240, 232, 0.15) 0%, rgba(245, 240, 232, 0.85) 40%, rgba(245, 240, 232, 0.98) 70%, var(--color-cream) 100%);
+            z-index: 1;
+        }
+
+        .partner-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .partner-grid {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .partner-content {
+            max-width: 620px;
+            padding: 3.5rem;
+            border-radius: 8px;
+            background: rgba(245, 240, 232, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .partner-content h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-dark);
+        }
+
+        .partner-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+        }
+
+        .partner-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: gap 0.3s ease;
+        }
+
+        .partner-link:hover {
+            gap: 1rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 10rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 600'%3E%3Cpath d='M0,300 Q360,200 720,300 T1440,300' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,250 Q360,150 720,250 T1440,250' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,350 Q360,250 720,350 T1440,350' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,200 Q360,100 720,200 T1440,200' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3Cpath d='M0,400 Q360,300 720,400 T1440,400' fill='none' stroke='%23c8a45c' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: cover;
+            opacity: 0.08;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-title em {
+            font-style: italic;
+            color: var(--color-gold-light);
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 550px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-address {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.8;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--color-dark);
+            border-top: 1px solid rgba(200, 164, 92, 0.15);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo img {
+            height: 45px;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-tagline {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: rgba(200, 164, 92, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s var(--transition);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s var(--transition);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .siteplan-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .about-grid,
+            .partner-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .siteplan-features {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                flex: 0 0 300px;
+                height: 400px;
+            }
+
+            .journey-content {
+                padding: 2rem;
+            }
+
+            .journey-year {
+                font-size: 4rem;
+                right: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+            z-index: 9999;
+            transition: width 0.1s linear;
+        }
+
+        /* ===== SMOOTH PARALLAX LAYERS ===== */
+        .parallax-layer {
+            will-change: transform;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Contour Background -->
+    <div class="contour-bg">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="none">
+            <path d="M0,450 Q360,350 720,450 T1440,450" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,400 Q360,280 720,400 T1440,400" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,500 Q360,420 720,500 T1440,500" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,350 Q360,220 720,350 T1440,350" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,550 Q360,470 720,550 T1440,550" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,300 Q360,170 720,300 T1440,300" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,600 Q360,520 720,600 T1440,600" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,250 Q360,120 720,250 T1440,250" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,650 Q360,570 720,650 T1440,650" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,200 Q360,80 720,200 T1440,200" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,700 Q360,620 720,700 T1440,700" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+            <path d="M0,150 Q360,50 720,150 T1440,150" fill="none" stroke="#c8a45c" stroke-width="0.5" />
+        </svg>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="mainNav">
+        <a href="#" class="nav-logo">
+            <img src="https://coreitex.com/wp-content/uploads/2025/07/COREI-logo-home.png" alt="COREI™ Logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#journey">Our Story</a></li>
+            <li><a href="#services">What We Do</a></li>
+            <li><a href="#future-home">Future Home</a></li>
+            <li><a href="#get-involved">Get Involved</a></li>
+            <li><a href="https://coreitex.com/ways-to-give/" class="nav-cta">Donate</a></li>
+        </ul>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v1-scaled.jpg"
+            alt="COREI Future Home" class="hero-video-bg parallax-layer" data-speed="0.3">
+        <div class="hero-overlay"></div>
+        <div class="hero-contour"></div>
+        <div class="hero-content">
+            <span class="hero-badge">COREI™ · East Texas</span>
+            <h1 class="hero-title">Urban <em>innovation.</em><br>Rural <em>possibility.</em></h1>
+            <p class="hero-subtitle">Building a place where health, opportunity, recreation, education, and community
+                can grow together — right here in East Texas.</p>
+            <div class="hero-actions">
+                <a href="#journey" class="btn-primary">Explore the Vision</a>
+                <a href="https://coreitex.com/ways-to-give/" class="btn-secondary">Support COREI</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span>Bringing Urban Innovation to Rural America™ —</span>
+            <span>Medical Care —</span>
+            <span>Veteran Services —</span>
+            <span>Education & Training —</span>
+            <span>Fitness & Sports —</span>
+            <span>Children & Families —</span>
+            <span>Business & Community —</span>
+            <span>Bringing Urban Innovation to Rural America™ —</span>
+            <span>Medical Care —</span>
+            <span>Veteran Services —</span>
+            <span>Education & Training —</span>
+            <span>Fitness & Sports —</span>
+            <span>Children & Families —</span>
+            <span>Business & Community —</span>
+        </div>
+    </div>
+
+    <!-- Who We Are -->
+    <section class="section section-dark about-section" id="mission">
+        <div class="container">
+            <div class="about-grid">
+                <div class="reveal-left">
+                    <div class="section-header">
+                        <span class="section-number">(01) Who we are</span>
+                        <h2 class="section-title">A new center of <em>possibility</em> for rural East Texas.</h2>
+                        <p class="section-desc">COREI™ is a non-profit 501(c)(3) organization committed to serving rural
+                            and underserved communities by bringing urban innovation to rural America.</p>
+                        <br>
+                        <p class="section-desc">Our vision is a one-stop multi-purpose complex that brings essential
+                            services, meaningful opportunity, and shared spaces closer to the people who need them.</p>
+                    </div>
+                    <a href="https://coreitex.com/about-corei/" class="partner-link">Learn about COREI →</a>
+                </div>
+                <div class="about-image reveal-right">
+                    <img src="index/corei-complex.webp"
+                        alt="COREI Complex">
+                </div>
+            </div>
+            <div class="about-stats reveal">
+                <div class="stat-item">
+                    <h4>6</h4>
+                    <p>Core Programs</p>
+                </div>
+                <div class="stat-item">
+                    <h4>1</h4>
+                    <p>Unified Complex</p>
+                </div>
+                <div class="stat-item">
+                    <h4>∞</h4>
+                    <p>Community Impact</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey / Story Parallax -->
+    <section class="journey-section" id="journey">
+        <!-- Phase 1: The Idea -->
+        <div class="journey-panel">
+            <img src="https://coreitex.com/wp-content/uploads/2026/01/Coming-Soon.jpeg" alt="The Idea"
+                class="journey-panel-bg parallax-layer" data-speed="0.2">
+            <div class="journey-panel-overlay"></div>
+            <div class="journey-content">
+                <span class="journey-phase">Phase 01 — The Spark</span>
+                <h3 class="journey-title">It began with a <em>question.</em></h3>
+                <p class="journey-text">What if rural communities didn't have to choose between leaving home and going
+                    without? What if the services, opportunities, and spaces that thrive in cities could take root right
+                    here in the Piney Woods of East Texas?</p>
+            </div>
+            <span class="journey-year">2023</span>
+        </div>
+
+        <!-- Phase 2: The Vision -->
+        <div class="journey-panel">
+            <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v5-scaled.jpg"
+                alt="The Vision" class="journey-panel-bg parallax-layer" data-speed="0.25">
+            <div class="journey-panel-overlay"></div>
+            <div class="journey-content right">
+                <span class="journey-phase">Phase 02 — The Vision</span>
+                <h3 class="journey-title">A blueprint for <em>community.</em></h3>
+                <p class="journey-text">The idea became a plan. Medical care, veteran services, education, sports,
+                    family support, and economic opportunity — all under one purposeful roof. A multi-purpose complex
+                    designed for generations.</p>
+            </div>
+            <span class="journey-year">2024</span>
+        </div>
+
+        <!-- Phase 3: Building -->
+        <div class="journey-panel">
+            <img src="https://coreitex.com/wp-content/uploads/2025/12/3-Future-home-of-Corei-Multi-Purpose-Complex-scaled.jpg"
+                alt="Building" class="journey-panel-bg parallax-layer" data-speed="0.2">
+            <div class="journey-panel-overlay"></div>
+            <div class="journey-content">
+                <span class="journey-phase">Phase 03 — Breaking Ground</span>
+                <h3 class="journey-title">Roots taking <em>shape.</em></h3>
+                <p class="journey-text">Partnerships formed. Land was secured. Construction began. With Crossroads
+                    Family Care and community allies, COREI™ moved from vision to visible progress on County Road 482
+                    South in Mount Enterprise.</p>
+            </div>
+            <span class="journey-year">2025</span>
+        </div>
+
+        <!-- Phase 4: The Future -->
+        <div class="journey-panel">
+            <img src="https://coreitex.com/wp-content/uploads/2026/06/corei_complex_site_plan-scaled.webp"
+                alt="The Future" class="journey-panel-bg parallax-layer" data-speed="0.15">
+            <div class="journey-panel-overlay"></div>
+            <div class="journey-content right">
+                <span class="journey-phase">Phase 04 — The Future</span>
+                <h3 class="journey-title">A legacy in the <em>making.</em></h3>
+                <p class="journey-text">Today, COREI™ stands as a full project in the making — a growing campus that
+                    will serve the region for decades. Every donation, every volunteer hour, every partnership brings
+                    this vision closer to reality.</p>
+            </div>
+            <span class="journey-year">2026</span>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section-navy services-section" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-number">(02) What we do</span>
+                <h2 class="section-title">One place. <em>Many</em> paths forward.</h2>
+                <p class="section-desc">The COREI™ complex connects services, programs, and community under one
+                    purposeful roof.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <img src="index/medical.webp" alt="Medical Care">
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <span class="service-card-number">01</span>
+                        <h3 class="service-card-title">Medical Care</h3>
+                        <p class="service-card-desc">Connecting rural residents with access to vital healthcare support
+                            and service providers, closing the gap in rural medical access.</p>
+                        <span class="service-card-tag">Healthcare Access</span>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <img src="index/veteran.webp" alt="Veteran Services">
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <span class="service-card-number">02</span>
+                        <h3 class="service-card-title">Veteran Services</h3>
+                        <p class="service-card-desc">Helping veterans navigate resources, services, advocacy, and the
+                            challenges they face returning to civilian life.</p>
+                        <span class="service-card-tag">Serving Those Who Served</span>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <img src="index/education.webp" alt="Education & Training">
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <span class="service-card-number">03</span>
+                        <h3 class="service-card-title">Education & Training</h3>
+                        <p class="service-card-desc">Creating pathways to skills, workforce readiness, lifelong
+                            learning, and opportunity for every age and stage.</p>
+                        <span class="service-card-tag">Lifelong Learning</span>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <img src="index/fitness-center.webp" alt="Fitness & Sports">
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <span class="service-card-number">04</span>
+                        <h3 class="service-card-title">Fitness & Sports</h3>
+                        <p class="service-card-desc">Supporting active, healthier lives through recreation, fitness
+                            programming, and youth engagement activities.</p>
+                        <span class="service-card-tag">Active Communities</span>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <img src="index/childcare.webp" alt="Children & Families">
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <span class="service-card-number">05</span>
+                        <h3 class="service-card-title">Children & Families</h3>
+                        <p class="service-card-desc">Providing childcare and after-school services that help families
+                            and young people thrive in a supportive environment.</p>
+                        <span class="service-card-tag">Family First</span>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <img src="index/business-community.webp" alt="Business & Community">
+                    <div class="service-card-overlay"></div>
+                    <div class="service-card-content">
+                        <span class="service-card-number">06</span>
+                        <h3 class="service-card-title">Business & Community</h3>
+                        <p class="service-card-desc">Making room for conferences, enterprise, collaboration, events, and
+                            stronger local connections that drive growth.</p>
+                        <span class="service-card-tag">Economic Growth</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Home / Gallery -->
+    <section class="section section-dark gallery-section" id="future-home">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-number">(03) The future home</span>
+                <h2 class="section-title">Progress with a <em>purpose.</em></h2>
+                <p class="section-desc">Nestled in the Piney Woods of East Texas, the future COREI™ Multi-Purpose
+                    Complex is being built to serve the region for generations.</p>
+            </div>
+        </div>
+        <div class="gallery-slider">
+            <div class="gallery-item">
+                <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v1-scaled.jpg"
+                    alt="Site Vision">
+                <div class="gallery-item-caption">
+                    <h4>Future home · Site vision</h4>
+                    <p>Where it all begins</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v5-scaled.jpg"
+                    alt="Building Momentum">
+                <div class="gallery-item-caption">
+                    <h4>Building momentum</h4>
+                    <p>Plans taking shape</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://coreitex.com/wp-content/uploads/2025/12/3-Future-home-of-Corei-Multi-Purpose-Complex-scaled.jpg"
+                    alt="Community Investment">
+                <div class="gallery-item-caption">
+                    <h4>Community investment</h4>
+                    <p>Growing together</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://coreitex.com/wp-content/uploads/2025/12/4-Future-home-of-Corei-Multi-Purpose-Complex-scaled.jpg"
+                    alt="East Texas Moving Forward">
+                <div class="gallery-item-caption">
+                    <h4>East Texas · Moving forward</h4>
+                    <p>Progress in motion</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://coreitex.com/wp-content/uploads/2025/12/5-Future-home-of-Corei-Multi-Purpose-Complex.jpeg"
+                    alt="Roots Taking Shape">
+                <div class="gallery-item-caption">
+                    <h4>Roots taking shape</h4>
+                    <p>Foundation of tomorrow</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Site Plan -->
+    <section class="section section-navy siteplan-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-number">(04) Campus plan</span>
+                <h2 class="section-title">Designed for <em>impact.</em></h2>
+                <p class="section-desc">A comprehensive campus designed to serve every dimension of community life.</p>
+            </div>
+            <img src="https://coreitex.com/wp-content/uploads/2026/06/corei_complex_site_plan-scaled.webp"
+                alt="COREI Community Campus Plan" class="siteplan-image reveal">
+            <div class="siteplan-features">
+                <div class="siteplan-feature reveal">
+                    <h4>Medical Wing</h4>
+                    <p>Full-service healthcare access for rural families and veterans.</p>
+                </div>
+                <div class="siteplan-feature reveal">
+                    <h4>Veteran Center</h4>
+                    <p>Dedicated resources, advocacy, and support services.</p>
+                </div>
+                <div class="siteplan-feature reveal">
+                    <h4>Education Hub</h4>
+                    <p>Workforce training, certification programs, and lifelong learning.</p>
+                </div>
+                <div class="siteplan-feature reveal">
+                    <h4>Sports Complex</h4>
+                    <p>Recreation, fitness, and youth engagement facilities.</p>
+                </div>
+                <div class="siteplan-feature reveal">
+                    <h4>Family Center</h4>
+                    <p>Childcare, after-school programs, and family support.</p>
+                </div>
+                <div class="siteplan-feature reveal">
+                    <h4>Conference Hall</h4>
+                    <p>Business events, community gatherings, and collaboration space.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="section section-dark impact-section">
+        <div class="container">
+            <div class="section-header reveal" style="text-align: center; max-width: 700px; margin: 0 auto 4rem;">
+                <span class="section-number">(05) Designed for impact</span>
+                <h2 class="section-title">Stronger communities start with <em>shared access.</em></h2>
+                <p class="section-desc" style="margin: 0 auto;">COREI™ is working with partners, service providers,
+                    veterans' organizations, and the wider community to strengthen economic and social sustainability.
+                </p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card reveal">
+                    <h3>Community</h3>
+                    <p>Spaces and programs that bring people together.</p>
+                </div>
+                <div class="impact-card reveal">
+                    <h3>Access</h3>
+                    <p>Essential services closer to rural families.</p>
+                </div>
+                <div class="impact-card reveal">
+                    <h3>Opportunity</h3>
+                    <p>Practical routes to education and growth.</p>
+                </div>
+                <div class="impact-card reveal">
+                    <h3>Resilience</h3>
+                    <p>Support systems built for long-term wellbeing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Spotlight -->
+    <section class="section section-cream partner-section">
+        <div class="container">
+            <div class="partner-grid">
+                <div class="partner-content reveal-right">
+                    <span class="section-number" style="color: var(--color-gold);">(06) Partner spotlight</span>
+                    <h3>Crossroads Family Care</h3>
+                    <p>COREI™ is proud to collaborate with Crossroads Family Care. Together, we are strengthening a
+                        regional support network through essential medical expertise and compassionate care. This
+                        partnership is more than a referral — it is a shared commitment for a healthier community.</p>
+                    <a href="https://crossroadsfamilycare.com/" class="partner-link" target="_blank">Visit partner site
+                        ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-dark cta-section" id="get-involved">
+        <div class="container">
+            <div class="cta-content reveal">
+                <span class="section-number" style="text-align: center; display: block;">(07) Be part of what's
+                    next</span>
+                <h2 class="cta-title">Help bring the <em>vision</em> to life.</h2>
+                <p class="cta-text">Every contribution moves us closer to a future where rural East Texas has the
+                    resources, services, and opportunities it deserves.</p>
+                <div class="cta-actions">
+                    <a href="https://coreitex.com/ways-to-give/" class="btn-primary">Make a Donation</a>
+                    <a href="https://coreitex.com/get-involved/" class="btn-secondary">Get Involved</a>
+                </div>
+                <div class="cta-address">
+                    <p><strong>COREI™ Multi-Purpose Complex</strong></p>
+                    <p>11989 County Road 482 South</p>
+                    <p>Mount Enterprise, Texas 75681</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/07/COREI-logo-home.png" alt="COREI™">
+                </div>
+                <div class="footer-links">
+                    <a href="https://coreitex.com/about-corei/">About</a>
+                    <a href="https://coreitex.com/what-we-do/">Programs</a>
+                    <a href="https://coreitex.com/get-involved/">Get Involved</a>
+                    <a href="https://coreitex.com/ways-to-give/">Ways to Give</a>
+                    <a href="https://crossroadsfamilycare.com/">Partner</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 COREI™. All rights reserved.</p>
+                <span class="footer-tagline">Bringing Urban Innovation to Rural America™</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // Navigation scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Parallax effect
+        const parallaxLayers = document.querySelectorAll('.parallax-layer');
+
+        function updateParallax() {
+            const scrollTop = window.scrollY;
+
+            parallaxLayers.forEach(layer => {
+                const speed = parseFloat(layer.dataset.speed) || 0.2;
+                const rect = layer.parentElement.getBoundingClientRect();
+                const offsetTop = rect.top + scrollTop;
+                const relativeScroll = scrollTop - offsetTop;
+
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    layer.style.transform = `translateY(${relativeScroll * speed}px)`;
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateParallax);
+        window.addEventListener('resize', updateParallax);
+
+        // Scroll reveal animations
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Gallery drag scroll
+        const gallery = document.querySelector('.gallery-slider');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        gallery.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - gallery.offsetLeft;
+            scrollLeft = gallery.scrollLeft;
+            gallery.style.cursor = 'grabbing';
+        });
+
+        gallery.addEventListener('mouseleave', () => {
+            isDown = false;
+            gallery.style.cursor = 'grab';
+        });
+
+        gallery.addEventListener('mouseup', () => {
+            isDown = false;
+            gallery.style.cursor = 'grab';
+        });
+
+        gallery.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - gallery.offsetLeft;
+            const walk = (x - startX) * 2;
+            gallery.scrollLeft = scrollLeft - walk;
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        navToggle.addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'fixed';
+            navLinks.style.top = '80px';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.background = 'rgba(10, 22, 40, 0.98)';
+            navLinks.style.padding = '2rem';
+            navLinks.style.gap = '1.5rem';
+            navLinks.style.alignItems = 'center';
+        });
+
+        // Staggered reveal for service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Staggered reveal for impact cards
+        const impactCards = document.querySelectorAll('.impact-card');
+        impactCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Staggered reveal for siteplan features
+        const siteplanFeatures = document.querySelectorAll('.siteplan-feature');
+        siteplanFeatures.forEach((feature, index) => {
+            feature.style.transitionDelay = `${index * 0.08}s`;
+        });
+    </script>
+</body>
+
+</html>'''

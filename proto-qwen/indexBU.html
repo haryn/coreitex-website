@@ -1,0 +1,1927 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="COREI brings urban innovation to rural America through a multi-purpose complex serving East Texas." />
+    <title>COREI™ | Bringing Urban Innovation to Rural America</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- CDN Libraries -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/three@0.169.0/build/three.module.js" type="module"></script>
+
+    <style>
+        /* ═══════════════════════════════════════════════════
+           DESIGN TOKENS
+        ═══════════════════════════════════════════════════ */
+        :root {
+            --navy: #041e42;
+            --navy-deep: #021530;
+            --blue: #0a5eb5;
+            --blue-bright: #1a8cff;
+            --sky: #43a7ed;
+            --teal: #0c936d;
+            --green: #42bc71;
+            --lime: #a7e562;
+            --ink: #09213d;
+            --paper: #f0f8f4;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --line: rgba(255, 255, 255, 0.15);
+            --radius: 1.5rem;
+            --radius-lg: 2.5rem;
+            --shadow: 0 24px 80px rgba(2, 21, 48, 0.25);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            /* Dynamic scroll-linked color */
+            --scene-bg: #041e42;
+            --scene-text: #ffffff;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           GLOBAL RESET & BASE
+        ═══════════════════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: auto; /* Lenis handles this */
+        }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        body {
+            overflow-x: hidden;
+            color: var(--white);
+            background: var(--navy-deep);
+            font-family: 'Outfit', 'Inter', ui-sans-serif, system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        ul, ol { list-style: none; }
+
+        /* ═══════════════════════════════════════════════════
+           THREE.JS CANVAS
+        ═══════════════════════════════════════════════════ */
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           CUSTOM CURSOR
+        ═══════════════════════════════════════════════════ */
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(circle, rgba(167, 229, 98, 0.08) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: opacity 0.4s ease;
+            mix-blend-mode: screen;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           NAVIGATION
+        ═══════════════════════════════════════════════════ */
+        .site-nav {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem clamp(1.25rem, 4vw, 4rem);
+            transition: background 0.5s ease, backdrop-filter 0.5s ease, padding 0.4s ease;
+        }
+
+        .site-nav.scrolled {
+            background: rgba(4, 30, 66, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .brand {
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 0.08em;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .brand span { color: var(--lime); }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(1rem, 2.5vw, 2.5rem);
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a:not(.btn) {
+            position: relative;
+            opacity: 0.85;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-links a:not(.btn)::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lime);
+            transition: width 0.4s var(--ease-out);
+        }
+
+        .nav-links a:not(.btn):hover { opacity: 1; color: var(--lime); }
+        .nav-links a:not(.btn):hover::after { width: 100%; }
+
+        /* ═══════════════════════════════════════════════════
+           BUTTONS
+        ═══════════════════════════════════════════════════ */
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            border: none;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            overflow: hidden;
+            isolation: isolate;
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            border-radius: inherit;
+            transition: transform 0.6s var(--ease-out);
+            transform: translateY(105%) rotate(8deg) scale(1.5);
+        }
+
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); }
+        .btn:hover::before { transform: translateY(0) rotate(0deg) scale(1); }
+
+        .btn-primary {
+            color: var(--navy-deep);
+            background: var(--lime);
+        }
+        .btn-primary::before { background: #c2f07a; }
+
+        .btn-outline {
+            color: var(--white);
+            background: transparent;
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+        }
+        .btn-outline::before { background: rgba(255, 255, 255, 0.15); }
+
+        .btn-dark {
+            color: var(--white);
+            background: var(--navy);
+        }
+        .btn-dark::before { background: var(--blue); }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION: HERO
+        ═══════════════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            padding: clamp(7rem, 12vw, 11rem) clamp(1.25rem, 7vw, 8rem) clamp(3.5rem, 6vw, 5rem);
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.15);
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(4, 30, 66, 0.3) 0%, rgba(4, 30, 66, 0.6) 60%, rgba(2, 21, 48, 0.95) 100%),
+                radial-gradient(circle at 78% 27%, rgba(167, 229, 98, 0.2) 0%, transparent 40%);
+        }
+
+        /* Animated grid overlay */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.2;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 90%);
+            transform: perspective(600px) rotateX(55deg) scale(1.5) translateY(20%);
+            transform-origin: center bottom;
+        }
+
+        /* Floating orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+        }
+
+        .hero-orb-1 {
+            right: -8vw;
+            bottom: -15vw;
+            width: min(55vw, 700px);
+            aspect-ratio: 1;
+            box-shadow: 0 0 0 60px rgba(255, 255, 255, 0.03), 0 0 0 120px rgba(255, 255, 255, 0.02);
+            animation: orbit 18s linear infinite;
+        }
+
+        .hero-orb-2 {
+            left: 10%;
+            top: 15%;
+            width: min(25vw, 300px);
+            aspect-ratio: 1;
+            border-color: rgba(167, 229, 98, 0.1);
+            animation: orbit 25s linear infinite reverse;
+        }
+
+        @keyframes orbit { to { transform: rotate(360deg); } }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            max-width: 1000px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            color: var(--lime);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 2.5rem;
+            height: 2px;
+            content: '';
+            background: currentColor;
+        }
+
+        h1 {
+            max-width: 950px;
+            margin-bottom: 1.75rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 8.5vw, 8rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+        }
+
+        .hero-copy {
+            max-width: 600px;
+            margin-bottom: 2rem;
+            font-size: clamp(1rem, 1.6vw, 1.25rem);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+        }
+
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+
+        .scroll-cue {
+            position: absolute;
+            z-index: 5;
+            right: clamp(1.25rem, 4vw, 4rem);
+            bottom: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .scroll-cue span {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+        }
+
+        .scroll-cue .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: var(--lime);
+            transform-origin: top;
+            animation: scroll-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-pulse {
+            0%, 100% { scaleY: 1; opacity: 1; }
+            50% { scaleY: 0.3; opacity: 0.3; }
+        }
+
+        /* ═══════════════════════════════════════════════════
+           COMMON SECTION STYLES
+        ═══════════════════════════════════════════════════ */
+        .section {
+            position: relative;
+            z-index: 2;
+            padding: clamp(6rem, 12vw, 12rem) clamp(1.25rem, 7vw, 8rem);
+        }
+
+        .section-label {
+            margin-bottom: 1rem;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .section-label-lime { color: var(--lime); }
+        .section-label-blue { color: var(--blue-bright); }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.055em;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION: MISSION (Intro)
+        ═══════════════════════════════════════════════════ */
+        .mission {
+            background: var(--paper);
+            color: var(--ink);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: clamp(3rem, 8vw, 10rem);
+            align-items: start;
+        }
+
+        .mission p {
+            font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+            line-height: 1.75;
+            color: #3d5d80;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION: HORIZONTAL SCROLL SERVICES
+        ═══════════════════════════════════════════════════ */
+        .horizontal-wrapper {
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            background: var(--navy-deep);
+        }
+
+        .horizontal-inner {
+            display: flex;
+            width: max-content;
+        }
+
+        .h-panel {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(2rem, 5vw, 6rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .h-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            transition: background 0.6s ease;
+        }
+
+        .h-panel:nth-child(1)::before { background: linear-gradient(135deg, #041e42 0%, #0a4080 100%); }
+        .h-panel:nth-child(2)::before { background: linear-gradient(135deg, #062a58 0%, #0c6d9f 100%); }
+        .h-panel:nth-child(3)::before { background: linear-gradient(135deg, #073565 0%, #0c936d 100%); }
+        .h-panel:nth-child(4)::before { background: linear-gradient(135deg, #084c8b 0%, #42bc71 100%); }
+        .h-panel:nth-child(5)::before { background: linear-gradient(135deg, #0c6d9f 0%, #3daf6d 100%); }
+        .h-panel:nth-child(6)::before { background: linear-gradient(135deg, #0c936d 0%, #a7e562 50%, #42bc71 100%); }
+        .h-panel:nth-child(7)::before { background: linear-gradient(135deg, #041e42 0%, #0a5eb5 100%); }
+
+        /* Intro panel */
+        .h-panel-intro {
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: left;
+        }
+
+        .h-panel-intro .h-intro-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .h-panel-intro h2 {
+            font-size: clamp(3rem, 7vw, 7rem);
+            margin-bottom: 1rem;
+        }
+
+        .h-panel-intro p {
+            font-size: clamp(1rem, 1.5vw, 1.3rem);
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 550px;
+        }
+
+        /* Service card panels */
+        .service-card {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 4vw, 5rem);
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .service-visual {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: var(--shadow);
+        }
+
+        .service-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s var(--ease-out);
+        }
+
+        .service-visual:hover img { transform: scale(1.08); }
+
+        .service-visual .service-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(2, 21, 48, 0.7) 0%, transparent 50%);
+        }
+
+        .service-number {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            font-weight: 900;
+            color: var(--lime);
+        }
+
+        .service-info h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-info p {
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 400px;
+        }
+
+        .service-tag {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION: 3D BUILDING (Future Home)
+        ═══════════════════════════════════════════════════ */
+        .building-section {
+            background: linear-gradient(135deg, #041e42 0%, #0c6d9f 50%, #0c936d 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .building-header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+
+        .building-header p {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        #building-container {
+            width: 100%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: grab;
+        }
+
+        #building-container:active { cursor: grabbing; }
+
+        #building-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .building-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .legend-item:hover, .legend-item.active {
+            background: rgba(167, 229, 98, 0.15);
+            border-color: var(--lime);
+            color: var(--lime);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION: GALLERY
+        ═══════════════════════════════════════════════════ */
+        .gallery-section {
+            background: var(--navy-deep);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr 0.8fr;
+            grid-auto-rows: minmax(200px, 28vw);
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .gallery-item:first-child { grid-row: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease-out);
+        }
+
+        .gallery-item:hover img { transform: scale(1.08); }
+
+        .gallery-caption {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: 999px;
+            color: var(--white);
+            background: rgba(4, 30, 66, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION: IMPACT
+        ═══════════════════════════════════════════════════ */
+        .impact {
+            background: #e8f6ee;
+            color: var(--ink);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: clamp(3rem, 8vw, 9rem);
+            align-items: center;
+        }
+
+        .impact-copy {
+            color: #3d5d80;
+            font-size: 1.08rem;
+            line-height: 1.75;
+        }
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .principle {
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            background: var(--white);
+            box-shadow: 0 8px 30px rgba(11, 89, 103, 0.07);
+            transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
+        }
+
+        .principle:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 50px rgba(11, 89, 103, 0.12);
+        }
+
+        .principle strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--blue);
+            font-size: 1.1rem;
+        }
+
+        .principle span {
+            color: #5a7a96;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION: PARTNER
+        ═══════════════════════════════════════════════════ */
+        .partner-section {
+            background: var(--white);
+            color: var(--ink);
+        }
+
+        .partner-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: clamp(2rem, 8vw, 9rem);
+            align-items: center;
+        }
+
+        .partner-card {
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2.5rem;
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            background: linear-gradient(145deg, #062a58 0%, #0a6eb5 50%, #42bc71 100%);
+            box-shadow: var(--shadow);
+            transition: transform 0.5s var(--ease-out);
+        }
+
+        .partner-card:hover { transform: translateY(-6px); }
+
+        .partner-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            max-width: 280px;
+        }
+
+        .partner-copy h2 {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            color: var(--ink);
+        }
+
+        .partner-copy p {
+            max-width: 600px;
+            margin-top: 1.25rem;
+            color: #3d5d80;
+            font-size: 1.08rem;
+            line-height: 1.75;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           SECTION: CTA
+        ═══════════════════════════════════════════════════ */
+        .cta {
+            position: relative;
+            overflow: hidden;
+            background: var(--navy-deep);
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 70% 50%, rgba(66, 188, 113, 0.2), transparent 50%);
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            width: 60vw;
+            height: 60vw;
+            right: -20vw;
+            bottom: -20vw;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .cta-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: end;
+        }
+
+        .contact-details {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .contact-details strong { color: var(--lime); }
+
+        /* ═══════════════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════════════ */
+        footer {
+            padding: 2.5rem clamp(1.25rem, 7vw, 8rem);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.82rem;
+            background: var(--navy-deep);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           GSAP REVEAL ANIMATIONS
+        ═══════════════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            will-change: transform, opacity;
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            will-change: transform, opacity;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(80px);
+            will-change: transform, opacity;
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            will-change: transform, opacity;
+        }
+
+        /* Word split for hero */
+        .split-line {
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .split-line .word {
+            display: inline-block;
+            transform: translateY(110%);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav-links a:not(.btn) { display: none; }
+            .site-nav { padding: 1rem; }
+            .scroll-cue { display: none; }
+
+            .mission-grid,
+            .impact-grid,
+            .partner-grid,
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card { grid-template-columns: 1fr; }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 220px;
+            }
+            .gallery-item:first-child { grid-row: span 1; grid-column: span 2; }
+            .gallery-item:nth-child(4) { grid-column: span 2; }
+
+            .principles { grid-template-columns: 1fr; }
+
+            .building-legend { gap: 0.5rem; }
+            .legend-item { font-size: 0.65rem; padding: 0.4rem 0.75rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Three.js Canvas -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a class="brand" href="#top">CORE<span>I</span>™</a>
+        <div class="nav-links">
+            <a href="#mission">Mission</a>
+            <a href="#services">What we do</a>
+            <a href="#future-home">Future home</a>
+            <a href="#get-involved">Get involved</a>
+            <a class="btn btn-primary" href="https://coreitex.com/ways-to-give/" target="_blank"
+                rel="noopener">Donate</a>
+        </div>
+    </nav>
+
+    <main id="top">
+        <!-- ═══════════════════ HERO ═══════════════════ -->
+        <section class="hero" id="hero" aria-labelledby="hero-title">
+            <div class="hero-bg">
+                <img src="https://coreitex.com/wp-content/uploads/2026/01/Coming-Soon.jpeg"
+                    alt="Future home of COREI complex" />
+            </div>
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+
+            <div class="hero-content">
+                <p class="eyebrow" id="hero-eyebrow">COREI™ · East Texas</p>
+                <h1 id="hero-title">
+                    <span class="split-line"><span class="word">Urban</span></span>
+                    <span class="split-line"><span class="word">innovation.</span></span><br>
+                    <span class="split-line"><span class="word" style="color:var(--lime)">Rural</span></span>
+                    <span class="split-line"><span class="word" style="color:var(--lime)">possibility.</span></span>
+                </h1>
+                <p class="hero-copy" id="hero-copy">
+                    Building a place where health, opportunity, recreation, education, and community can grow together —
+                    right here in East Texas.
+                </p>
+                <div class="hero-actions" id="hero-actions">
+                    <a class="btn btn-primary" href="#services">Explore the vision ↓</a>
+                    <a class="btn btn-outline" href="https://coreitex.com/ways-to-give/" target="_blank"
+                        rel="noopener">Support COREI</a>
+                </div>
+            </div>
+
+            <div class="scroll-cue" id="scroll-cue" aria-hidden="true">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ MISSION ═══════════════════ -->
+        <section class="section mission" id="mission">
+            <div class="mission-grid">
+                <div>
+                    <p class="section-label section-label-blue reveal">Who we are</p>
+                    <h2 class="reveal">A new center of possibility for rural&nbsp;East&nbsp;Texas.</h2>
+                </div>
+                <div>
+                    <p class="reveal">
+                        COREI™ is a non-profit 501(c)(3) organization committed to serving rural and underserved
+                        communities by bringing urban innovation to rural America.
+                    </p>
+                    <p class="reveal" style="margin-top:1.25rem">
+                        Our vision is a one-stop multi-purpose complex that brings essential services, meaningful
+                        opportunity, and shared spaces closer to the people who need them.
+                    </p>
+                    <a class="btn btn-dark reveal" style="margin-top:2rem"
+                        href="https://coreitex.com/about-corei/" target="_blank" rel="noopener">Learn about COREI →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ HORIZONTAL SCROLL SERVICES ═══════════════════ -->
+        <section class="horizontal-wrapper" id="services">
+            <div class="horizontal-inner" id="horizontal-inner">
+                <!-- Panel 0: Intro -->
+                <div class="h-panel h-panel-intro">
+                    <div class="h-intro-content">
+                        <p class="section-label section-label-lime">What we do</p>
+                        <h2>One place.<br>Many paths forward.</h2>
+                        <p>The COREI™ complex connects services, programs, and community under one purposeful roof.</p>
+                    </div>
+                </div>
+
+                <!-- Panel 1: Medical -->
+                <div class="h-panel">
+                    <div class="service-card">
+                        <div class="service-visual">
+                            <img src="https://coreitex.com/wp-content/uploads/2025/10/Health-Large.jpeg"
+                                alt="Medical Care" loading="lazy">
+                            <div class="service-overlay"></div>
+                            <div class="service-number">01</div>
+                        </div>
+                        <div class="service-info">
+                            <h3>Medical Care</h3>
+                            <p>Connecting rural residents with access to vital healthcare support and service providers, closing the gap in rural medical access.</p>
+                            <span class="service-tag">Healthcare Access</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 2: Veterans -->
+                <div class="h-panel">
+                    <div class="service-card">
+                        <div class="service-info">
+                            <h3>Veteran Services</h3>
+                            <p>Helping veterans navigate resources, services, advocacy, and the challenges they face returning to civilian life.</p>
+                            <span class="service-tag">Serving Those Who Served</span>
+                        </div>
+                        <div class="service-visual">
+                            <img src="https://coreitex.com/wp-content/uploads/2025/10/Veterans-Large.jpeg"
+                                alt="Veteran Services" loading="lazy">
+                            <div class="service-overlay"></div>
+                            <div class="service-number">02</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 3: Education -->
+                <div class="h-panel">
+                    <div class="service-card">
+                        <div class="service-visual">
+                            <img src="https://coreitex.com/wp-content/uploads/2025/10/Education-7-Large.jpeg"
+                                alt="Education and Training" loading="lazy">
+                            <div class="service-overlay"></div>
+                            <div class="service-number">03</div>
+                        </div>
+                        <div class="service-info">
+                            <h3>Education &amp; Training</h3>
+                            <p>Creating pathways to skills, workforce readiness, lifelong learning, and opportunity for every age and stage.</p>
+                            <span class="service-tag">Lifelong Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 4: Fitness -->
+                <div class="h-panel">
+                    <div class="service-card">
+                        <div class="service-info">
+                            <h3>Fitness &amp; Sports</h3>
+                            <p>Supporting active, healthier lives through recreation, fitness programming, and youth engagement activities.</p>
+                            <span class="service-tag">Active Communities</span>
+                        </div>
+                        <div class="service-visual">
+                            <img src="https://coreitex.com/wp-content/uploads/2025/10/Sports-Large.jpeg"
+                                alt="Fitness and Sports" loading="lazy">
+                            <div class="service-overlay"></div>
+                            <div class="service-number">04</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 5: Children -->
+                <div class="h-panel">
+                    <div class="service-card">
+                        <div class="service-visual">
+                            <img src="https://coreitex.com/wp-content/uploads/2025/10/Community-3-Large.jpeg"
+                                alt="Children and Families" loading="lazy">
+                            <div class="service-overlay"></div>
+                            <div class="service-number">05</div>
+                        </div>
+                        <div class="service-info">
+                            <h3>Children &amp; Families</h3>
+                            <p>Providing childcare and after-school services that help families and young people thrive in a supportive environment.</p>
+                            <span class="service-tag">Family First</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel 6: Business -->
+                <div class="h-panel">
+                    <div class="service-card">
+                        <div class="service-info">
+                            <h3>Business &amp; Community</h3>
+                            <p>Making room for conferences, enterprise, collaboration, events, and stronger local connections that drive growth.</p>
+                            <span class="service-tag">Economic Growth</span>
+                        </div>
+                        <div class="service-visual">
+                            <img src="https://coreitex.com/wp-content/uploads/2025/07/IMG_0143-Medium.jpeg"
+                                alt="Business and Community" loading="lazy">
+                            <div class="service-overlay"></div>
+                            <div class="service-number">06</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ 3D BUILDING ═══════════════════ -->
+        <section class="section building-section" id="future-home">
+            <div class="building-header">
+                <p class="section-label section-label-lime reveal">The future home of COREI™</p>
+                <h2 class="reveal">Progress with a purpose.</h2>
+                <p class="reveal">Nestled in the Piney Woods of East Texas, the future COREI™ Multi-Purpose Complex is
+                    being built to serve the region for generations.</p>
+            </div>
+
+            <div id="building-container" class="reveal-scale">
+                <canvas id="building-canvas"></canvas>
+            </div>
+
+            <div class="building-legend reveal" id="building-legend">
+                <div class="legend-item active" data-zone="medical">
+                    <div class="legend-dot" style="background:#ff6b6b"></div>Medical Wing
+                </div>
+                <div class="legend-item" data-zone="veteran">
+                    <div class="legend-dot" style="background:#4ecdc4"></div>Veteran Center
+                </div>
+                <div class="legend-item" data-zone="education">
+                    <div class="legend-dot" style="background:#ffe66d"></div>Education Hub
+                </div>
+                <div class="legend-item" data-zone="fitness">
+                    <div class="legend-dot" style="background:#a7e562"></div>Sports Complex
+                </div>
+                <div class="legend-item" data-zone="childcare">
+                    <div class="legend-dot" style="background:#ff9ff3"></div>Family Center
+                </div>
+                <div class="legend-item" data-zone="business">
+                    <div class="legend-dot" style="background:#54a0ff"></div>Conference Hall
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ GALLERY ═══════════════════ -->
+        <section class="section gallery-section">
+            <p class="section-label section-label-lime reveal">Construction Progress</p>
+            <h2 class="reveal">Building momentum.</h2>
+
+            <div class="gallery-grid">
+                <figure class="gallery-item reveal-scale">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v1-scaled.jpg"
+                        alt="Future home site vision" loading="lazy">
+                    <figcaption class="gallery-caption">Future home · Site vision</figcaption>
+                </figure>
+                <figure class="gallery-item reveal-scale">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v5-scaled.jpg"
+                        alt="Building momentum" loading="lazy">
+                    <figcaption class="gallery-caption">Building momentum</figcaption>
+                </figure>
+                <figure class="gallery-item reveal-scale">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/12/3-Future-home-of-Corei-Multi-Purpose-Complex-scaled.jpg"
+                        alt="Community investment" loading="lazy">
+                    <figcaption class="gallery-caption">Community investment</figcaption>
+                </figure>
+                <figure class="gallery-item reveal-scale">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/12/4-Future-home-of-Corei-Multi-Purpose-Complex-scaled.jpg"
+                        alt="Moving forward" loading="lazy">
+                    <figcaption class="gallery-caption">East Texas · Moving forward</figcaption>
+                </figure>
+                <figure class="gallery-item reveal-scale">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/12/5-Future-home-of-Corei-Multi-Purpose-Complex.jpeg"
+                        alt="Construction progress" loading="lazy">
+                    <figcaption class="gallery-caption">Roots taking shape</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ IMPACT ═══════════════════ -->
+        <section class="section impact">
+            <div class="impact-grid">
+                <div>
+                    <p class="section-label section-label-blue reveal">Designed for impact</p>
+                    <h2 class="reveal">Stronger communities start with shared&nbsp;access.</h2>
+                </div>
+                <div>
+                    <p class="impact-copy reveal">
+                        COREI™ is working with partners, service providers, veterans' organizations, and the wider
+                        community to strengthen economic and social sustainability, diversify local opportunity, and
+                        help people reach their highest potential.
+                    </p>
+                    <div class="principles">
+                        <div class="principle reveal">
+                            <strong>Community</strong>
+                            <span>Spaces and programs that bring people together.</span>
+                        </div>
+                        <div class="principle reveal">
+                            <strong>Access</strong>
+                            <span>Essential services closer to rural families.</span>
+                        </div>
+                        <div class="principle reveal">
+                            <strong>Opportunity</strong>
+                            <span>Practical routes to education and growth.</span>
+                        </div>
+                        <div class="principle reveal">
+                            <strong>Resilience</strong>
+                            <span>Support systems built for long-term wellbeing.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ PARTNER ═══════════════════ -->
+        <section class="section partner-section">
+            <div class="partner-grid">
+                <div class="partner-card reveal-left">
+                    <p class="eyebrow">Partner spotlight</p>
+                    <h3>Crossroads Family Care</h3>
+                    <a class="btn" style="background:white;color:var(--navy)" href="https://crossroadsfamilycare.com/"
+                        target="_blank" rel="noopener">Visit partner site ↗</a>
+                </div>
+                <div class="partner-copy">
+                    <p class="section-label section-label-blue reveal">Stronger together</p>
+                    <h2 class="reveal">Care that reaches farther.</h2>
+                    <p class="reveal">
+                        COREI™ is proud to collaborate with Crossroads Family Care. Together, we are strengthening a
+                        regional support network through essential medical expertise and compassionate care.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ CTA ═══════════════════ -->
+        <section class="section cta" id="get-involved">
+            <div class="cta-grid">
+                <div>
+                    <p class="eyebrow reveal">Be part of what's next</p>
+                    <h2 class="reveal">Help bring the vision to&nbsp;life.</h2>
+                </div>
+                <div>
+                    <p class="contact-details reveal">
+                        <strong>COREI™ Multi-Purpose Complex</strong><br>
+                        11989 County Road 482 South<br>
+                        Mount Enterprise, Texas 75681
+                    </p>
+                    <div class="hero-actions reveal" style="margin-top:1.5rem">
+                        <a class="btn btn-primary" href="https://coreitex.com/ways-to-give/" target="_blank"
+                            rel="noopener">Make a donation</a>
+                        <a class="btn btn-outline" href="https://coreitex.com/get-involved/" target="_blank"
+                            rel="noopener">Get involved</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>© <span id="year"></span> COREI™. All rights reserved.</span>
+        <span>Bringing Urban Innovation to Rural America™</span>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════
+         SCRIPTS
+    ═══════════════════════════════════════════════════ -->
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.169.0/build/three.module.js';
+
+        /* ── Year ─────────────────────────────────────── */
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ── Lenis Smooth Scroll ──────────────────────── */
+        const lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 0.8,
+            touchMultiplier: 1.5,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        /* Hook GSAP ScrollTrigger to Lenis */
+        gsap.registerPlugin(ScrollTrigger);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        /* ── Cursor Glow ──────────────────────────────── */
+        const cursorGlow = document.getElementById('cursor-glow');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        gsap.ticker.add(() => {
+            gsap.set(cursorGlow, { x: mouseX, y: mouseY });
+        });
+
+        /* ── Nav Scroll Effect ────────────────────────── */
+        const nav = document.getElementById('site-nav');
+        ScrollTrigger.create({
+            start: 100,
+            onUpdate: (self) => {
+                nav.classList.toggle('scrolled', self.scroll() > 100);
+            }
+        });
+
+        /* ── Hero Entrance ────────────────────────────── */
+        const heroTL = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+        heroTL
+            .to('.hero-bg img', { scale: 1, duration: 2.5, ease: 'power2.out' }, 0)
+            .from('#hero-eyebrow', { y: 30, opacity: 0, duration: 1 }, 0.3)
+            .to('.word', {
+                y: 0,
+                duration: 1.2,
+                stagger: 0.1,
+                ease: 'power4.out'
+            }, 0.5)
+            .from('#hero-copy', { y: 40, opacity: 0, duration: 1 }, 1.2)
+            .from('#hero-actions', { y: 40, opacity: 0, duration: 1 }, 1.4)
+            .from('#scroll-cue', { y: 30, opacity: 0, duration: 0.8 }, 1.8);
+
+        /* Hero parallax on scroll */
+        gsap.to('.hero-bg img', {
+            yPercent: 25,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+            }
+        });
+
+        gsap.to('.hero-content', {
+            yPercent: -15,
+            opacity: 0,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: '60% top',
+                end: 'bottom top',
+                scrub: true,
+            }
+        });
+
+        /* ── GSAP Reveal Animations ───────────────────── */
+        gsap.utils.toArray('.reveal').forEach((el, i) => {
+            gsap.to(el, {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse',
+                }
+            });
+        });
+
+        gsap.utils.toArray('.reveal-left').forEach(el => {
+            gsap.to(el, {
+                x: 0,
+                opacity: 1,
+                duration: 1.4,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse',
+                }
+            });
+        });
+
+        gsap.utils.toArray('.reveal-right').forEach(el => {
+            gsap.to(el, {
+                x: 0,
+                opacity: 1,
+                duration: 1.4,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse',
+                }
+            });
+        });
+
+        gsap.utils.toArray('.reveal-scale').forEach(el => {
+            gsap.to(el, {
+                scale: 1,
+                opacity: 1,
+                duration: 1.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 88%',
+                    toggleActions: 'play none none reverse',
+                }
+            });
+        });
+
+        /* ── Horizontal Scroll ────────────────────────── */
+        const horizontalInner = document.getElementById('horizontal-inner');
+        const panels = gsap.utils.toArray('.h-panel');
+
+        const hScrollTween = gsap.to(horizontalInner, {
+            x: () => -(horizontalInner.scrollWidth - window.innerWidth),
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.horizontal-wrapper',
+                pin: true,
+                scrub: 1,
+                end: () => '+=' + (horizontalInner.scrollWidth - window.innerWidth),
+                invalidateOnRefresh: true,
+            }
+        });
+
+        /* Animate service cards as they enter view */
+        panels.forEach((panel, i) => {
+            if (i === 0) return; // skip intro panel
+
+            const card = panel.querySelector('.service-card');
+            if (!card) return;
+
+            gsap.from(card.children, {
+                y: 60,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: panel,
+                    containerAnimation: hScrollTween,
+                    start: 'left 80%',
+                    end: 'left 40%',
+                    toggleActions: 'play none none reverse',
+                }
+            });
+        });
+
+
+        /* ── Three.js Background Canvas ───────────────── */
+        (function initWebGLBackground() {
+            const canvas = document.getElementById('webgl-canvas');
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+            const vertexShader = `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = vec4(position, 1.0);
+                }
+            `;
+
+            const fragmentShader = `
+                precision highp float;
+                uniform float uTime;
+                uniform vec2 uMouse;
+                uniform vec2 uResolution;
+                uniform float uScroll;
+                varying vec2 vUv;
+
+                // Simplex-like noise
+                vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+                float snoise(vec2 v) {
+                    const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                                       -0.577350269189626, 0.024390243902439);
+                    vec2 i  = floor(v + dot(v, C.yy));
+                    vec2 x0 = v -   i + dot(i, C.xx);
+                    vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+                    vec4 x12 = x0.xyxy + C.xxzz;
+                    x12.xy -= i1;
+                    i = mod289(i);
+                    vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0))
+                             + i.x + vec3(0.0, i1.x, 1.0));
+                    vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+                                            dot(x12.zw,x12.zw)), 0.0);
+                    m = m*m;
+                    m = m*m;
+                    vec3 x = 2.0 * fract(p * C.www) - 1.0;
+                    vec3 h = abs(x) - 0.5;
+                    vec3 ox = floor(x + 0.5);
+                    vec3 a0 = x - ox;
+                    m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+                    vec3 g;
+                    g.x  = a0.x  * x0.x  + h.x  * x0.y;
+                    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                    return 130.0 * dot(m, g);
+                }
+
+                void main() {
+                    vec2 uv = vUv;
+                    float aspect = uResolution.x / uResolution.y;
+                    vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
+
+                    // Mouse influence
+                    vec2 mouse = (uMouse - 0.5) * vec2(aspect, 1.0);
+                    float mouseDist = length(p - mouse);
+                    float mouseInfluence = smoothstep(0.6, 0.0, mouseDist) * 0.3;
+
+                    // Animated noise layers
+                    float t = uTime * 0.15;
+                    float n1 = snoise(p * 1.5 + vec2(t, t * 0.7)) * 0.5;
+                    float n2 = snoise(p * 3.0 + vec2(-t * 0.5, t * 1.1)) * 0.3;
+                    float n3 = snoise(p * 6.0 + vec2(t * 0.8, -t * 0.6)) * 0.15;
+
+                    float noise = n1 + n2 + n3 + mouseInfluence;
+
+                    // Color palette: Navy → Blue → Teal → Green (scroll driven)
+                    float scrollPhase = uScroll;
+                    vec3 deepNavy = vec3(0.016, 0.082, 0.165);
+                    vec3 blue     = vec3(0.039, 0.369, 0.710);
+                    vec3 teal     = vec3(0.047, 0.576, 0.427);
+                    vec3 green    = vec3(0.259, 0.737, 0.443);
+
+                    vec3 col;
+                    if (scrollPhase < 0.33) {
+                        col = mix(deepNavy, blue, noise * 0.5 + 0.5 + scrollPhase * 1.5);
+                    } else if (scrollPhase < 0.66) {
+                        float localPhase = (scrollPhase - 0.33) / 0.33;
+                        col = mix(blue, teal, noise * 0.5 + 0.5 + localPhase * 0.5);
+                    } else {
+                        float localPhase = (scrollPhase - 0.66) / 0.34;
+                        col = mix(teal, green, noise * 0.3 + localPhase * 0.6);
+                    }
+
+                    // Vignette
+                    float vignette = 1.0 - smoothstep(0.3, 1.2, length(p));
+                    col *= 0.5 + 0.5 * vignette;
+
+                    // Overall opacity for blending
+                    float alpha = 0.55 + mouseInfluence;
+
+                    gl_FragColor = vec4(col, alpha);
+                }
+            `;
+
+            const geometry = new THREE.PlaneGeometry(2, 2);
+            const material = new THREE.ShaderMaterial({
+                vertexShader,
+                fragmentShader,
+                uniforms: {
+                    uTime: { value: 0 },
+                    uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+                    uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                    uScroll: { value: 0 },
+                },
+                transparent: true,
+            });
+
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            // Track scroll position
+            let scrollProgress = 0;
+            ScrollTrigger.create({
+                start: 0,
+                end: 'max',
+                onUpdate: (self) => {
+                    scrollProgress = self.progress;
+                }
+            });
+
+            // Track mouse
+            let targetMouse = new THREE.Vector2(0.5, 0.5);
+            let currentMouse = new THREE.Vector2(0.5, 0.5);
+
+            document.addEventListener('mousemove', (e) => {
+                targetMouse.x = e.clientX / window.innerWidth;
+                targetMouse.y = 1.0 - (e.clientY / window.innerHeight);
+            });
+
+            function animate(time) {
+                requestAnimationFrame(animate);
+
+                material.uniforms.uTime.value = time * 0.001;
+
+                // Smooth mouse
+                currentMouse.x += (targetMouse.x - currentMouse.x) * 0.05;
+                currentMouse.y += (targetMouse.y - currentMouse.y) * 0.05;
+                material.uniforms.uMouse.value.copy(currentMouse);
+
+                material.uniforms.uScroll.value = scrollProgress;
+
+                renderer.render(scene, camera);
+            }
+            animate(0);
+
+            window.addEventListener('resize', () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                material.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+            });
+        })();
+
+        /* ── Three.js 3D Building ─────────────────────── */
+        (function init3DBuilding() {
+            const container = document.getElementById('building-container');
+            const canvas = document.getElementById('building-canvas');
+            if (!container || !canvas) return;
+
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x0a4b6e, 0.015);
+
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(12, 8, 14);
+            camera.lookAt(0, 0.5, 0);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0x8cb8d9, 0.6);
+            scene.add(ambientLight);
+
+            const sunLight = new THREE.DirectionalLight(0xfff5e6, 1.8);
+            sunLight.position.set(8, 15, 5);
+            sunLight.castShadow = true;
+            sunLight.shadow.mapSize.width = 2048;
+            sunLight.shadow.mapSize.height = 2048;
+            sunLight.shadow.camera.near = 1;
+            sunLight.shadow.camera.far = 50;
+            sunLight.shadow.camera.left = -15;
+            sunLight.shadow.camera.right = 15;
+            sunLight.shadow.camera.top = 15;
+            sunLight.shadow.camera.bottom = -15;
+            scene.add(sunLight);
+
+            const fillLight = new THREE.DirectionalLight(0x88ccff, 0.4);
+            fillLight.position.set(-5, 3, -5);
+            scene.add(fillLight);
+
+            const rimLight = new THREE.DirectionalLight(0xa7e562, 0.3);
+            rimLight.position.set(0, 5, -10);
+            scene.add(rimLight);
+
+            // Ground plane
+            const groundGeo = new THREE.CircleGeometry(20, 64);
+            const groundMat = new THREE.MeshStandardMaterial({
+                color: 0x1a5c3a,
+                roughness: 0.9,
+                metalness: 0.0,
+            });
+            const ground = new THREE.Mesh(groundGeo, groundMat);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -0.01;
+            ground.receiveShadow = true;
+            scene.add(ground);
+
+            // Building zones with colors
+            const zones = {
+                medical:   { color: 0xff6b6b, pos: [-3.5, 0, -1], size: [3, 2.5, 2.5] },
+                veteran:   { color: 0x4ecdc4, pos: [-3.5, 0, 2], size: [3, 2, 2.5] },
+                education: { color: 0xffe66d, pos: [0.5, 0, -1.5], size: [3.5, 3, 3] },
+                fitness:   { color: 0xa7e562, pos: [0.5, 0, 2.5], size: [3.5, 2.2, 2.5] },
+                childcare: { color: 0xff9ff3, pos: [4.5, 0, -0.5], size: [2.5, 1.8, 2] },
+                business:  { color: 0x54a0ff, pos: [4.5, 0, 2], size: [2.5, 3.5, 2.5] },
+            };
+
+            const buildingMeshes = {};
+            const originalEmissives = {};
+
+            Object.entries(zones).forEach(([name, z]) => {
+                const geo = new THREE.BoxGeometry(z.size[0], z.size[1], z.size[2]);
+                const mat = new THREE.MeshStandardMaterial({
+                    color: z.color,
+                    roughness: 0.3,
+                    metalness: 0.2,
+                    emissive: z.color,
+                    emissiveIntensity: 0.05,
+                });
+                const mesh = new THREE.Mesh(geo, mat);
+                mesh.position.set(z.pos[0], z.size[1] / 2, z.pos[2]);
+                mesh.castShadow = true;
+                mesh.receiveShadow = true;
+                mesh.name = name;
+                scene.add(mesh);
+                buildingMeshes[name] = mesh;
+                originalEmissives[name] = 0.05;
+
+                // Add subtle roof
+                const roofGeo = new THREE.BoxGeometry(z.size[0] + 0.2, 0.15, z.size[2] + 0.2);
+                const roofMat = new THREE.MeshStandardMaterial({
+                    color: 0xffffff,
+                    roughness: 0.5,
+                    metalness: 0.3,
+                });
+                const roof = new THREE.Mesh(roofGeo, roofMat);
+                roof.position.set(z.pos[0], z.size[1] + 0.075, z.pos[2]);
+                roof.castShadow = true;
+                scene.add(roof);
+            });
+
+            // Connecting walkways
+            const walkwayMat = new THREE.MeshStandardMaterial({
+                color: 0xdddddd,
+                roughness: 0.6,
+                metalness: 0.1,
+            });
+
+            function createWalkway(x1, z1, x2, z2) {
+                const dx = x2 - x1;
+                const dz = z2 - z1;
+                const length = Math.sqrt(dx * dx + dz * dz);
+                const geo = new THREE.BoxGeometry(length, 0.1, 0.4);
+                const mesh = new THREE.Mesh(geo, walkwayMat);
+                mesh.position.set((x1 + x2) / 2, 0.06, (z1 + z2) / 2);
+                mesh.rotation.y = Math.atan2(dz, dx);
+                mesh.receiveShadow = true;
+                scene.add(mesh);
+            }
+
+            createWalkway(-2, -0.5, -2, 1.5);
+            createWalkway(-1.5, 0.5, 1, 0.5);
+            createWalkway(3, 0.5, 3.5, 0.5);
+            createWalkway(1, -0.5, 1, 2);
+
+            // Trees
+            function createTree(x, z) {
+                const trunkGeo = new THREE.CylinderGeometry(0.08, 0.12, 0.8, 8);
+                const trunkMat = new THREE.MeshStandardMaterial({ color: 0x8B6914, roughness: 0.8 });
+                const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+                trunk.position.set(x, 0.4, z);
+                trunk.castShadow = true;
+                scene.add(trunk);
+
+                const leavesGeo = new THREE.SphereGeometry(0.5, 8, 8);
+                const leavesMat = new THREE.MeshStandardMaterial({
+                    color: 0x2d8a3e + Math.floor(Math.random() * 0x1a3a1a),
+                    roughness: 0.7
+                });
+                const leaves = new THREE.Mesh(leavesGeo, leavesMat);
+                leaves.position.set(x, 1.1, z);
+                leaves.castShadow = true;
+                scene.add(leaves);
+            }
+
+            [[-6, -3], [-5, 4], [7, -2], [7, 4], [-6, 1], [7, 1], [-3, -4], [2, -4], [5, -4]].forEach(([x, z]) => createTree(x, z));
+
+            // Camera rotation controls
+            let isDragging = false;
+            let previousMouse = { x: 0, y: 0 };
+            let cameraAngle = { theta: 0.85, phi: 0.6 };
+            let cameraRadius = 18;
+            let targetAngle = { ...cameraAngle };
+
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                previousMouse = { x: e.clientX, y: e.clientY };
+            });
+
+            document.addEventListener('mouseup', () => { isDragging = false; });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const dx = (e.clientX - previousMouse.x) * 0.005;
+                const dy = (e.clientY - previousMouse.y) * 0.005;
+                targetAngle.theta += dx;
+                targetAngle.phi = Math.max(0.2, Math.min(1.2, targetAngle.phi - dy));
+                previousMouse = { x: e.clientX, y: e.clientY };
+            });
+
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                cameraRadius = Math.max(10, Math.min(30, cameraRadius + e.deltaY * 0.02));
+            }, { passive: false });
+
+            // Legend interaction
+            const legendItems = document.querySelectorAll('.legend-item');
+            let activeZone = 'medical';
+
+            legendItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    legendItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    activeZone = item.dataset.zone;
+
+                    // Highlight the zone
+                    Object.entries(buildingMeshes).forEach(([name, mesh]) => {
+                        if (name === activeZone) {
+                            gsap.to(mesh.material, { emissiveIntensity: 0.4, duration: 0.5 });
+                            gsap.to(mesh.position, { y: zones[name].size[1] / 2 + 0.3, duration: 0.5, ease: 'power2.out' });
+                            gsap.to(mesh.scale, { x: 1.05, y: 1.05, z: 1.05, duration: 0.5, ease: 'power2.out' });
+                        } else {
+                            gsap.to(mesh.material, { emissiveIntensity: 0.02, duration: 0.5 });
+                            gsap.to(mesh.position, { y: zones[name].size[1] / 2, duration: 0.5, ease: 'power2.out' });
+                            gsap.to(mesh.scale, { x: 1, y: 1, z: 1, duration: 0.5, ease: 'power2.out' });
+                        }
+                    });
+
+                    // Move camera to face the zone
+                    const zonePos = zones[activeZone].pos;
+                    const angle = Math.atan2(zonePos[2], zonePos[0]);
+                    targetAngle.theta = angle + Math.PI;
+                });
+            });
+
+            // Animate
+            function animate3D() {
+                requestAnimationFrame(animate3D);
+
+                // Smooth camera
+                cameraAngle.theta += (targetAngle.theta - cameraAngle.theta) * 0.05;
+                cameraAngle.phi += (targetAngle.phi - cameraAngle.phi) * 0.05;
+
+                // Auto-rotate when not dragging
+                if (!isDragging) {
+                    targetAngle.theta += 0.001;
+                }
+
+                camera.position.x = cameraRadius * Math.sin(cameraAngle.phi) * Math.cos(cameraAngle.theta);
+                camera.position.y = cameraRadius * Math.cos(cameraAngle.phi);
+                camera.position.z = cameraRadius * Math.sin(cameraAngle.phi) * Math.sin(cameraAngle.theta);
+                camera.lookAt(0, 1, 0);
+
+                renderer.render(scene, camera);
+            }
+
+            function resize3D() {
+                const w = container.clientWidth;
+                const h = container.clientHeight;
+                renderer.setSize(w, h);
+                camera.aspect = w / h;
+                camera.updateProjectionMatrix();
+            }
+
+            resize3D();
+            animate3D();
+            window.addEventListener('resize', resize3D);
+        })();
+
+        /* ── Gallery stagger ──────────────────────────── */
+        gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+            gsap.to(item, {
+                scale: 1,
+                opacity: 1,
+                duration: 1,
+                delay: i * 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse',
+                }
+            });
+        });
+
+        /* ── Principle cards stagger ───────────────────── */
+        gsap.utils.toArray('.principle').forEach((card, i) => {
+            gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                delay: i * 0.12,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 88%',
+                    toggleActions: 'play none none reverse',
+                }
+            });
+        });
+
+        /* ── Refresh ScrollTrigger on Load ─────────────── */
+        window.addEventListener('load', () => {
+            ScrollTrigger.refresh();
+        });
+    </script>
+</body>
+
+</html>
