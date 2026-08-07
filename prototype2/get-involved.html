@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Get involved with COREI™: Become an Advocate, Member, Volunteer, Partner, or Worker to bring urban innovation to rural America." />
+    <title>Get Involved | COREI™ Community Participation</title>
+    <link rel="icon" href="images/favicon.webp" type="image/webp" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CDN Libraries -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --navy: #041e42;
+            --navy-deep: #021530;
+            --blue: #0a5eb5;
+            --blue-bright: #1a8cff;
+            --sky: #43a7ed;
+            --teal: #0c936d;
+            --green: #42bc71;
+            --lime: #a7e562;
+            --ink: #09213d;
+            --paper: #f0f8f4;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --radius: 1.5rem;
+            --radius-lg: 2.5rem;
+            --shadow: 0 24px 80px rgba(2, 21, 48, 0.25);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: auto; }
+        html.lenis, html.lenis body { height: auto; }
+        body {
+            overflow-x: hidden;
+            color: var(--white);
+            background: var(--navy-deep);
+            font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        .cursor-glow {
+            position: fixed; width: 400px; height: 400px;
+            border-radius: 50%; pointer-events: none; z-index: 1;
+            background: radial-gradient(circle, rgba(167, 229, 98, 0.08) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed; z-index: 100; top: 0; left: 0; width: 100%;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.25rem clamp(1.25rem, 4vw, 4rem);
+            transition: background 0.5s ease, backdrop-filter 0.5s ease, padding 0.4s ease;
+        }
+        .site-nav.scrolled {
+            background: rgba(4, 30, 66, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            padding-top: 0.75rem; padding-bottom: 0.75rem;
+        }
+        .brand-logo-img { height: 42px; width: auto; filter: brightness(0) invert(1); }
+        .nav-links { display: flex; gap: clamp(1rem, 2.5vw, 2.5rem); align-items: center; font-size: 0.85rem; font-weight: 600; }
+        .nav-links a:not(.btn) { position: relative; opacity: 0.85; transition: opacity 0.3s, color 0.3s; }
+        .nav-links a:not(.btn):hover { opacity: 1; color: var(--lime); }
+        .nav-links a.active { color: var(--lime); opacity: 1; }
+
+        .btn {
+            position: relative; display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; padding: 0.85rem 1.75rem; border: none; border-radius: 999px;
+            font-weight: 800; font-size: 0.85rem; cursor: pointer; overflow: hidden; isolation: isolate;
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+        }
+        .btn-primary { background: var(--lime); color: var(--navy); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(167, 229, 98, 0.4); }
+
+        /* Page Layout */
+        .page-header {
+            position: relative; z-index: 2; padding: 12rem clamp(1.25rem, 5vw, 6rem) 4rem;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .eyebrow { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--lime); margin-bottom: 1rem; }
+        .page-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+        .page-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: 800px; }
+
+        .section { position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem); max-width: 1200px; margin: 0 auto; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            transition: transform 0.4s var(--ease-out), border-color 0.4s ease;
+        }
+        .card:hover { transform: translateY(-6px); border-color: rgba(167, 229, 98, 0.4); }
+        .card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--white); }
+        .card p { font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.75); }
+
+        .action-list { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+        .action-item {
+            display: flex; gap: 1rem; align-items: flex-start;
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem; padding: 1.25rem;
+        }
+        .action-bullet {
+            width: 28px; height: 28px; border-radius: 50%; background: var(--lime); color: var(--navy);
+            font-weight: 900; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .action-text { font-size: 0.95rem; line-height: 1.5; color: rgba(255, 255, 255, 0.9); }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border);
+            border-radius: 1.25rem; padding: 1.75rem; backdrop-filter: blur(10px);
+        }
+        .benefit-card h4 { font-size: 1.2rem; font-weight: 800; color: var(--lime); margin-bottom: 0.5rem; }
+
+        footer {
+            position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem);
+            border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+            font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); max-width: 1200px; margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a class="brand" href="index.html">
+            <img src="index/COREI-02-01.svg" alt="COREI™ Logo" class="brand-logo-img">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="about.html">About COREI</a>
+            <a href="get-involved.html" class="active">Get Involved</a>
+            <a href="ways-to-give.html">Ways To Give</a>
+            <a class="btn btn-primary" href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header -->
+        <header class="page-header">
+            <p class="eyebrow">Join The Movement · COREI™ Community</p>
+            <h1 class="page-title">Get Involved<br><span style="color:var(--lime)">Be an Advocate for Change</span></h1>
+            <p class="page-lead">
+                We need individuals, volunteers, leaders, and strategic partners to actively work with COREI™ to influence and make impactful transformations in Rural America.
+            </p>
+        </header>
+
+        <!-- Advocates Section -->
+        <section class="section">
+            <div class="card" style="margin-bottom:3rem;">
+                <p class="eyebrow">Advocacy</p>
+                <h2 style="font-size:2rem; font-weight:800; margin-bottom:1rem;">Become an Advocate for Change</h2>
+                <p style="font-size:1.1rem; line-height:1.7;">
+                    We need advocates for change to assist COREI™ in "Bringing Urban Innovation to Rural America." We need individuals and/or groups to actively work with COREI™ to influence and make impactful transformations in Rural America.
+                </p>
+                <div class="action-list">
+                    <div class="action-item">
+                        <div class="action-bullet">✓</div>
+                        <div class="action-text">To work and engage with rural community leaders, local representatives, funders and state decision-makers to support and bring to fruition the vision and mission of COREI™.</div>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-bullet">✓</div>
+                        <div class="action-text">To educate and inspire the people of rural communities via COREI™ initiatives, tools and resources to empower, motivate and build self-confidence to strengthen and increase a sense of value and purpose within one's self.</div>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-bullet">✓</div>
+                        <div class="action-text">To foster collaboration between COREI™ and rural community leaders, groups and individuals around issues and concerns that impact rural communities.</div>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-bullet">✓</div>
+                        <div class="action-text">To act as a bridge between COREI™ and rural communities, to guide and build support for the innovative initiatives of COREI™ that would bring impactful economic opportunities within the rural communities.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roles Grid -->
+        <section class="section">
+            <p class="eyebrow">Opportunities</p>
+            <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:2rem;">Ways to Participate</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <p class="eyebrow" style="color:var(--sky)">Membership</p>
+                    <h3>Become a Member</h3>
+                    <p>We are looking for members who would like to join us in carrying out the COREI™ vision and mission. Member candidates must be compassionate and willing to serve and help rural communities become more productive in achieving economic and social sustainability.</p>
+                </div>
+                <div class="card">
+                    <p class="eyebrow" style="color:var(--teal)">Volunteer</p>
+                    <h3>Get Involved as a Volunteer</h3>
+                    <p>We are looking for volunteers to join us to serve and empower rural communities. Volunteer candidates must be willing to unite people, strengthen sense of purpose, and contribute time and skills to inspire impactful motivation. Become a Volunteer Today!</p>
+                </div>
+                <div class="card">
+                    <p class="eyebrow" style="color:var(--lime)">Non-Profit Workforce</p>
+                    <h3>Become a Worker</h3>
+                    <p>COREI™ is seeking nonprofit workers for content creation, fundraising support, data analysis, volunteer scheduling, donor communications, financial accounting, and budgeting to ensure operational excellence and strategic mission delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnerships -->
+        <section class="section">
+            <p class="eyebrow">Strategic Collaboration</p>
+            <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:1rem;">Partner with COREI™</h2>
+            <p style="color:rgba(255,255,255,0.8); max-width:800px; font-size:1.1rem; margin-bottom:2.5rem;">
+                We are looking for partners to help COREI™ expand its reach, increase fundraising, and enhance credibility. Partnering with COREI™ offers 5 major mutual benefits:
+            </p>
+            <div class="grid-3">
+                <div class="benefit-card">
+                    <h4>1. Expanded Network</h4>
+                    <p>Access a partner's network, customers, and audience to broaden the reach of our vision and mission across Texas and beyond.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>2. Increased Revenue</h4>
+                    <p>Establish partnerships that enable sustainable funding generation through sponsorships, joint events, and donor contributions.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>3. Enhanced Credibility</h4>
+                    <p>Partnering with reputable organizations expands public trust and reinforces confidence in the mission of COREI™.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>4. Access to Resources</h4>
+                    <p>Gain access to a partner's resources such as facility space, professional expertise, or technology to amplify community impact.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>5. Improved Efficiency</h4>
+                    <p>Share administrative costs, expertise, and resources to enable COREI™ to run highly effective and cost-efficient programs.</p>
+                </div>
+                <div class="benefit-card" style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; background:rgba(167,229,98,0.1); border-color:var(--lime);">
+                    <h4 style="color:var(--white)">Ready to collaborate?</h4>
+                    <a class="btn btn-primary" style="margin-top:1rem;" href="contact.html">Connect with us →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>© <span id="year"></span> COREI™. All rights reserved.</span>
+        <span>Bringing Urban Innovation to Rural America™</span>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        const nav = document.getElementById('site-nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Contact COREI™: Get in touch with our leadership, inquire about programs, or learn about the upcoming multi-purpose complex in East Texas." />
+    <title>Contact Us | COREI™ Community One Resources Initiatives</title>
+    <link rel="icon" href="images/favicon.webp" type="image/webp" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CDN Libraries -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --navy: #041e42;
+            --navy-deep: #021530;
+            --blue: #0a5eb5;
+            --blue-bright: #1a8cff;
+            --sky: #43a7ed;
+            --teal: #0c936d;
+            --green: #42bc71;
+            --lime: #a7e562;
+            --ink: #09213d;
+            --paper: #f0f8f4;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --radius: 1.5rem;
+            --radius-lg: 2.5rem;
+            --shadow: 0 24px 80px rgba(2, 21, 48, 0.25);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: auto; }
+        html.lenis, html.lenis body { height: auto; }
+        body {
+            overflow-x: hidden;
+            color: var(--white);
+            background: var(--navy-deep);
+            font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        .cursor-glow {
+            position: fixed; width: 400px; height: 400px;
+            border-radius: 50%; pointer-events: none; z-index: 1;
+            background: radial-gradient(circle, rgba(167, 229, 98, 0.08) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed; z-index: 100; top: 0; left: 0; width: 100%;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.25rem clamp(1.25rem, 4vw, 4rem);
+            transition: background 0.5s ease, backdrop-filter 0.5s ease, padding 0.4s ease;
+        }
+        .site-nav.scrolled {
+            background: rgba(4, 30, 66, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            padding-top: 0.75rem; padding-bottom: 0.75rem;
+        }
+        .brand-logo-img { height: 42px; width: auto; filter: brightness(0) invert(1); }
+        .nav-links { display: flex; gap: clamp(1rem, 2.5vw, 2.5rem); align-items: center; font-size: 0.85rem; font-weight: 600; }
+        .nav-links a:not(.btn) { position: relative; opacity: 0.85; transition: opacity 0.3s, color 0.3s; }
+        .nav-links a:not(.btn):hover { opacity: 1; color: var(--lime); }
+        .nav-links a.active { color: var(--lime); opacity: 1; }
+
+        .btn {
+            position: relative; display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; padding: 0.85rem 1.75rem; border: none; border-radius: 999px;
+            font-weight: 800; font-size: 0.85rem; cursor: pointer; overflow: hidden; isolation: isolate;
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+        }
+        .btn-primary { background: var(--lime); color: var(--navy); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(167, 229, 98, 0.4); }
+
+        /* Page Layout */
+        .page-header {
+            position: relative; z-index: 2; padding: 12rem clamp(1.25rem, 5vw, 6rem) 4rem;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .eyebrow { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--lime); margin-bottom: 1rem; }
+        .page-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+        .page-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: 800px; }
+
+        .section { position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem); max-width: 1200px; margin: 0 auto; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 3rem; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+        }
+        .card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--white); }
+
+        .contact-info-block { display: flex; flex-direction: column; gap: 1.75rem; margin-top: 1.5rem; }
+        .info-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .info-icon {
+            width: 44px; height: 44px; border-radius: 50%; background: rgba(167, 229, 98, 0.15); border: 1px solid var(--lime);
+            color: var(--lime); font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .info-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lime); margin-bottom: 0.25rem; }
+        .info-val { font-size: 1rem; color: rgba(255, 255, 255, 0.9); line-height: 1.5; }
+
+        /* Stealth Google Form Inputs */
+        .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { font-size: 0.85rem; font-weight: 700; color: rgba(255, 255, 255, 0.85); }
+        .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.25rem;
+            color: var(--white); font-family: inherit; font-size: 0.95rem;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .form-control:focus { outline: none; border-color: var(--lime); background: rgba(255, 255, 255, 0.08); }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+
+        .checkbox-group { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; }
+        .checkbox-group input { width: 18px; height: 18px; accent-color: var(--lime); cursor: pointer; }
+        .checkbox-group label { font-size: 0.85rem; color: rgba(255, 255, 255, 0.8); cursor: pointer; }
+
+        footer {
+            position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem);
+            border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+            font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); max-width: 1200px; margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a class="brand" href="index.html">
+            <img src="index/COREI-02-01.svg" alt="COREI™ Logo" class="brand-logo-img">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="what-we-do.html">What We Do</a>
+            <a href="about.html">About COREI</a>
+            <a href="get-involved.html">Get Involved</a>
+            <a href="ways-to-give.html">Ways To Give</a>
+            <a class="btn btn-primary active" href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header -->
+        <header class="page-header">
+            <p class="eyebrow">Connect With COREI™ · We Are Here To Help</p>
+            <h1 class="page-title">Get In Touch<br><span style="color:var(--lime)">Let's Build Together</span></h1>
+            <p class="page-lead">
+                Have questions about our initiatives, partnership opportunities, or the upcoming multi-purpose complex? Reach out to our leadership team today.
+            </p>
+        </header>
+
+        <!-- Contact Section -->
+        <section class="section">
+            <div class="grid-2">
+                <!-- Info Column -->
+                <div class="card">
+                    <p class="eyebrow">Contact Information</p>
+                    <h3>COREI™ Headquarters &amp; Complex</h3>
+                    <div class="contact-info-block">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div>
+                                <div class="info-label">Administrative Address</div>
+                                <div class="info-val">2810 East Trinity Mills Rd.<br>Suite# 209-151<br>Carrollton, Texas 75006</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">🏢</div>
+                            <div>
+                                <div class="info-label">Multi-Purpose Complex Location</div>
+                                <div class="info-val">11989 County Road 482 South<br>Mount Enterprise, Texas 75681</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div>
+                                <div class="info-label">Phone</div>
+                                <div class="info-val"><a href="tel:2149842440">214-984-2440</a></div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">✉️</div>
+                            <div>
+                                <div class="info-label">Email</div>
+                                <div class="info-val"><a href="mailto:info@coreitex.com">info@coreitex.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stealth Form Column -->
+                <div class="card">
+                    <p class="eyebrow">Send A Message</p>
+                    <h3>Get In Touch</h3>
+                    <!-- Stealth Google Form Wrapper -->
+                    <form class="contact-form" id="stealth-contact-form" target="_blank" action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST">
+                        <div class="form-group">
+                            <label for="input-name">Full Name</label>
+                            <input type="text" id="input-name" class="form-control" placeholder="John Doe" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="input-email">Email Address</label>
+                            <input type="email" id="input-email" class="form-control" placeholder="john@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="input-phone">Phone Number</label>
+                            <input type="tel" id="input-phone" class="form-control" placeholder="(214) 555-0199" />
+                        </div>
+                        <div class="form-group">
+                            <label for="input-message">Message</label>
+                            <textarea id="input-message" class="form-control" placeholder="How can we help or collaborate with you?" required></textarea>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="input-subscribe" checked />
+                            <label for="input-subscribe">Subscribe to our mailing list for construction updates</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top:1rem; width:100%;">Send Message →</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>© <span id="year"></span> COREI™. All rights reserved.</span>
+        <span>Bringing Urban Innovation to Rural America™</span>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        const nav = document.getElementById('site-nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Explore COREI™ initiatives in East Texas: Education, Childcare, Sports, Fitness, Community Responsibility, Medical Services, and Veterans Services." />
+    <title>What We Do | COREI™ Programs & Initiatives</title>
+    <link rel="icon" href="images/favicon.webp" type="image/webp" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CDN Libraries -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --navy: #041e42;
+            --navy-deep: #021530;
+            --blue: #0a5eb5;
+            --blue-bright: #1a8cff;
+            --sky: #43a7ed;
+            --teal: #0c936d;
+            --green: #42bc71;
+            --lime: #a7e562;
+            --ink: #09213d;
+            --paper: #f0f8f4;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --radius: 1.5rem;
+            --radius-lg: 2.5rem;
+            --shadow: 0 24px 80px rgba(2, 21, 48, 0.25);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: auto; }
+        html.lenis, html.lenis body { height: auto; }
+        body {
+            overflow-x: hidden;
+            color: var(--white);
+            background: var(--navy-deep);
+            font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        .cursor-glow {
+            position: fixed; width: 400px; height: 400px;
+            border-radius: 50%; pointer-events: none; z-index: 1;
+            background: radial-gradient(circle, rgba(167, 229, 98, 0.08) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed; z-index: 100; top: 0; left: 0; width: 100%;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.25rem clamp(1.25rem, 4vw, 4rem);
+            transition: background 0.5s ease, backdrop-filter 0.5s ease, padding 0.4s ease;
+        }
+        .site-nav.scrolled {
+            background: rgba(4, 30, 66, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            padding-top: 0.75rem; padding-bottom: 0.75rem;
+        }
+        .brand-logo-img { height: 42px; width: auto; filter: brightness(0) invert(1); }
+        .nav-links { display: flex; gap: clamp(1rem, 2.5vw, 2.5rem); align-items: center; font-size: 0.85rem; font-weight: 600; }
+        .nav-links a:not(.btn) { position: relative; opacity: 0.85; transition: opacity 0.3s, color 0.3s; }
+        .nav-links a:not(.btn):hover { opacity: 1; color: var(--lime); }
+        .nav-links a.active { color: var(--lime); opacity: 1; }
+
+        .btn {
+            position: relative; display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; padding: 0.85rem 1.75rem; border: none; border-radius: 999px;
+            font-weight: 800; font-size: 0.85rem; cursor: pointer; overflow: hidden; isolation: isolate;
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+        }
+        .btn-primary { background: var(--lime); color: var(--navy); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(167, 229, 98, 0.4); }
+
+        /* Page Layout */
+        .page-header {
+            position: relative; z-index: 2; padding: 12rem clamp(1.25rem, 5vw, 6rem) 4rem;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .eyebrow { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--lime); margin-bottom: 1rem; }
+        .page-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+        .page-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: 800px; }
+
+        .section { position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem); max-width: 1200px; margin: 0 auto; }
+
+        /* Program Silo Cards */
+        .program-card {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 3rem; margin-bottom: 3rem;
+            backdrop-filter: blur(12px);
+            transition: transform 0.4s var(--ease-out), border-color 0.4s ease;
+        }
+        .program-card:nth-child(even) { grid-template-areas: "content visual"; }
+        .program-card:nth-child(odd) { grid-template-areas: "visual content"; }
+        @media (max-width: 860px) {
+            .program-card { grid-template-columns: 1fr !important; grid-template-areas: "visual" "content" !important; gap: 2rem; padding: 2rem; }
+        }
+        .program-visual { grid-area: visual; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; box-shadow: var(--shadow); position: relative; }
+        .program-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
+        .program-card:hover .program-visual img { transform: scale(1.06); }
+        .program-info { grid-area: content; }
+        .program-tagline { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); margin-bottom: 0.75rem; }
+        .program-info h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; }
+        .program-info p { font-size: 1.05rem; line-height: 1.7; color: rgba(255, 255, 255, 0.8); }
+
+        footer {
+            position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem);
+            border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+            font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); max-width: 1200px; margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a class="brand" href="index.html">
+            <img src="index/COREI-02-01.svg" alt="COREI™ Logo" class="brand-logo-img">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="what-we-do.html" class="active">What We Do</a>
+            <a href="about.html">About COREI</a>
+            <a href="get-involved.html">Get Involved</a>
+            <a href="ways-to-give.html">Ways To Give</a>
+            <a class="btn btn-primary" href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header -->
+        <header class="page-header">
+            <p class="eyebrow">Our Impact · 7 Dedicated Silos</p>
+            <h1 class="page-title">What We Do<br><span style="color:var(--lime)">Empowering East Texas</span></h1>
+            <p class="page-lead">
+                COREI™ brings together 7 distinct program silos under one visionary roof to serve youth, families, veterans, and rural residents with dignity and innovation.
+            </p>
+        </header>
+
+        <section class="section">
+            <!-- Silo 1: Education & Youth -->
+            <article class="program-card">
+                <div class="program-visual">
+                    <img src="images/education-youth.webp" alt="Education and Youth Empowerment" />
+                </div>
+                <div class="program-info">
+                    <p class="program-tagline">Unlocking Potential</p>
+                    <h2>Education &amp; Youth Empowerment</h2>
+                    <p>At COREI™, our educational and leadership partners design enrichment initiatives that inspire young people to realize their full potential. These initiatives focus on leadership, motivation, self-esteem, skill-building and confidence, the importance of education, and entrepreneurship to help them construct the best path for their lives and future. We want to ensure that every child is given the same opportunity to achieve and excel.</p>
+                </div>
+            </article>
+
+            <!-- Silo 2: Childcare -->
+            <article class="program-card">
+                <div class="program-visual">
+                    <img src="images/childcare.webp" alt="Childcare and After-School Program" />
+                </div>
+                <div class="program-info">
+                    <p class="program-tagline">A Safe Place For Every Child To Grow</p>
+                    <h2>Childcare &amp; After-School Program</h2>
+                    <p>Finding quality childcare and Pre-K should not be a struggle. We partner with local educators to provide after-school programs that go beyond basic supervision. We take a heart-centered approach, focusing on each child's unique potential. From developing social skills to fostering emotional well-being, our goal is to create a nurturing environment where children feel safe to be themselves, engage with others, and discover the joy of friendship.</p>
+                </div>
+            </article>
+
+            <!-- Silo 3: Sports & Rec -->
+            <article class="program-card">
+                <div class="program-visual">
+                    <img src="images/sports-recreation.webp" alt="Sports and Recreation" />
+                </div>
+                <div class="program-info">
+                    <p class="program-tagline">Active Living For All Ages</p>
+                    <h2>Sports &amp; Recreation</h2>
+                    <p>At COREI™, we believe that staying active is the key to a happy and healthy life. COREI™ is committed to fostering active lifestyles for both youth and seniors through comprehensive sports and recreation initiatives. Our sports and recreation programs are designed to bring the community together, helping people of all ages build lasting friendships and strong self-esteem through friendly competition. Whether it is athletic competition, learning to swim safely, or finding a new favorite hobby, we provide a supportive environment where everyone—from children to older adults—can find joy in social, emotional, and physical development.</p>
+                </div>
+            </article>
+
+            <!-- Silo 4: Fitness -->
+            <article class="program-card">
+                <div class="program-visual">
+                    <img src="images/health-fitness.webp" alt="Health and Fitness" />
+                </div>
+                <div class="program-info">
+                    <p class="program-tagline">Building Stronger Communities Through Wellness</p>
+                    <h2>Health &amp; Fitness</h2>
+                    <p>COREI™ is dedicated to the well-being of every community we serve. Through strategic partnerships with fitness experts, we provide accessible health programs designed specifically for rural and underserved communities. Whether you prefer a guided plan or a self-designed workout, our goal is to help you achieve total wellness for your body, mind, and soul. We know that when a community stays active together, it builds more than just fitness—it creates stronger social bonds and a more prosperous future for everyone.</p>
+                </div>
+            </article>
+
+            <!-- Silo 5: Community Responsibility -->
+            <article class="program-card">
+                <div class="program-visual">
+                    <img src="images/community-social.webp" alt="Community and Social Responsibility" />
+                </div>
+                <div class="program-info">
+                    <p class="program-tagline">Empowering Communities &amp; Creating Change</p>
+                    <h2>Community &amp; Social Responsibility</h2>
+                    <p>COREI™ collaborates with strategic partners to design initiatives that strengthen rural and underserved areas. We provide youth and local residents with the essential tools and resources needed to engage, learn, and thrive. By equipping the next generation with confidence and insight, we empower them to tackle local challenges head-on and become true champions for change within their communities.</p>
+                </div>
+            </article>
+
+            <!-- Silo 6: Medical Services (Separated) -->
+            <article class="program-card">
+                <div class="program-visual">
+                    <img src="images/medical-services.webp" alt="Medical Services" />
+                </div>
+                <div class="program-info">
+                    <p class="program-tagline" style="color:var(--sky)">Dedicated Healthcare Access</p>
+                    <h2>Medical Services</h2>
+                    <p>At COREI™, we believe that true healthcare is built on a foundation of trust and local collaboration. Our approach combines clinical services with essential social supports, focusing on preventive care and innovative technology to reach underserved rural areas. Through strategic partnerships with providers like Crossroads Family Care, we connect community members directly to essential clinical expertise, preventive checkups, and health education.</p>
+                </div>
+            </article>
+
+            <!-- Silo 7: Veterans Services (Separated) -->
+            <article class="program-card">
+                <div class="program-visual">
+                    <img src="images/veteran-services.webp" alt="Veterans Services" />
+                </div>
+                <div class="program-info">
+                    <p class="program-tagline" style="color:var(--lime)">Serving Those Who Served</p>
+                    <h2>Veterans Services</h2>
+                    <p>COREI™ is deeply committed to our veterans, helping them overcome the hurdles of transitioning to civilian life, navigating VA benefits, managing physical health struggles, and securing education and employment. By tackling complex issues such as housing stability, mental health support, and direct service access alongside government and veteran service partners, we help veterans reclaim their future with confidence, honor, and community backing.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <span>© <span id="year"></span> COREI™. All rights reserved.</span>
+        <span>Bringing Urban Innovation to Rural America™</span>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        const nav = document.getElementById('site-nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+    </script>
+</body>
+</html>
