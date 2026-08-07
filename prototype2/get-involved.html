@@ -92,6 +92,13 @@
         .btn-primary { background: var(--lime); color: var(--navy); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(167, 229, 98, 0.4); }
 
+        /* Alternating Sections for Visual Impact */
+        .section-dark { background: var(--navy-deep); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); }
+        .section-blue { background: linear-gradient(180deg, #041e42 0%, #021530 100%); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+        .section-teal { background: linear-gradient(135deg, rgba(4, 30, 66, 0.95) 0%, rgba(12, 147, 109, 0.25) 100%); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); border-top: 1px solid var(--glass-border); }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
         /* Page Layout */
         .page-header {
             position: relative; z-index: 2; padding: 12rem clamp(1.25rem, 5vw, 6rem) 4rem;
@@ -101,8 +108,7 @@
         .page-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
         .page-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: 800px; }
 
-        .section { position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem); max-width: 1200px; margin: 0 auto; }
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
 
         .card {
@@ -116,6 +122,12 @@
         .card:hover { transform: translateY(-6px); border-color: rgba(167, 229, 98, 0.4); }
         .card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--white); }
         .card p { font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.75); }
+
+        .image-box {
+            border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 4/3;
+            box-shadow: var(--shadow); border: 1px solid var(--glass-border);
+        }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; }
 
         .action-list { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
         .action-item {
@@ -167,70 +179,93 @@
             <p class="eyebrow">Join The Movement · COREI™ Community</p>
             <h1 class="page-title">Get Involved<br><span style="color:var(--lime)">Be an Advocate for Change</span></h1>
             <p class="page-lead">
-                We need individuals, volunteers, leaders, and strategic partners to actively work with COREI™ to influence and make impactful transformations in Rural America.
+                We need individuals, volunteers, leaders, workers, and strategic partners to actively work with COREI™ to influence and make impactful transformations in Rural America.
             </p>
         </header>
 
-        <!-- Advocates Section -->
-        <section class="section">
-            <div class="card" style="margin-bottom:3rem;">
-                <p class="eyebrow">Advocacy</p>
-                <h2 style="font-size:2rem; font-weight:800; margin-bottom:1rem;">Become an Advocate for Change</h2>
-                <p style="font-size:1.1rem; line-height:1.7;">
-                    We need advocates for change to assist COREI™ in "Bringing Urban Innovation to Rural America." We need individuals and/or groups to actively work with COREI™ to influence and make impactful transformations in Rural America.
-                </p>
-                <div class="action-list">
-                    <div class="action-item">
-                        <div class="action-bullet">✓</div>
-                        <div class="action-text">To work and engage with rural community leaders, local representatives, funders and state decision-makers to support and bring to fruition the vision and mission of COREI™.</div>
+        <!-- Section 1: Advocates for Change (Dark Section with Graphic) -->
+        <section class="section-dark">
+            <div class="container grid-2">
+                <div class="card">
+                    <p class="eyebrow">Advocacy</p>
+                    <h2 style="font-size:2rem; font-weight:800; margin-bottom:1rem;">Become an Advocate for Change</h2>
+                    <p style="font-size:1.05rem; line-height:1.7;">
+                        We need advocates for change to assist COREI™ in "Bringing Urban Innovation to Rural America." We need individuals and/or groups to actively work with COREI™ to influence and make impactful transformations in Rural America.
+                    </p>
+                    <div class="action-list">
+                        <div class="action-item">
+                            <div class="action-bullet">✓</div>
+                            <div class="action-text">To work and engage with rural community leaders, local representatives, funders and state decision-makers to support and bring to fruition the vision and mission of COREI™.</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-bullet">✓</div>
+                            <div class="action-text">To educate and inspire the people of rural communities via COREI™ initiatives, tools and resources to empower, motivate and build self-confidence to strengthen and increase a sense of value and purpose within one's self.</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-bullet">✓</div>
+                            <div class="action-text">To foster collaboration between COREI™ and rural community leaders, groups and individuals around issues and concerns that impact rural communities.</div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-bullet">✓</div>
+                            <div class="action-text">To act as a bridge between COREI™ and rural communities, to guide and build support for the innovative initiatives of COREI™ that would bring impactful economic opportunities within the rural communities.</div>
+                        </div>
                     </div>
-                    <div class="action-item">
-                        <div class="action-bullet">✓</div>
-                        <div class="action-text">To educate and inspire the people of rural communities via COREI™ initiatives, tools and resources to empower, motivate and build self-confidence to strengthen and increase a sense of value and purpose within one's self.</div>
+                </div>
+                <div class="image-box">
+                    <img src="images/community-social.webp" alt="COREI Community Advocates" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Roles (Blue Section with Graphic) -->
+        <section class="section-blue">
+            <div class="container">
+                <p class="eyebrow">Participation Roles</p>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:2.5rem;">Ways to Participate</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="image-box" style="aspect-ratio:16/9; margin-bottom:1.5rem;">
+                            <img src="images/about-hero.webp" alt="Become a Member" />
+                        </div>
+                        <p class="eyebrow" style="color:var(--sky)">Membership</p>
+                        <h3>Become a Member</h3>
+                        <p>We are looking for members who would like to join us in carrying out the COREI™ vision and mission in "Bringing Urban Innovation to Rural America." The member candidates must be compassionate and willing to serve and help rural communities to become more productive in achieving economic and social sustainability.</p>
                     </div>
-                    <div class="action-item">
-                        <div class="action-bullet">✓</div>
-                        <div class="action-text">To foster collaboration between COREI™ and rural community leaders, groups and individuals around issues and concerns that impact rural communities.</div>
+                    <div class="card">
+                        <div class="image-box" style="aspect-ratio:16/9; margin-bottom:1.5rem;">
+                            <img src="images/education-youth.webp" alt="Volunteer Opportunities" />
+                        </div>
+                        <p class="eyebrow" style="color:var(--teal)">Volunteer</p>
+                        <h3>Get Involved as a Volunteer</h3>
+                        <p>We are looking for volunteers to join us to help us serve and empower rural communities to meet the needs that they are lacking. The volunteer candidates must be willing to serve and unite people within the rural communities and strengthen their sense of value and purpose. Become a Volunteer Today!</p>
                     </div>
-                    <div class="action-item">
-                        <div class="action-bullet">✓</div>
-                        <div class="action-text">To act as a bridge between COREI™ and rural communities, to guide and build support for the innovative initiatives of COREI™ that would bring impactful economic opportunities within the rural communities.</div>
+                    <div class="card">
+                        <div class="image-box" style="aspect-ratio:16/9; margin-bottom:1.5rem;">
+                            <img src="images/site-plan.webp" alt="Non-Profit Workforce" />
+                        </div>
+                        <p class="eyebrow" style="color:var(--lime)">Non-Profit Workforce</p>
+                        <h3>Become a Worker</h3>
+                        <p>COREI™ is looking for nonprofit workers to perform tasks like content creation, fundraising support, data analysis, document searching, donor communications, volunteer scheduling, accounting, financial reporting, and budgeting to ensure operational excellence.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Roles Grid -->
-        <section class="section">
-            <p class="eyebrow">Opportunities</p>
-            <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:2rem;">Ways to Participate</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--sky)">Membership</p>
-                    <h3>Become a Member</h3>
-                    <p>We are looking for members who would like to join us in carrying out the COREI™ vision and mission. Member candidates must be compassionate and willing to serve and help rural communities become more productive in achieving economic and social sustainability.</p>
+        <!-- Section 3: Partnerships (Teal Gradient Section with Graphic) -->
+        <section class="section-teal">
+            <div class="container grid-2" style="margin-bottom:3rem;">
+                <div>
+                    <p class="eyebrow">Strategic Collaboration</p>
+                    <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:1rem;">Partner with COREI™</h2>
+                    <p style="color:rgba(255,255,255,0.85); font-size:1.1rem; line-height:1.7;">
+                        We are looking for partners to help COREI™ expand its reach, increase fundraising, and enhance credibility. Partnering with reputable organizations amplifies public trust and accelerates rural development.
+                    </p>
                 </div>
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--teal)">Volunteer</p>
-                    <h3>Get Involved as a Volunteer</h3>
-                    <p>We are looking for volunteers to join us to serve and empower rural communities. Volunteer candidates must be willing to unite people, strengthen sense of purpose, and contribute time and skills to inspire impactful motivation. Become a Volunteer Today!</p>
-                </div>
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--lime)">Non-Profit Workforce</p>
-                    <h3>Become a Worker</h3>
-                    <p>COREI™ is seeking nonprofit workers for content creation, fundraising support, data analysis, volunteer scheduling, donor communications, financial accounting, and budgeting to ensure operational excellence and strategic mission delivery.</p>
+                <div class="image-box">
+                    <img src="images/crossroads-partner.webp" alt="Crossroads Family Care Medical Partner" />
                 </div>
             </div>
-        </section>
-
-        <!-- Partnerships -->
-        <section class="section">
-            <p class="eyebrow">Strategic Collaboration</p>
-            <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:1rem;">Partner with COREI™</h2>
-            <p style="color:rgba(255,255,255,0.8); max-width:800px; font-size:1.1rem; margin-bottom:2.5rem;">
-                We are looking for partners to help COREI™ expand its reach, increase fundraising, and enhance credibility. Partnering with COREI™ offers 5 major mutual benefits:
-            </p>
-            <div class="grid-3">
+            <div class="container grid-3">
                 <div class="benefit-card">
                     <h4>1. Expanded Network</h4>
                     <p>Access a partner's network, customers, and audience to broaden the reach of our vision and mission across Texas and beyond.</p>

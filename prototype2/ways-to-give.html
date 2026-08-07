@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
-        content="Support COREI™: Tax-deductible donations, facility sponsorships, and corporate partnerships to bring urban innovation to rural America." />
+        content="Support COREI™: Tax-deductible donations, PayPal giving, facility sponsorships, and corporate partnerships to bring urban innovation to rural America." />
     <title>Ways to Give | Support COREI™ Non-Profit</title>
     <link rel="icon" href="images/favicon.webp" type="image/webp" />
 
@@ -91,6 +91,15 @@
         }
         .btn-primary { background: var(--lime); color: var(--navy); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(167, 229, 98, 0.4); }
+        .btn-paypal { background: #ffc439; color: #003087; font-weight: 900; }
+        .btn-paypal:hover { background: #ffda85; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255, 196, 57, 0.4); }
+
+        /* Alternating Sections for Visual Impact */
+        .section-dark { background: var(--navy-deep); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); }
+        .section-blue { background: linear-gradient(180deg, #041e42 0%, #021530 100%); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+        .section-teal { background: linear-gradient(135deg, rgba(4, 30, 66, 0.95) 0%, rgba(12, 147, 109, 0.25) 100%); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); border-top: 1px solid var(--glass-border); }
+
+        .container { max-width: 1200px; margin: 0 auto; }
 
         /* Page Layout */
         .page-header {
@@ -99,10 +108,9 @@
         }
         .eyebrow { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--lime); margin-bottom: 1rem; }
         .page-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
-        .page-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: 800px; }
+        .page-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: 850px; }
 
-        .section { position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem); max-width: 1200px; margin: 0 auto; }
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center; }
 
         .card {
             background: rgba(255, 255, 255, 0.04);
@@ -114,14 +122,27 @@
         }
         .card:hover { transform: translateY(-6px); border-color: rgba(167, 229, 98, 0.4); }
         .card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--white); }
-        .card p { font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.75); }
+        .card p { font-size: 1rem; line-height: 1.65; color: rgba(255, 255, 255, 0.78); }
 
+        .image-box {
+            border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 16/9;
+            box-shadow: var(--shadow); border: 1px solid var(--glass-border); margin-bottom: 1.5rem;
+        }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Tax Exempt Banner & IRS Notice */
         .tax-banner {
-            background: linear-gradient(135deg, rgba(10, 94, 181, 0.3) 0%, rgba(12, 147, 109, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(10, 94, 181, 0.35) 0%, rgba(12, 147, 109, 0.35) 100%);
             border: 1px solid rgba(167, 229, 98, 0.3); border-radius: var(--radius-lg);
-            padding: 3rem; text-align: center; margin: 3rem 0; backdrop-filter: blur(16px);
+            padding: 3rem; text-align: center; backdrop-filter: blur(16px); position: relative; overflow: hidden;
         }
         .tax-banner h2 { font-size: 2.2rem; font-weight: 800; color: var(--lime); margin-bottom: 1rem; }
+        .tax-legal-notice {
+            font-size: 0.9rem; line-height: 1.6; color: rgba(255, 255, 255, 0.75); margin-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 1.5rem; text-align: left;
+        }
+
+        .actions-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
 
         footer {
             position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem);
@@ -155,45 +176,92 @@
             <p class="eyebrow">Invest In Rural Transformation · 501(c)(3)</p>
             <h1 class="page-title">Ways To Give<br><span style="color:var(--lime)">Fueling Lasting Impact</span></h1>
             <p class="page-lead">
-                Your generous contributions empower COREI™ to build a sustainable, state-of-the-art complex that delivers medical, veteran, educational, and recreational services to East Texas.
+                Your generous support makes a profound impact on East Texas. By contributing to COREI™, you help us build a one-stop multi-purpose complex that delivers essential medical care, veteran support, youth education, fitness facilities, and economic opportunities to rural communities.
             </p>
         </header>
 
-        <!-- Tax Exempt Banner -->
-        <section class="section">
-            <div class="tax-banner">
-                <h2>501(c)(3) Tax-Deductible Contributions</h2>
-                <p style="font-size:1.15rem; max-width:800px; margin:0 auto 1.5rem; color:rgba(255,255,255,0.9);">
-                    Community One Resources Initiatives Corporation (COREI™) is a registered 501(c)(3) non-profit organization. All contributions are tax-deductible to the fullest extent permitted by law.
-                </p>
-                <a class="btn btn-primary" href="contact.html">Pledge your support today →</a>
+        <!-- Section 1: Tax Disclosure & PayPal Buttons (Dark Section) -->
+        <section class="section-dark">
+            <div class="container">
+                <div class="tax-banner">
+                    <p class="eyebrow">501(c)(3) Public Charity</p>
+                    <h2>Tax-Deductible Charitable Contributions</h2>
+                    <p style="font-size:1.15rem; max-width:850px; margin:0 auto 1.5rem; color:rgba(255,255,255,0.9); line-height:1.7;">
+                        Community One Resources Initiatives Corporation (COREI™) is a registered 501(c)(3) non-profit organization. Every contribution—whether a one-time gift, a monthly pledge, a complex sponsorship, or an equipment grant—directly funds local transformation and is tax-deductible to the fullest extent allowed by law.
+                    </p>
+                    
+                    <div class="actions-row">
+                        <!-- PayPal Donation Button -->
+                        <a href="https://www.paypal.com/donate/?hosted_button_id=COREITEX_DONATE" target="_blank" rel="noopener" class="btn btn-paypal">
+                            <span>💳</span> Donate via PayPal ↗
+                        </a>
+                        <!-- IRS Verification Link Required by Law -->
+                        <a href="https://apps.irs.gov/app/eos/" target="_blank" rel="noopener" class="btn btn-primary" style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.3);">
+                            <span>🏛️</span> Verify IRS 501(c)(3) Status ↗
+                        </a>
+                    </div>
+
+                    <div class="tax-legal-notice">
+                        <strong>Required Legal Tax Disclosure Statement:</strong><br>
+                        Community One Resources Initiatives Corporation (COREI™) is recognized by the Internal Revenue Service (IRS) as a 501(c)(3) tax-exempt public charity. Contributions are deductible under Section 170 of the Internal Revenue Code. Donors will receive an official tax receipt for all qualifying donations. To verify tax-exempt status or view annual non-profit tax filings, visit the official <a href="https://apps.irs.gov/app/eos/" target="_blank" rel="noopener" style="color:var(--lime); text-decoration:underline;">IRS Tax Exempt Organization Search (TEOS)</a>.
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Giving Opportunities Grid -->
-        <section class="section">
-            <p class="eyebrow">Giving Options</p>
-            <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:2.5rem;">How You Can Support COREI™</h2>
-            <div class="grid-2">
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--lime)">01 · Direct Giving</p>
-                    <h3>Direct &amp; Monthly Giving</h3>
-                    <p>Make a one-time gift or establish a recurring monthly donation to sustain core non-profit operations, youth enrichment, and community programs.</p>
+        <!-- Section 2: Detailed Ways You Can Give (Blue Section with Graphics) -->
+        <section class="section-blue">
+            <div class="container">
+                <p class="eyebrow">Giving Options</p>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:2.5rem;">Ways You Can Give to COREI™</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="image-box">
+                            <img src="images/community-social.webp" alt="Direct & Monthly Giving" />
+                        </div>
+                        <p class="eyebrow" style="color:var(--lime)">01 · Direct Giving</p>
+                        <h3>Direct &amp; Monthly Giving</h3>
+                        <p>Make a one-time gift or establish a recurring monthly donation to sustain core non-profit operations, youth enrichment, and community programs. Monthly giving provides reliable funding that allows COREI™ to plan long-term community projects with confidence.</p>
+                    </div>
+                    <div class="card">
+                        <div class="image-box">
+                            <img src="images/site-plan.webp" alt="Capital Campaign Naming Rights" />
+                        </div>
+                        <p class="eyebrow" style="color:var(--sky)">02 · Capital Campaign</p>
+                        <h3>Facility &amp; Complex Naming Rights</h3>
+                        <p>Leave a lasting legacy by sponsoring key wings of the upcoming multi-purpose complex, including the Medical Wing, Veteran Center, Education Hub, Sports Complex, Family Center, or Conference Hall. Naming opportunities immortalize your dedication to East Texas.</p>
+                    </div>
+                    <div class="card">
+                        <div class="image-box">
+                            <img src="images/education-youth.webp" alt="Equipment & Resource Grants" />
+                        </div>
+                        <p class="eyebrow" style="color:var(--teal)">03 · In-Kind Contributions</p>
+                        <h3>Equipment &amp; Resource Grants</h3>
+                        <p>Donate essential technology, medical checkup equipment, athletic supplies, or educational software to directly outfit our classrooms, computer labs, and wellness facilities for youth and seniors.</p>
+                    </div>
+                    <div class="card">
+                        <div class="image-box">
+                            <img src="images/crossroads-partner.webp" alt="Corporate Partnerships" />
+                        </div>
+                        <p class="eyebrow" style="color:var(--green)">04 · Partnerships</p>
+                        <h3>Corporate Partnerships &amp; Event Sponsorships</h3>
+                        <p>Partner your business or foundation with COREI™ to fund specific initiatives, youth sports tournaments, vocational training workshops, or community events, driving shared prosperity and public goodwill.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--sky)">02 · Capital Campaign</p>
-                    <h3>Facility &amp; Complex Naming Rights</h3>
-                    <p>Leave a legacy by sponsoring key wings of the upcoming multi-purpose complex, including the Medical Wing, Veteran Center, Education Hub, or Sports Complex.</p>
-                </div>
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--teal)">03 · In-Kind Contributions</p>
-                    <h3>Equipment &amp; Resource Grants</h3>
-                    <p>Donate technology, medical checkup equipment, athletic supplies, or educational software to directly outfit our classrooms and wellness facilities.</p>
-                </div>
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--green)">04 · Partnerships</p>
-                    <h3>Corporate Sponsorships</h3>
-                    <p>Partner your business or foundation with COREI™ to fund specific initiatives, youth sports tournaments, vocational training workshops, or community events.</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Call to Action (Teal Section) -->
+        <section class="section-teal">
+            <div class="container" style="text-align:center;">
+                <p class="eyebrow">Pledge Your Support</p>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:1rem;">Ready to Make a Difference?</h2>
+                <p style="color:rgba(255,255,255,0.85); font-size:1.15rem; max-width:700px; margin:0 auto 2rem; line-height:1.7;">
+                    Whether you are an individual donor, corporate sponsor, or foundation representative, we welcome your partnership in bringing urban innovation to rural America.
+                </p>
+                <div class="actions-row">
+                    <a href="https://www.paypal.com/donate/?hosted_button_id=COREITEX_DONATE" target="_blank" rel="noopener" class="btn btn-paypal">Donate via PayPal ↗</a>
+                    <a href="contact.html" class="btn btn-primary">Contact Leadership Team →</a>
                 </div>
             </div>
         </section>

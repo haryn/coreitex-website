@@ -92,10 +92,15 @@
         }
         .btn-primary { background: var(--lime); color: var(--navy); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(167, 229, 98, 0.4); }
-        .btn-outline { background: transparent; border: 1px solid var(--glass-border); color: var(--white); backdrop-filter: blur(10px); }
-        .btn-outline:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--lime); }
 
-        /* Page Layout */
+        /* Alternating Sections for Visual Impact */
+        .section-dark { background: var(--navy-deep); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); }
+        .section-blue { background: linear-gradient(180deg, #041e42 0%, #021530 100%); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+        .section-teal { background: linear-gradient(135deg, rgba(4, 30, 66, 0.95) 0%, rgba(12, 147, 109, 0.25) 100%); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); border-top: 1px solid var(--glass-border); }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Page Header */
         .page-header {
             position: relative; z-index: 2; padding: 12rem clamp(1.25rem, 5vw, 6rem) 4rem;
             max-width: 1200px; margin: 0 auto;
@@ -104,8 +109,8 @@
         .page-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
         .page-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: 800px; }
 
-        .section { position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem); max-width: 1200px; margin: 0 auto; }
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; align-items: stretch; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
 
         .card {
@@ -118,30 +123,57 @@
         }
         .card:hover { transform: translateY(-6px); border-color: rgba(167, 229, 98, 0.4); }
         .card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--white); }
-        .card p { font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.75); }
+        .card p { font-size: 1rem; line-height: 1.65; color: rgba(255, 255, 255, 0.78); }
+
+        /* Values Badge Card */
+        .value-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            position: relative; overflow: hidden;
+        }
+        .value-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--lime);
+        }
+        .value-card h4 { font-size: 1.4rem; font-weight: 800; color: var(--lime); margin-bottom: 0.5rem; }
 
         /* Goals Grid */
-        .goals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+        .goals-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        @media (max-width: 900px) { .goals-wrapper { grid-template-columns: 1fr; } }
+        
+        .goals-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
         .goal-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 1rem;
-            padding: 1.5rem;
+            padding: 1.25rem;
             display: flex; gap: 1rem; align-items: flex-start;
             transition: all 0.3s ease;
         }
-        .goal-item:hover { background: rgba(167, 229, 98, 0.06); border-color: var(--lime); transform: translateY(-3px); }
+        .goal-item:hover { background: rgba(167, 229, 98, 0.06); border-color: var(--lime); transform: translateX(6px); }
         .goal-num {
             font-size: 0.85rem; font-weight: 900; color: var(--lime); background: rgba(167, 229, 98, 0.15);
             width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
         .goal-text { font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: rgba(255, 255, 255, 0.9); }
 
-        .image-banner {
-            border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 16/7;
-            box-shadow: var(--shadow); border: 1px solid var(--glass-border); margin: 2rem 0;
+        .image-card {
+            border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 4/3;
+            box-shadow: var(--shadow); border: 1px solid var(--glass-border);
         }
-        .image-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .image-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Leadership Cards */
+        .leader-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+        }
+        .leader-role { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sky); margin-bottom: 0.5rem; }
 
         footer {
             position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem);
@@ -170,100 +202,105 @@
     </nav>
 
     <main>
-        <!-- Header -->
+        <!-- Header Section -->
         <header class="page-header">
             <p class="eyebrow">About COREI™ · Non-Profit Organization</p>
             <h1 class="page-title">Bringing Urban Innovation<br><span style="color:var(--lime)">To Rural America™</span></h1>
             <p class="page-lead">
-                Community One Resources Initiatives Corporation (COREI™) is a 501(c)(3) non-profit organization dedicated to empowering rural and underserved communities in East Texas through a revolutionary one-stop multi-purpose complex.
+                Community One Resources Initiatives Corporation (COREI™) is a 501(c)(3) non-profit organization committed to serving rural and underserved communities by building a state-of-the-art multi-purpose complex in East Texas.
             </p>
         </header>
 
-        <!-- Vision & Mission -->
-        <section class="section">
-            <div class="grid-2">
+        <!-- Section 1: Vision & Mission (Dark Background) -->
+        <section class="section-dark">
+            <div class="container grid-2">
                 <div class="card">
                     <p class="eyebrow">Our Vision</p>
                     <h3>Bringing Urban Innovation to Rural America™</h3>
-                    <p>COREI™ believes that innovation is not a one-time engagement, but an ongoing commitment to refine resources, facilities, and services. Our vision is to elevate rural quality of life with world-class infrastructure.</p>
+                    <p>COREI™ believes that innovation is not a one-time engagement, but an ongoing process to refine products, operations, and services. Our vision is to build a place where health, opportunity, recreation, education, and community can grow together right here in East Texas.</p>
                 </div>
                 <div class="card">
                     <p class="eyebrow">Our Mission</p>
                     <h3>Empowerment &amp; Sustainability</h3>
-                    <p>To develop a better quality of life for people within underserved communities through initiatives that improve economic and social sustainability through charity, education and training, sports and recreation, medical and health services, fitness, and advocacy.</p>
+                    <p>To develop a better quality of life for people within underserved communities through initiatives that improve economic and social sustainability. COREI™ will do this through charity, education and training, sports and recreation, medical and health services, fitness, and advocacy.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Banner Image -->
-        <section class="section">
-            <div class="image-banner">
-                <img src="images/about-hero.webp" alt="COREI Community and Veteran Initiatives" />
+        <!-- Section 2: Core Values (Blue Section) -->
+        <section class="section-blue">
+            <div class="container">
+                <p class="eyebrow">Organizational Foundation</p>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:1rem;">Our Core Values</h2>
+                <p style="color:rgba(255,255,255,0.8); max-width:800px; font-size:1.1rem; margin-bottom:3rem;">
+                    COREI™ implements a proactive approach that reinforces these four core values and embraces change and flexibility to foster community resilience and growth.
+                </p>
+                <div class="grid-4">
+                    <div class="value-card">
+                        <h4>Community</h4>
+                        <p>Cultivating strong relationships with the community, encouraging residents to embrace change, learn together, and respond effectively.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4>Empowerment</h4>
+                        <p>Providing members with the necessary tools, resources, and environment to thrive, leading to increased motivation and purpose.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4>Integrity</h4>
+                        <p>Operating with complete transparency, ethical governance, and steadfast commitment to 501(c)(3) public service principles.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4>Innovation</h4>
+                        <p>Bringing urban-level technology, infrastructure, and forward-thinking facilities to rural East Texas communities.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Mission Focus Pillars -->
-        <section class="section">
-            <p class="eyebrow">Strategic Pillars</p>
-            <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:2rem;">Our Mission Focus</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--sky)">01 · Action</p>
-                    <h3>Empowerment &amp; Action</h3>
-                    <p>To unite residents and provide resources, building a stronger community where empowered individuals create lasting change and shared prosperity together.</p>
-                </div>
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--teal)">02 · Belonging</p>
-                    <h3>Connection &amp; Belonging</h3>
-                    <p>To cultivate connection and mutual support, weaving together the fabric of the community so that every voice is heard, and every person feels at home.</p>
-                </div>
-                <div class="card">
-                    <p class="eyebrow" style="color:var(--lime)">03 · Vision</p>
-                    <h3>Vision &amp; Future</h3>
-                    <p>We are focused on a future built by us, for us—uplifting local voices and driving the initiatives that will define our community's long-term success.</p>
+        <!-- Section 3: Leadership & Governance (Teal Gradient Section) -->
+        <section class="section-teal">
+            <div class="container">
+                <p class="eyebrow">Board &amp; Leadership Commitments</p>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:2.5rem;">Leadership &amp; Purpose</h2>
+                <div class="grid-2">
+                    <div class="leader-card">
+                        <div class="leader-role">Commitment to Empowerment</div>
+                        <h3>Empowering Every Resident</h3>
+                        <p>COREI™ leadership is committed to providing community members with the necessary tools, resources, and environment to thrive, leading to increased motivation, productivity, and a strong sense of value and purpose across generations.</p>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-role">Commitment to Innovation</div>
+                        <h3>Relentless Innovation</h3>
+                        <p>COREI™ was founded on the principle of bringing urban innovation to rural America. COREI™ believes that innovation is not a one-time engagement, but an ongoing process to refine facilities, operations, and support services. This commitment is our passion.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 14 Strategic Goals -->
-        <section class="section">
-            <p class="eyebrow">Project Scope</p>
-            <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:1rem;">14 Core Strategic Goals</h2>
-            <p style="color:rgba(255,255,255,0.75); max-width:700px; font-size:1.1rem;">
-                The multi-purpose complex encompasses comprehensive facilities to support economic sustainability, health, education, and community unity:
-            </p>
-            <div class="goals-grid">
-                <div class="goal-item"><div class="goal-num">1</div><div class="goal-text">Create skilled jobs.</div></div>
-                <div class="goal-item"><div class="goal-num">2</div><div class="goal-text">Establish businesses through leased space.</div></div>
-                <div class="goal-item"><div class="goal-num">3</div><div class="goal-text">Enhance broadband communication.</div></div>
-                <div class="goal-item"><div class="goal-num">4</div><div class="goal-text">Create a state-of-the-art sports, education, fitness, and conference complex.</div></div>
-                <div class="goal-item"><div class="goal-num">5</div><div class="goal-text">Develop sports programs and initiatives.</div></div>
-                <div class="goal-item"><div class="goal-num">6</div><div class="goal-text">Offer vocational and certification programs and virtual educational classes.</div></div>
-                <div class="goal-item"><div class="goal-num">7</div><div class="goal-text">Provide computer labs.</div></div>
-                <div class="goal-item"><div class="goal-num">8</div><div class="goal-text">Build affordable housing for veterans and seniors.</div></div>
-                <div class="goal-item"><div class="goal-num">9</div><div class="goal-text">Provide a medical, wellness, and veteran services center.</div></div>
-                <div class="goal-item"><div class="goal-num">10</div><div class="goal-text">Offer childcare, Pre-K, and Kid Zone services.</div></div>
-                <div class="goal-item"><div class="goal-num">11</div><div class="goal-text">Develop an outdoor kids' playground, park, and event area (weddings, family reunions, concerts, etc.).</div></div>
-                <div class="goal-item"><div class="goal-num">12</div><div class="goal-text">Provide a food service café.</div></div>
-                <div class="goal-item"><div class="goal-num">13</div><div class="goal-text">Build living quarters (hotel, Airbnb, motel, or garden-type units).</div></div>
-                <div class="goal-item"><div class="goal-num">14</div><div class="goal-text">Host church meetings, retreats, and conventions.</div></div>
-            </div>
-        </section>
-
-        <!-- Core Values & Leadership -->
-        <section class="section">
-            <div class="grid-2">
-                <div class="card">
-                    <p class="eyebrow">Foundation</p>
-                    <h3>Core Values</h3>
-                    <p style="margin-bottom:1rem; font-weight:700; color:var(--lime)">Community · Empowerment · Integrity · Innovation</p>
-                    <p>COREI™ implements a proactive approach that reinforces these core values and embraces change and flexibility. To foster resilience and promote growth, COREI™ seeks to cultivate strong relationships with the community, encouraging residents to embrace change and respond effectively.</p>
-                </div>
-                <div class="card">
-                    <p class="eyebrow">Leadership Commitment</p>
-                    <h3>Drive &amp; Purpose</h3>
-                    <p style="margin-bottom:1rem;"><strong>Empowerment:</strong> Providing community members with tools, resources, and an environment to thrive, boosting motivation, productivity, and self-worth.</p>
-                    <p><strong>Innovation:</strong> Innovation is not a one-time engagement, but an ongoing process to refine operations, facilities, and services to bring urban standard resources to East Texas.</p>
+        <!-- Section 4: 14 Strategic Goals with Graphic Image (Dark Section) -->
+        <section class="section-dark">
+            <div class="container">
+                <p class="eyebrow">Project Scope</p>
+                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:2rem;">14 Core Strategic Goals</h2>
+                <div class="goals-wrapper">
+                    <div class="image-card">
+                        <img src="images/site-plan.webp" alt="COREI Multi-Purpose Complex Site Plan" />
+                    </div>
+                    <div class="goals-grid">
+                        <div class="goal-item"><div class="goal-num">1</div><div class="goal-text">Create skilled jobs.</div></div>
+                        <div class="goal-item"><div class="goal-num">2</div><div class="goal-text">Establish businesses through leased space.</div></div>
+                        <div class="goal-item"><div class="goal-num">3</div><div class="goal-text">Enhance broadband communication.</div></div>
+                        <div class="goal-item"><div class="goal-num">4</div><div class="goal-text">Create a state-of-the-art sports, education, fitness, and conference complex.</div></div>
+                        <div class="goal-item"><div class="goal-num">5</div><div class="goal-text">Develop sports programs and initiatives.</div></div>
+                        <div class="goal-item"><div class="goal-num">6</div><div class="goal-text">Offer vocational, certification, and virtual educational classes.</div></div>
+                        <div class="goal-item"><div class="goal-num">7</div><div class="goal-text">Provide computer labs.</div></div>
+                        <div class="goal-item"><div class="goal-num">8</div><div class="goal-text">Build affordable housing for veterans and seniors.</div></div>
+                        <div class="goal-item"><div class="goal-num">9</div><div class="goal-text">Provide a medical, wellness, and veteran services center.</div></div>
+                        <div class="goal-item"><div class="goal-num">10</div><div class="goal-text">Offer childcare, Pre-K, and Kid Zone services.</div></div>
+                        <div class="goal-item"><div class="goal-num">11</div><div class="goal-text">Develop an outdoor kids' playground, park, and event area (weddings, reunions, concerts).</div></div>
+                        <div class="goal-item"><div class="goal-num">12</div><div class="goal-text">Provide a food service café.</div></div>
+                        <div class="goal-item"><div class="goal-num">13</div><div class="goal-text">Build living quarters (hotel, Airbnb, motel, or garden-type units).</div></div>
+                        <div class="goal-item"><div class="goal-num">14</div><div class="goal-text">Host church meetings, retreats, and conventions.</div></div>
+                    </div>
                 </div>
             </div>
         </section>
