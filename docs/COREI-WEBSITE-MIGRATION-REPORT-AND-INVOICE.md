@@ -79,8 +79,9 @@ Complex Site: 11989 County Road 482 South, Mount Enterprise, TX 75681
 ```
 ========================================================================================
 PAYMENT INSTRUCTIONS:
-- Preferred: Direct ACH Transfer / Zelle to: haryn@coreitex.org
-- Check Payable to: Haryn Murillo / Astryx Solutions
+- PayPal: haryn@hotmail.com
+- Zelle: (972) 974-21477 (Direct by Phone Number)
+- Check Payable to: Haryn Murillo / Haryn.US
 - Reference: Invoice # INV-2026-COREI01
 THANK YOU FOR YOUR PARTNERSHIP IN BRINGING URBAN INNOVATION TO RURAL AMERICA!
 ========================================================================================
