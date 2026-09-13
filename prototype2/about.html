@@ -1,13 +1,89 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description"
-        content="Learn about the COREI™ non-profit mission: to empower rural and underserved communities in East Texas by building a one-stop complex for medical, veteran, and education services." />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <title>About COREI™ | Bringing Urban Innovation to Rural America</title>
-    <link rel="icon" href="images/favicon.webp" type="image/webp" />
+    <meta name="description"
+        content="Learn about the COREI™ non-profit mission, governance, leadership, and 2025-2027 impact roadmap: empowering rural and underserved communities in East Texas." />
+    <link rel="canonical" href="https://coreitex.org/about.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="About COREI™ | Bringing Urban Innovation to Rural America" />
+    <meta property="og:description"
+        content="Learn about the COREI™ non-profit mission, governance, leadership, and 2025-2027 impact roadmap: empowering rural and underserved communities in East Texas." />
+    <meta property="og:url" content="https://coreitex.org/about.html" />
+    <meta property="og:site_name" content="Community One Resources Initiatives Corporation" />
+    <meta property="og:image" content="https://coreitex.org/images/corei-complex.webp" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta property="og:image:alt" content="COREI Multi-Purpose Complex Architectural Rendering" />
+    <meta property="og:image:type" content="image/webp" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About COREI™ | Non-Profit Mission & Governance" />
+    <meta name="twitter:description"
+        content="Discover how COREI is empowering rural East Texas with medical, veteran, educational, and sports facilities." />
+    <meta name="twitter:image" content="https://coreitex.org/images/corei-complex.webp" />
+    <meta name="twitter:image:alt" content="COREI Multi-Purpose Complex Architectural Rendering" />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="images/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#041e42" />
+
+    <!-- Google Analytics (Firebase GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BYTZ3MC9L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-0BYTZ3MC9L');
+    </script>
+
+    <!-- JSON-LD Structured Data: WebPage & Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://coreitex.org/about.html#webpage",
+          "url": "https://coreitex.org/about.html",
+          "name": "About COREI™ | Bringing Urban Innovation to Rural America",
+          "isPartOf": { "@id": "https://coreitex.org/#website" },
+          "about": { "@id": "https://coreitex.org/#organization" },
+          "description": "Learn about the COREI™ non-profit mission, governance, leadership, and 2025-2027 impact roadmap: empowering rural and underserved communities in East Texas.",
+          "inLanguage": "en-US",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "@id": "https://coreitex.org/about.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://coreitex.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About COREI"
+              }
+            ]
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,177 +97,24 @@
     <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-    <style>
-        :root {
-            --navy: #041e42;
-            --navy-deep: #021530;
-            --blue: #0a5eb5;
-            --blue-bright: #1a8cff;
-            --sky: #43a7ed;
-            --teal: #0c936d;
-            --green: #42bc71;
-            --lime: #a7e562;
-            --ink: #09213d;
-            --paper: #f0f8f4;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --line: rgba(255, 255, 255, 0.15);
-            --radius: 1.5rem;
-            --radius-lg: 2.5rem;
-            --shadow: 0 24px 80px rgba(2, 21, 48, 0.25);
-            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: auto; }
-        html.lenis, html.lenis body { height: auto; }
-        body {
-            overflow-x: hidden;
-            color: var(--white);
-            background: var(--navy-deep);
-            font-family: 'Outfit', 'Inter', system-ui, sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-        a { color: inherit; text-decoration: none; }
-        img { display: block; max-width: 100%; }
-
-        .cursor-glow {
-            position: fixed; width: 400px; height: 400px;
-            border-radius: 50%; pointer-events: none; z-index: 1;
-            background: radial-gradient(circle, rgba(167, 229, 98, 0.08) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            mix-blend-mode: screen;
-        }
-
-        /* Navigation */
-        .site-nav {
-            position: fixed; z-index: 100; top: 0; left: 0; width: 100%;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1.25rem clamp(1.25rem, 4vw, 4rem);
-            transition: background 0.5s ease, backdrop-filter 0.5s ease, padding 0.4s ease;
-        }
-        .site-nav.scrolled {
-            background: rgba(4, 30, 66, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--glass-border);
-            padding-top: 0.75rem; padding-bottom: 0.75rem;
-        }
-        .brand-logo-img { height: 42px; width: auto; filter: brightness(0) invert(1); }
-        .nav-links { display: flex; gap: clamp(1rem, 2.5vw, 2.5rem); align-items: center; font-size: 0.85rem; font-weight: 600; }
-        .nav-links a:not(.btn) { position: relative; opacity: 0.85; transition: opacity 0.3s, color 0.3s; }
-        .nav-links a:not(.btn):hover { opacity: 1; color: var(--lime); }
-        .nav-links a.active { color: var(--lime); opacity: 1; }
-
-        .btn {
-            position: relative; display: inline-flex; align-items: center; justify-content: center;
-            gap: 0.5rem; padding: 0.85rem 1.75rem; border: none; border-radius: 999px;
-            font-weight: 800; font-size: 0.85rem; cursor: pointer; overflow: hidden; isolation: isolate;
-            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
-        }
-        .btn-primary { background: var(--lime); color: var(--navy); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(167, 229, 98, 0.4); }
-
-        /* Alternating Sections for Visual Impact */
-        .section-dark { background: var(--navy-deep); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); }
-        .section-blue { background: linear-gradient(180deg, #041e42 0%, #021530 100%); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
-        .section-teal { background: linear-gradient(135deg, rgba(4, 30, 66, 0.95) 0%, rgba(12, 147, 109, 0.25) 100%); position: relative; z-index: 2; padding: 5rem clamp(1.25rem, 5vw, 6rem); border-top: 1px solid var(--glass-border); }
-
-        .container { max-width: 1200px; margin: 0 auto; }
-
-        /* Page Header */
-        .page-header {
-            position: relative; z-index: 2; padding: 12rem clamp(1.25rem, 5vw, 6rem) 4rem;
-            max-width: 1200px; margin: 0 auto;
-        }
-        .eyebrow { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--lime); margin-bottom: 1rem; }
-        .page-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
-        .page-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.6; color: rgba(255, 255, 255, 0.8); max-width: 800px; }
-
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-
-        .card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            backdrop-filter: blur(12px);
-            transition: transform 0.4s var(--ease-out), border-color 0.4s ease;
-        }
-        .card:hover { transform: translateY(-6px); border-color: rgba(167, 229, 98, 0.4); }
-        .card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--white); }
-        .card p { font-size: 1rem; line-height: 1.65; color: rgba(255, 255, 255, 0.78); }
-
-        /* Values Badge Card */
-        .value-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 1.25rem;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            position: relative; overflow: hidden;
-        }
-        .value-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--lime);
-        }
-        .value-card h4 { font-size: 1.4rem; font-weight: 800; color: var(--lime); margin-bottom: 0.5rem; }
-
-        /* Goals Grid */
-        .goals-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        @media (max-width: 900px) { .goals-wrapper { grid-template-columns: 1fr; } }
-        
-        .goals-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-        .goal-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            padding: 1.25rem;
-            display: flex; gap: 1rem; align-items: flex-start;
-            transition: all 0.3s ease;
-        }
-        .goal-item:hover { background: rgba(167, 229, 98, 0.06); border-color: var(--lime); transform: translateX(6px); }
-        .goal-num {
-            font-size: 0.85rem; font-weight: 900; color: var(--lime); background: rgba(167, 229, 98, 0.15);
-            width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-        }
-        .goal-text { font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: rgba(255, 255, 255, 0.9); }
-
-        .image-card {
-            border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 4/3;
-            box-shadow: var(--shadow); border: 1px solid var(--glass-border);
-        }
-        .image-card img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Leadership Cards */
-        .leader-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            backdrop-filter: blur(12px);
-        }
-        .leader-role { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sky); margin-bottom: 0.5rem; }
-
-        footer {
-            position: relative; z-index: 2; padding: 4rem clamp(1.25rem, 5vw, 6rem);
-            border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-            font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); max-width: 1200px; margin: 0 auto;
-        }
-    </style>
+    <!-- Centralized Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 
-<body>
+<body class="page-about">
     <div class="cursor-glow" id="cursor-glow"></div>
 
     <!-- Navigation -->
     <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a class="brand" href="index.html">
-            <img src="index/COREI-02-01.svg" alt="COREI™ Logo" class="brand-logo-img">
+            <img src="images/COREI-02-01.svg" alt="COREI™ Logo" class="brand-logo-img">
         </a>
-        <div class="nav-links">
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="nav-links">
             <a href="index.html">Home</a>
             <a href="what-we-do.html">What We Do</a>
             <a href="about.html" class="active">About COREI</a>
@@ -202,104 +125,606 @@
     </nav>
 
     <main>
-        <!-- Header Section -->
+        <!-- Header Section with future-building.webp background -->
         <header class="page-header">
-            <p class="eyebrow">About COREI™ · Non-Profit Organization</p>
-            <h1 class="page-title">Bringing Urban Innovation<br><span style="color:var(--lime)">To Rural America™</span></h1>
-            <p class="page-lead">
-                Community One Resources Initiatives Corporation (COREI™) is a 501(c)(3) non-profit organization committed to serving rural and underserved communities by building a state-of-the-art multi-purpose complex in East Texas.
-            </p>
+            <div class="container">
+                <p class="eyebrow">About COREI™ · Non-Profit Organization</p>
+                <h1 class="page-title">Bringing Urban Innovation<br><span style="color:var(--lime)">To Rural
+                        America™</span></h1>
+                <p class="page-lead">
+                    Community One Resources Initiatives Corporation (COREI™) is a 501(c)(3) non-profit organization
+                    dedicated to empowering rural and underserved communities in East Texas through state-of-the-art
+                    facilities, economic opportunities, and vital human services.
+                </p>
+            </div>
         </header>
 
-        <!-- Section 1: Vision & Mission (Dark Background) -->
+        <!-- Section 1: Vision & Complex Rendering (Dark Background) -->
         <section class="section-dark">
-            <div class="container grid-2">
-                <div class="card">
+            <div class="container stack-1col">
+                <!-- Our Vision Card -->
+                <div class="card-single">
                     <p class="eyebrow">Our Vision</p>
                     <h3>Bringing Urban Innovation to Rural America™</h3>
-                    <p>COREI™ believes that innovation is not a one-time engagement, but an ongoing process to refine products, operations, and services. Our vision is to build a place where health, opportunity, recreation, education, and community can grow together right here in East Texas.</p>
+                    <p>COREI™ believes that innovation is not a one-time engagement, but an ongoing process to refine
+                        products, operations, and services. Our vision is to build a vibrant epicenter where health,
+                        opportunity, recreation, education, and community grow hand-in-hand right here in East Texas.
+                    </p>
                 </div>
-                <div class="card">
-                    <p class="eyebrow">Our Mission</p>
-                    <h3>Empowerment &amp; Sustainability</h3>
-                    <p>To develop a better quality of life for people within underserved communities through initiatives that improve economic and social sustainability. COREI™ will do this through charity, education and training, sports and recreation, medical and health services, fitness, and advocacy.</p>
+
+                <!-- COREI Complex Image Hero Card -->
+                <div class="banner-image-card">
+                    <img src="images/corei-complex.webp" alt="COREI Multi-Purpose Complex Architectural Rendering" />
+                    <div class="banner-caption">
+                        <span class="banner-title">COREI Multi-Purpose Complex</span>
+                        <span class="banner-subtitle">Mount Enterprise, Texas · Master Site Development</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Core Values (Blue Section) -->
-        <section class="section-blue">
+        <!-- Section 2: Mission & Strategic Trajectory (Green to Blue / Teal Gradient) -->
+        <section class="section-mission-trajectory">
+            <div class="container stack-1col">
+                <!-- Our Mission Card with 3-Pillar Accordion -->
+                <div class="card-single">
+                    <p class="eyebrow">Our Mission</p>
+                    <h3>Empowerment &amp; Sustainability</h3>
+                    <p>To develop a better quality of life for people within underserved communities through initiatives
+                        that improve economic and social sustainability. COREI™ will accomplish this through charity,
+                        education and training, sports and recreation, medical and health services, fitness, and
+                        proactive advocacy.</p>
+
+                    <!-- Interactive Mission Accordion -->
+                    <div class="mission-accordion" id="mission-accordion">
+                        <!-- Accordion Item 1: Empowerment and Action (Active by default) -->
+                        <div class="accordion-item active">
+                            <button class="accordion-header" type="button" aria-expanded="true"
+                                aria-controls="acc-content-1" id="acc-title-1">
+                                <span class="accordion-title-text">
+                                    <span class="accordion-icon-bullet"></span>
+                                    Focusing on Empowerment and Action:
+                                </span>
+                                <span class="accordion-toggle-icon" aria-hidden="true">
+                                    <svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    <svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content" id="acc-content-1" role="region"
+                                aria-labelledby="acc-title-1">
+                                <p>To unite residents and provide resources, building a stronger community where
+                                    empowered individuals create lasting change and shared prosperity together.</p>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 2: Connection and Belonging -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" type="button" aria-expanded="false"
+                                aria-controls="acc-content-2" id="acc-title-2">
+                                <span class="accordion-title-text">
+                                    <span class="accordion-icon-bullet"></span>
+                                    Focusing on Connection and Belonging:
+                                </span>
+                                <span class="accordion-toggle-icon" aria-hidden="true">
+                                    <svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    <svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content" id="acc-content-2" role="region"
+                                aria-labelledby="acc-title-2">
+                                <p>To cultivate connection and mutual support, weaving together the fabric of the
+                                    community so that every voice is heard, and every person feels at home.</p>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Item 3: Vision and Future -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" type="button" aria-expanded="false"
+                                aria-controls="acc-content-3" id="acc-title-3">
+                                <span class="accordion-title-text">
+                                    <span class="accordion-icon-bullet"></span>
+                                    Focusing on Vision and Future:
+                                </span>
+                                <span class="accordion-toggle-icon" aria-hidden="true">
+                                    <svg class="icon-plus" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                    <svg class="icon-minus" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content" id="acc-content-3" role="region"
+                                aria-labelledby="acc-title-3">
+                                <p>“We are focused on a future built by us, for us—uplifting local voices and driving
+                                    the initiatives that will define our community’s success.”</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2025-2027 Impact Roadmap Card (Page 12 Board.pdf reproduction) -->
+                <div class="roadmap-card">
+                    <div class="roadmap-header">
+                        <div class="roadmap-title-group">
+                            <p class="eyebrow">Strategic Trajectory</p>
+                            <h3>2025–2027 Impact Roadmap</h3>
+                        </div>
+                        <span class="roadmap-badge">Active Multi-Year Plan</span>
+                    </div>
+
+                    <div class="roadmap-metrics">
+                        <!-- Metric 1 -->
+                        <div class="metric-row">
+                            <div class="metric-label">Veterans served</div>
+                            <div class="metric-track">
+                                <div class="metric-bar" style="width: 88%;">
+                                    <span class="metric-bar-value">1000 + Veterans</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 2 -->
+                        <div class="metric-row">
+                            <div class="metric-label">Youth Program Enrollment</div>
+                            <div class="metric-track">
+                                <div class="metric-bar" style="width: 72%;">
+                                    <span class="metric-bar-value">500+ Active Students</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 3 -->
+                        <div class="metric-row">
+                            <div class="metric-label">Medical Service Reach</div>
+                            <div class="metric-track">
+                                <div class="metric-bar" style="width: 94%;">
+                                    <span class="metric-bar-value">Full County Coverage</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 4 -->
+                        <div class="metric-row">
+                            <div class="metric-label">Strategic Partnerships</div>
+                            <div class="metric-track">
+                                <div class="metric-bar" style="width: 68%;">
+                                    <span class="metric-bar-value">15+ Corporate Allies</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-footer">
+                        <p class="roadmap-quote">"Sustainable change is built on structured growth and strategic
+                            investment in rural people."</p>
+                        <div class="roadmap-meta">www.coreitex.org | Mount Enterprise, Texas</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Core Values (Flags WebP Background with Horizontal Gradient Mask) -->
+        <section class="section-flags">
             <div class="container">
                 <p class="eyebrow">Organizational Foundation</p>
-                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:1rem;">Our Core Values</h2>
-                <p style="color:rgba(255,255,255,0.8); max-width:800px; font-size:1.1rem; margin-bottom:3rem;">
-                    COREI™ implements a proactive approach that reinforces these four core values and embraces change and flexibility to foster community resilience and growth.
+                <h2 style="font-size:clamp(2rem, 4vw, 3rem); font-weight:900; margin-bottom:1rem;">Our Core Values</h2>
+                <p
+                    style="color:rgba(255,255,255,0.85); max-width:780px; font-size:1.1rem; margin-bottom:3rem; line-height: 1.65;">
+                    COREI™ implements a proactive approach that reinforces these four core values and embraces change
+                    and flexibility to foster community resilience and long-term growth.
                 </p>
                 <div class="grid-4">
                     <div class="value-card">
                         <h4>Community</h4>
-                        <p>Cultivating strong relationships with the community, encouraging residents to embrace change, learn together, and respond effectively.</p>
+                        <p>Cultivating strong relationships with the community, encouraging residents to embrace change,
+                            learn together, and respond effectively.</p>
                     </div>
                     <div class="value-card">
                         <h4>Empowerment</h4>
-                        <p>Providing members with the necessary tools, resources, and environment to thrive, leading to increased motivation and purpose.</p>
+                        <p>Providing members with the necessary tools, resources, and environment to thrive, leading to
+                            increased motivation and purpose.</p>
                     </div>
                     <div class="value-card">
                         <h4>Integrity</h4>
-                        <p>Operating with complete transparency, ethical governance, and steadfast commitment to 501(c)(3) public service principles.</p>
+                        <p>Operating with complete transparency, ethical governance, and steadfast commitment to
+                            501(c)(3) public service principles.</p>
                     </div>
                     <div class="value-card">
                         <h4>Innovation</h4>
-                        <p>Bringing urban-level technology, infrastructure, and forward-thinking facilities to rural East Texas communities.</p>
+                        <p>Bringing urban-level technology, infrastructure, and forward-thinking facilities to rural
+                            East Texas communities.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 3: Leadership & Governance (Teal Gradient Section) -->
-        <section class="section-teal">
+        <!-- Section 4: Leadership with a Purpose (Board Meeting WebP Background with Horizontal Gradient Mask) -->
+        <section class="section-leadership">
             <div class="container">
                 <p class="eyebrow">Board &amp; Leadership Commitments</p>
-                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:2.5rem;">Leadership &amp; Purpose</h2>
+                <h2 style="font-size:clamp(2rem, 4vw, 3rem); font-weight:900; margin-bottom:2.5rem;">Leadership with a
+                    Purpose</h2>
                 <div class="grid-2">
                     <div class="leader-card">
                         <div class="leader-role">Commitment to Empowerment</div>
                         <h3>Empowering Every Resident</h3>
-                        <p>COREI™ leadership is committed to providing community members with the necessary tools, resources, and environment to thrive, leading to increased motivation, productivity, and a strong sense of value and purpose across generations.</p>
+                        <p>COREI™ leadership is committed to providing community members with the necessary tools,
+                            resources, and environment to thrive, leading to increased motivation, productivity, and a
+                            strong sense of value and purpose across generations.</p>
                     </div>
                     <div class="leader-card">
                         <div class="leader-role">Commitment to Innovation</div>
                         <h3>Relentless Innovation</h3>
-                        <p>COREI™ was founded on the principle of bringing urban innovation to rural America. COREI™ believes that innovation is not a one-time engagement, but an ongoing process to refine facilities, operations, and support services. This commitment is our passion.</p>
+                        <p>COREI™ was founded on the principle of bringing urban innovation to rural America. COREI™
+                            believes that innovation is not a one-time engagement, but an ongoing process to refine
+                            facilities, operations, and support services. This commitment is our passion.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: 14 Strategic Goals with Graphic Image (Dark Section) -->
+        <!-- Section 5: Corporate Governance & Organizational Structure (Green-Blue / Teal Gradient) -->
+        <section class="section-governance" id="governance">
+            <div class="container">
+                <div class="org-header-group">
+                    <p class="eyebrow">Corporate Governance · 13-Member Board</p>
+                    <h2 style="font-size:clamp(2.2rem, 4.5vw, 3.2rem); font-weight:900; margin-bottom:1rem;">
+                        Organizational Structure</h2>
+                    <p style="color:rgba(255,255,255,0.8); font-size:1.05rem; line-height:1.65;">
+                        To present the 13-member Board of Directors clearly for organizational governance and
+                        operational excellence, COREI™ structures its leadership into Executive Officers, Functional
+                        Committee Leads, and At-Large Directors.
+                    </p>
+                </div>
+
+                <div class="org-tree-wrapper">
+                    <!-- Tier 1 Header -->
+                    <div class="org-tier-header">
+                        <span class="org-tier-badge executive">Executive Officers</span>
+                    </div>
+
+                    <!-- Tier 1 Grid (5 positions) -->
+                    <div class="org-tier1-grid">
+                        <!-- George Walton -->
+                        <div class="org-card-exec featured">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Chair, Board of Directors</div>
+                                <h3 class="org-card-title">President</h3>
+                                <div class="org-card-role">Executive Leadership &amp; Strategic Alignment</div>
+                                <p class="org-card-desc">Leads board meetings, oversees strategic alignment, and acts as
+                                    the primary liaison between executive leadership and the board.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name">George Walton</span>
+                                <span class="status-badge existing">Existing</span>
+                            </div>
+                        </div>
+
+                        <!-- Darrell Walton -->
+                        <div class="org-card-exec featured">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Chair, Board of Directors</div>
+                                <h3 class="org-card-title">Vice President</h3>
+                                <div class="org-card-role">Executive Support &amp; Special Initiatives</div>
+                                <p class="org-card-desc">Assists the Chair, leads special initiatives, and steps in
+                                    during the Chair's absence.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name">Darrell Walton</span>
+                                <span class="status-badge existing">Existing</span>
+                            </div>
+                        </div>
+
+                        <!-- Franklin Todd Burton -->
+                        <div class="org-card-exec">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Board Director</div>
+                                <h3 class="org-card-title">Vice President Strategic Operations &amp; Risk Management
+                                </h3>
+                                <div class="org-card-role">Governance &amp; Corporate Compliance</div>
+                                <p class="org-card-desc">Compliance, Security, Records &amp; Corporate Governance.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name">Franklin Todd Burton</span>
+                                <span class="status-badge existing">Existing</span>
+                            </div>
+                        </div>
+
+                        <!-- Shelia Jones -->
+                        <div class="org-card-exec">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Board Director</div>
+                                <h3 class="org-card-title">Secretary</h3>
+                                <div class="org-card-role">Records &amp; Compliance Filings</div>
+                                <p class="org-card-desc">Maintains board records, official meeting minutes, governance
+                                    documents, and compliance filings.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name">Shelia Jones</span>
+                                <span class="status-badge existing">Existing</span>
+                            </div>
+                        </div>
+
+                        <!-- Open - Treasurer -->
+                        <div class="org-card-exec">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Board Director</div>
+                                <h3 class="org-card-title">Treasurer / Finance Lead</h3>
+                                <div class="org-card-role">Financial Planning &amp; Fiscal Governance</div>
+                                <p class="org-card-desc">Oversees financial planning, budget approval, audits, and
+                                    fiscal governance.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name" style="color:#f59e0b;">Name (Open)</span>
+                                <span class="status-badge open">Open</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tier 2 Header -->
+                    <div class="org-tier-header">
+                        <span class="org-tier-badge committees">Committee Chairs &amp; Strategic Leads</span>
+                    </div>
+
+                    <!-- Tier 2 Grid (6 positions) -->
+                    <div class="org-tier2-grid">
+                        <!-- Governance & Nominations -->
+                        <div class="org-card-committee">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Board Director</div>
+                                <h3 class="org-card-title">Chair, Governance &amp; Nominations</h3>
+                                <div class="org-card-role">Board Recruitment &amp; Evaluations</div>
+                                <p class="org-card-desc">Oversees board recruitment, annual evaluations, compliance, and
+                                    policy updates.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name" style="color:#f59e0b;">Name (Open)</span>
+                                <span class="status-badge open">Open</span>
+                            </div>
+                        </div>
+
+                        <!-- Community Development & Outreach -->
+                        <div class="org-card-committee">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Board Director</div>
+                                <h3 class="org-card-title">Chair, Community Development &amp; Outreach</h3>
+                                <div class="org-card-role">Regional Engagement &amp; Partnerships</div>
+                                <p class="org-card-desc">Drives regional stakeholder engagement, local partnerships, and
+                                    rural initiatives.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name" style="color:#f59e0b;">Name (Open)</span>
+                                <span class="status-badge open">Open</span>
+                            </div>
+                        </div>
+
+                        <!-- Liaison Real Estate & Capital Projects -->
+                        <div class="org-card-committee">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Vice Chair, Board of Directors</div>
+                                <h3 class="org-card-title">Liaison, Real Estate &amp; Capital Projects</h3>
+                                <div class="org-card-role">Facility Planning &amp; Complex Initiatives</div>
+                                <p class="org-card-desc">Advises on facility planning, multi-purpose complex
+                                    initiatives, and service delivery.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name">Darrell Walton</span>
+                                <span class="status-badge existing">Existing</span>
+                            </div>
+                        </div>
+
+                        <!-- Fundraising & Grant Development -->
+                        <div class="org-card-committee">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Board Director</div>
+                                <h3 class="org-card-title">Chair, Fundraising &amp; Grant Development</h3>
+                                <div class="org-card-role">Donor Cultivation &amp; Grant Acquisitions</div>
+                                <p class="org-card-desc">Directs donor cultivation, grant acquisitions, and capital
+                                    campaigns.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name" style="color:#f59e0b;">Name (Open)</span>
+                                <span class="status-badge open">Open</span>
+                            </div>
+                        </div>
+
+                        <!-- Educational & Vocational Programs -->
+                        <div class="org-card-committee">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Board Director</div>
+                                <h3 class="org-card-title">Chair, Educational &amp; Vocational Programs</h3>
+                                <div class="org-card-role">Childcare, Education &amp; Vocational Hub</div>
+                                <p class="org-card-desc">Oversees Childcare, After school care, Educational and
+                                    Vocational Programs.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name" style="color:#f59e0b;">Name (Open)</span>
+                                <span class="status-badge open">Open</span>
+                            </div>
+                        </div>
+
+                        <!-- Sports & Recreational Programs -->
+                        <div class="org-card-committee">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Board Director</div>
+                                <h3 class="org-card-title">Chair, Sports &amp; Recreational Programs</h3>
+                                <div class="org-card-role">Youth &amp; Adult Sports Initiatives</div>
+                                <p class="org-card-desc">Oversees Youth and Adults Sports and Recreational Initiatives.
+                                </p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name" style="color:#f59e0b;">Name (Open)</span>
+                                <span class="status-badge open">Open</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tier 3 Header -->
+                    <div class="org-tier-header">
+                        <span class="org-tier-badge atlarge">At-Large Directors &amp; Subject Matter Experts</span>
+                    </div>
+
+                    <!-- Tier 3 Grid (3 positions) -->
+                    <div class="org-tier3-grid">
+                        <!-- Haryn Murillo -->
+                        <div class="org-card-atlarge">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Director At-Large, Board of Directors</div>
+                                <h3 class="org-card-title">Director of Technical Operations &amp; Infrastructure</h3>
+                                <div class="org-card-role">Brand Strategy &amp; Web Infrastructure</div>
+                                <p class="org-card-desc">Brand Strategy, Web Infrastructure, Digital Marketing and
+                                    Technical Operations.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name">Haryn Murillo</span>
+                                <span class="status-badge existing">Existing</span>
+                            </div>
+                        </div>
+
+                        <!-- Healthcare & Social Services -->
+                        <div class="org-card-atlarge">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Director At-Large, Board of Directors</div>
+                                <h3 class="org-card-title">Director of Healthcare &amp; Social Services</h3>
+                                <div class="org-card-role">Medical Partnership &amp; Wellness Initiatives</div>
+                                <p class="org-card-desc">Medical Partnership &amp; Wellness Initiatives.</p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name" style="color:#f59e0b;">Name (Open)</span>
+                                <span class="status-badge open">Open</span>
+                            </div>
+                        </div>
+
+                        <!-- Leonardo Gonzalez -->
+                        <div class="org-card-atlarge">
+                            <div class="org-card-header">
+                                <div class="org-card-category">Director At-Large, Board of Directors</div>
+                                <h3 class="org-card-title">Director of Veteran Services</h3>
+                                <div class="org-card-role">Veteran Outreach &amp; Community Health</div>
+                                <p class="org-card-desc">Focuses on veteran outreach and community health integration.
+                                </p>
+                            </div>
+                            <div class="org-card-footer">
+                                <span class="org-person-name">Leonardo Gonzalez</span>
+                                <span class="status-badge existing">Existing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: 14 Strategic Goals with Graphic & Sub Frames (Dark Section) -->
         <section class="section-dark">
             <div class="container">
                 <p class="eyebrow">Project Scope</p>
-                <h2 style="font-size:2.5rem; font-weight:900; margin-bottom:2rem;">14 Core Strategic Goals</h2>
+                <h2 style="font-size:clamp(2rem, 4vw, 3rem); font-weight:900; margin-bottom:2.5rem;">14 Core Strategic
+                    Goals</h2>
                 <div class="goals-wrapper">
-                    <div class="image-card">
-                        <img src="images/site-plan.webp" alt="COREI Multi-Purpose Complex Site Plan" />
+                    <!-- Left Column Graphics Stack: site-plan.webp + frame_021.webp + frame_036.webp -->
+                    <div class="graphics-column">
+                        <div class="main-graphic-card">
+                            <img src="images/site-plan.webp" alt="COREI Multi-Purpose Complex Master Site Plan" />
+                            <div class="graphic-caption">
+                                <span>Master Complex Site Plan</span>
+                                <span style="color:var(--lime);">Phase 1 Development</span>
+                            </div>
+                        </div>
+
+                        <!-- Sub Frames: complex-blueprint.webp and phase2.webp -->
+                        <div class="sub-frames-grid">
+                            <div class="sub-frame-card">
+                                <img src="images/complex-blueprint.webp" alt="COREI Community Complex Site Blueprint" />
+                                <div class="sub-frame-label">Complex Site Blueprint</div>
+                            </div>
+                            <div class="sub-frame-card">
+                                <img src="images/phase2.webp" alt="COREI Multi-Purpose Complex Phase 2 Master Render" />
+                                <div class="sub-frame-label">Phase 2 Master Render</div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Right Column: 14 Core Strategic Goals -->
                     <div class="goals-grid">
-                        <div class="goal-item"><div class="goal-num">1</div><div class="goal-text">Create skilled jobs.</div></div>
-                        <div class="goal-item"><div class="goal-num">2</div><div class="goal-text">Establish businesses through leased space.</div></div>
-                        <div class="goal-item"><div class="goal-num">3</div><div class="goal-text">Enhance broadband communication.</div></div>
-                        <div class="goal-item"><div class="goal-num">4</div><div class="goal-text">Create a state-of-the-art sports, education, fitness, and conference complex.</div></div>
-                        <div class="goal-item"><div class="goal-num">5</div><div class="goal-text">Develop sports programs and initiatives.</div></div>
-                        <div class="goal-item"><div class="goal-num">6</div><div class="goal-text">Offer vocational, certification, and virtual educational classes.</div></div>
-                        <div class="goal-item"><div class="goal-num">7</div><div class="goal-text">Provide computer labs.</div></div>
-                        <div class="goal-item"><div class="goal-num">8</div><div class="goal-text">Build affordable housing for veterans and seniors.</div></div>
-                        <div class="goal-item"><div class="goal-num">9</div><div class="goal-text">Provide a medical, wellness, and veteran services center.</div></div>
-                        <div class="goal-item"><div class="goal-num">10</div><div class="goal-text">Offer childcare, Pre-K, and Kid Zone services.</div></div>
-                        <div class="goal-item"><div class="goal-num">11</div><div class="goal-text">Develop an outdoor kids' playground, park, and event area (weddings, reunions, concerts).</div></div>
-                        <div class="goal-item"><div class="goal-num">12</div><div class="goal-text">Provide a food service café.</div></div>
-                        <div class="goal-item"><div class="goal-num">13</div><div class="goal-text">Build living quarters (hotel, Airbnb, motel, or garden-type units).</div></div>
-                        <div class="goal-item"><div class="goal-num">14</div><div class="goal-text">Host church meetings, retreats, and conventions.</div></div>
+                        <div class="goal-item">
+                            <div class="goal-num">1</div>
+                            <div class="goal-text">Create skilled jobs across East Texas.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">2</div>
+                            <div class="goal-text">Establish businesses through leased and collaborative space.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">3</div>
+                            <div class="goal-text">Enhance broadband communication &amp; digital access.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">4</div>
+                            <div class="goal-text">Create a state-of-the-art sports, education, fitness, and conference
+                                complex.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">5</div>
+                            <div class="goal-text">Develop sports programs and youth athletic initiatives.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">6</div>
+                            <div class="goal-text">Offer vocational, certification, and virtual educational classes.
+                            </div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">7</div>
+                            <div class="goal-text">Provide modern computer labs and high-speed tech hubs.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">8</div>
+                            <div class="goal-text">Build affordable housing for veterans and seniors.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">9</div>
+                            <div class="goal-text">Provide a medical, wellness, and veteran services center.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">10</div>
+                            <div class="goal-text">Offer childcare, Pre-K, and Kid Zone learning services.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">11</div>
+                            <div class="goal-text">Develop outdoor playground, park, and community event venue
+                                (weddings, reunions, concerts).</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">12</div>
+                            <div class="goal-text">Provide a healthy food service café and dining area.</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">13</div>
+                            <div class="goal-text">Build temporary living quarters (hotel, Airbnb, or garden-type
+                                units).</div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-num">14</div>
+                            <div class="goal-text">Host church meetings, retreats, conventions, and civic gatherings.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -320,11 +745,55 @@
         const nav = document.getElementById('site-nav');
         window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
 
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+        if (mobileToggle && navLinks) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('open');
+                mobileToggle.classList.toggle('active', isOpen);
+                mobileToggle.setAttribute('aria-expanded', isOpen);
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    mobileToggle.classList.remove('active');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
         const cursorGlow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
             cursorGlow.style.left = e.clientX + 'px';
             cursorGlow.style.top = e.clientY + 'px';
         });
+
+        /* ── Mission Accordion Toggle Handler ─────────── */
+        (function initMissionAccordion() {
+            const items = document.querySelectorAll('.mission-accordion .accordion-item');
+            items.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                if (!header) return;
+
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+
+                    if (isActive) {
+                        item.classList.remove('active');
+                        header.setAttribute('aria-expanded', 'false');
+                    } else {
+                        items.forEach(other => {
+                            other.classList.remove('active');
+                            const otherBtn = other.querySelector('.accordion-header');
+                            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                        });
+                        item.classList.add('active');
+                        header.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+        })();
     </script>
 </body>
+
 </html>

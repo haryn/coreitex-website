@@ -1,7 +1,57 @@
 {
   "hosting": {
-    "public": "out",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [{"source": "**", "destination": "/index.html"}]
+    "public": "prototype2",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source": "/about-corei",
+        "destination": "/about.html",
+        "type": 301
+      },
+      {
+        "source": "/about-corei/",
+        "destination": "/about.html",
+        "type": 301
+      },
+      {
+        "source": "/what-we-do/",
+        "destination": "/what-we-do.html",
+        "type": 301
+      },
+      {
+        "source": "/get-involved/",
+        "destination": "/get-involved.html",
+        "type": 301
+      },
+      {
+        "source": "/ways-to-give/",
+        "destination": "/ways-to-give.html",
+        "type": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|webp|svg|woff|woff2|ico)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(html|json|xml|txt)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600, must-revalidate"
+          }
+        ]
+      }
+    ]
   }
 }

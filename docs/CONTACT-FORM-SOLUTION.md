@@ -1,7 +1,7 @@
 # COREI™ Contact Form Solution — Google Forms + Gmail Workflow
 
-**Status**: Proposed — Awaiting Client Gmail Account
-**Date**: 2026-07-21
+**Status**: Implemented & Verified on `prototype2/contact.html`
+**Date**: 2026-07-21 (Updated: 2026-09-13)
 
 ---
 
@@ -33,6 +33,27 @@ A zero-cost contact form solution using Google Forms as a stealth backend, stori
                         │ (Submissions)│     │ → Board Email │
                         └──────────────┘     └──────────────┘
 ```
+
+---
+
+## Live Configuration (Active)
+
+- **Form View URL**: [Contact Coreitex.org](https://docs.google.com/forms/d/e/1FAIpQLScj3GRp-Dgj3FEulKTvwKBnOUL3zdHFFGeFmBvZIiQ15G9zTg/viewform)
+- **POST Action Endpoint**:
+  ```
+  https://docs.google.com/forms/d/e/1FAIpQLScj3GRp-Dgj3FEulKTvwKBnOUL3zdHFFGeFmBvZIiQ15G9zTg/formResponse
+  ```
+
+### Live Field Mapping Table
+
+| Website Field | Google Form Field / Entry ID | Type | Form Label | Value on Submit |
+| :--- | :--- | :--- | :--- | :--- |
+| **Email Address** | `emailAddress` | Email (Google Collector) | Your email | User email string |
+| **Full Name** | `entry.2005620554` | Short Answer (Req) | Name | Full name string |
+| **Phone Number** | `entry.1166974658` | Short Answer (Opt) | Phone number | Phone string |
+| **Message** | `entry.839337160` | Paragraph (Req) | Comments | Message string |
+| **Subscribe** | `entry.532123593` | Checkboxes (Opt) | Subscribe | `"Yes"` (if checked) |
+| **Honeypot** | `b_contact_website_hp` | Hidden Anti-Spam | N/A | Drops spam if filled |
 
 ---
 
