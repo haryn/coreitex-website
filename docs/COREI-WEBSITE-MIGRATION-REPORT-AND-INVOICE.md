@@ -49,10 +49,10 @@ PAYMENT TERMS:    Due Upon Receipt (Net 15)
 PROJECT:          COREI™ Website Migration, Modernization & 3D Interactive Platform
 
 SERVICE PROVIDER:
-Haryn Murillo / Astryx Solutions
+Haryn Murillo / Haryn.US
 Full-Stack Engineering & AI Systems Architecture
-Email: haryn@coreitex.org / contact@astryxdesign.com
-Phone: (214) 984-2440
+Email: haryn80@gmail.com 
+Phone: (972) 974-21477
 
 CLIENT BILLING DETAILS:
 Community One Resources Initiatives Corporation (COREI™)
