@@ -1040,7 +1040,13 @@ footer {
         .calendar-section {
             position: relative;
             z-index: 3;
-            background: linear-gradient(180deg, var(--navy-deep) 0%, #031c3d 50%, var(--navy-deep) 100%);
+            background-color: #021530;
+            background-image: linear-gradient(180deg, rgba(2, 21, 48, 0.82) 0%, rgba(4, 30, 66, 0.88) 100%),
+                              url('../images/giving-background.webp');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
             border-top: 1px solid var(--glass-border);
             border-bottom: 1px solid var(--glass-border);
             padding: clamp(5rem, 9vw, 8rem) clamp(1.25rem, 6vw, 6rem);
@@ -2323,14 +2329,25 @@ footer {
             border-bottom: 1px solid var(--glass-border);
         }
 
-        /* Corporate Governance Section (Green-Blue / Teal Gradient from Strategic Collaboration in get-involved.html) */
+        /* Corporate Governance Section (Fixed Giving Background + Green-Blue / Teal Gradient) */
         .section-governance {
-            background: linear-gradient(135deg, rgba(4, 30, 66, 0.95) 0%, rgba(12, 147, 109, 0.25) 100%);
             position: relative;
             z-index: 2;
             padding: 6rem clamp(1.25rem, 5vw, 6rem);
+            background-color: #021530;
+            background-image: linear-gradient(135deg, rgba(4, 30, 66, 0.88) 0%, rgba(12, 147, 109, 0.45) 100%),
+                              url('../images/giving-background.webp');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
             border-top: 1px solid var(--glass-border);
             border-bottom: 1px solid var(--glass-border);
+        }
+
+        .org-header-group .eyebrow,
+        .section-teal .eyebrow {
+            justify-content: center;
         }
 
         /* Mission & Strategic Trajectory Section (Green-Blue / Teal Gradient) */

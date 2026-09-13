@@ -4,6 +4,20 @@ This file records all architectural decisions, design evolutions, asset optimiza
 
 ---
 
+## [2026-09-13] - Production Modernization, Contrast Polish, Migration Report & $800 Invoice
+
+### Milestone 1: Visual Contrast Polish, Parallax Backgrounds & Subtitle Alignment
+- **Homepage Events Calendar Background (`index.html`)**: Added fixed background `image/giving-background.webp` with deep-navy gradient scrim (`rgba(2, 21, 48, 0.82)` to `rgba(4, 30, 66, 0.88)`) to `.calendar-section`.
+- **About Page Governance Background & Centering (`about.html`)**: Pinned fixed `giving-background.webp` to `.section-governance` and centered the eyebrow subtitle `"Corporate Governance · 13-Member Board"`.
+- **Ways to Give Eyebrow Centering (`ways-to-give.html`)**: Center-justified green eyebrow badges for `"PLEDGE YOUR SUPPORT"` and `"BY MAIL"` in the donation section.
+- **Contact Page Hero Background & Contrast Gradient (`contact.html`)**: Implemented `community-plaza.webp` as the hero background with a dark blue transparent-right gradient overlay (`90deg` from `rgba(2, 21, 48, 0.96)` to `rgba(4, 30, 66, 0.25)` and `180deg` from `0.4` to `0.85`), providing high heading contrast and aesthetic depth.
+
+### Milestone 2: Modernization Report & $800 Migration Invoice
+- **Comprehensive Report & Invoice**: Created `docs/COREI-WEBSITE-MIGRATION-REPORT-AND-INVOICE.md` featuring full technical documentation of today's improvements, code optimization stats (57% overall line reduction, 15 duplicate images removed), 3D simulation performance metrics, and formal itemized $800 invoice for the board.
+- **Production Firebase Deployment**: Deployed updated bundle to Firebase Hosting (`corei-org`), live at [https://corei-org.web.app](https://corei-org.web.app).
+
+---
+
 ## [2026-09-13] - Live Stealth Google Forms Contact Integration (`prototype2/contact.html`)
 
 ### Milestone: Stealth Google Forms Backend & Custom UI
