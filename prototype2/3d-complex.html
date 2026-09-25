@@ -701,7 +701,7 @@
         <button class="nav-btn" data-zone="food" aria-label="Food Market">
             <span class="icon">🍎</span>
         </button>
-        <button class="nav-btn" data-zone="childcare" aria-label="Childcare Center">
+        <button class="nav-btn" data-zone="childcare" aria-label="Childcare &amp; After-School Center">
             <span class="icon">🧸</span>
         </button>
         <button class="nav-btn" data-zone="plaza" aria-label="Community Plaza">
@@ -834,10 +834,10 @@
             childcare: {
                 id: 'childcare',
                 icon: '🧸',
-                name: 'Childcare Center',
+                name: 'Childcare & After-School Center',
                 category: 'A Safe Place For Every Child To Grow',
                 image: 'images/child-care.webp',
-                synopsis: 'Quality childcare and Pre-K that go beyond basic supervision — a heart-centered, nurturing environment where children develop social skills and emotional well-being, feel safe to be themselves, and discover the joy of friendship, with playgrounds and gardens built just for them.',
+                synopsis: 'Quality childcare, Pre-K, and enriching after-school programs that go far beyond basic supervision. In partnership with local educators, we offer engaging youth activities, homework support, creative arts, and active outdoor play in dedicated gardens and playgrounds — fostering social skills, emotional well-being, and lifelong friendships in a nurturing environment.',
                 anchor: 'what-we-do.html#children-families',
                 pos: [-5, 10.5, 33],
                 camTarget: [-5, 3, 33],
@@ -936,25 +936,34 @@
             return cores <= 4 || memory <= 4 || isMobile;
         })();
 
-        const renderer = new THREE.WebGLRenderer({
-            antialias: !isLowEnd,
-            alpha: false,
-            powerPreference: 'high-performance',
-            stencil: false,
-            depth: true
-        });
-        renderer.setSize(innerWidth, innerHeight);
-        // Adaptive DPR: 1.0 on low-end, 1.35 max on desktop (eliminates 4K fill-rate bottleneck)
-        renderer.setPixelRatio(isLowEnd ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.35));
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = isLowEnd ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
-        // Static shadow caching: sun & buildings are static, no need to redraw shadows every frame
-        renderer.shadowMap.autoUpdate = false;
-        renderer.shadowMap.needsUpdate = true;
-        renderer.outputEncoding = THREE.sRGBEncoding;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.12;
-        document.body.appendChild(renderer.domElement);
+        let renderer;
+        try {
+            if (typeof THREE === 'undefined') throw new Error('Three.js library is not available');
+            renderer = new THREE.WebGLRenderer({
+                antialias: !isLowEnd,
+                alpha: false,
+                powerPreference: 'high-performance',
+                stencil: false,
+                depth: true
+            });
+            renderer.setSize(innerWidth, innerHeight);
+            // Adaptive DPR: 1.0 on low-end, 1.35 max on desktop (eliminates 4K fill-rate bottleneck)
+            renderer.setPixelRatio(isLowEnd ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.35));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = isLowEnd ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+            // Static shadow caching: sun & buildings are static, no need to redraw shadows every frame
+            renderer.shadowMap.autoUpdate = false;
+            renderer.shadowMap.needsUpdate = true;
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.12;
+            document.body.appendChild(renderer.domElement);
+        } catch (err) {
+            console.error('Three.js / WebGL renderer failed to initialize:', err);
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({ type: '3d-fallback' }, '*');
+            }
+        }
 
         let shadowWarmup = 6;
         function requestShadowUpdate() {

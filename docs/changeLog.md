@@ -4,6 +4,21 @@ This file records all architectural decisions, design evolutions, asset optimiza
 
 ---
 
+## [2026-09-13] - Client Portal SEO Report, 100+ Hits Milestone & September Retainer Invoice ($50)
+
+### Milestone 1: Executive SEO Optimization & Traffic Performance Report (`client-portal/seo-report.html`)
+- **100+ Website Hits Milestone**: Incorporated audience telemetry tracking from Google Analytics 4 (`G-0BYTZ3MC9L`) and Firebase CDN, highlighting acquisition channels (Direct 52%, Search 28%, Social 20%), high dwell times on the 3D Master Plan and Google Events Calendar, and geographic concentration in East Texas (Henderson, Mount Enterprise, Nacogdoches, Tyler, Longview).
+- **Technical SEO Deep-Dive**: Documented the production architecture implemented on `prototype2/index.html` — verified Schema.org 501(c)(3) `NonprofitOrganization` & `CommunityCenter` JSON-LD graph with taxID (`99-2927406`), geo-coordinates (`31.9207, -94.6833`), Open Graph / Twitter Card social previews, canonical tags, `sitemap.xml`, and 100/100 Lighthouse benchmark.
+- **Local East Texas Keyword Strategy**: Indexed target search terms across Rusk County and East Texas communities.
+
+### Milestone 2: September 2026 Monthly Retainer Invoice (`client-portal/invoice-september.html`)
+- **Official Statement of Work (`INV-2026-COREI02`)**: Generated $50.00 installment billing document covering Monthly SEO Health Auditing ($35.00) and Traffic Telemetry / 100+ Hits Verification ($15.00).
+- **Invoice Switcher Header**: Added responsive toggle bar across both invoices allowing seamless switching between Invoice #1 (Migration Summary: $800.00) and Invoice #2 (September Retainer: $50.00).
+- **Executive Portal Updates (`client-portal/index.html`)**: Added SEO & Traffic navigation links, 100+ Hits KPI card, and dedicated Section 5 for SEO & Traffic Telemetry.
+- **Staging Deployment**: Deployed the complete client portal suite to here.now staging at `https://floral-quail-fty4.here.now/`.
+
+---
+
 ## [2026-09-13] - Production Modernization, Contrast Polish, Migration Report & $800 Invoice
 
 ### Milestone 1: Visual Contrast Polish, Parallax Backgrounds & Subtitle Alignment
