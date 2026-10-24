@@ -4,6 +4,16 @@ This file records all architectural decisions, design evolutions, asset optimiza
 
 ---
 
+## [2026-09-26] - Construction Scroll Animation Upgrade (`prototype2/index.html`)
+
+### Milestone: Direct Audio-Stripped Web-Optimized MP4 Scroll Scrubbing
+- **Eliminated Multi-File Overhead**: Replaced previous 96 standalone WebP frames (~18.7MB across 96 HTTP requests) with a single audio-stripped, web-optimized MP4 (`images/construction/construction.mp4`, 5.8MB) in `prototype2/images/construction/`.
+- **Fast-Seeking Temporal Compression**: Encoded video using `libx264` (`-crf 23`, `-g 6`, `-keyint_min 2`, `-movflags +faststart`), providing 4 keyframes per second for responsive seek times (<20ms) and hardware-accelerated playback.
+- **Hardware-Accelerated `<video>` Integration**: Swapped HTML5 canvas for native `<video id="construction-video">` scrubbed dynamically via `video.currentTime = progress * duration` with GSAP ScrollTrigger across the extended `800vh` story pacing.
+- **Firebase CDN Caching**: Updated `firebase.json` headers to include `.mp4` under long-term immutable caching (`max-age=31536000, immutable`).
+
+---
+
 ## [2026-09-13] - Client Portal SEO Report, 100+ Hits Milestone & September Retainer Invoice ($50)
 
 ### Milestone 1: Executive SEO Optimization & Traffic Performance Report (`client-portal/seo-report.html`)

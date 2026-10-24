@@ -848,14 +848,14 @@ footer {
         }
 
         /* ═══════════════════════════════════════════════════
-           SECTION: WHO WE ARE (38 Frames, 600vh, Left Gradient Tint)
+           SECTION: WHO WE ARE (96 Frames, 800vh, Left Gradient Tint)
         ═══════════════════════════════════════════════════ */
         .who-we-are-sequence {
             position: relative;
             z-index: 3;
             background: var(--navy-deep);
-            height: 600vh;
-            /* Slowed down scroll pacing */
+            height: 800vh;
+            /* Extended scroll pacing across 96 frames */
         }
 
         .seq-sticky-viewport {
@@ -870,6 +870,7 @@ footer {
             align-items: center;
         }
 
+        #construction-video,
         #construction-canvas {
             position: absolute;
             top: 0;
@@ -878,6 +879,7 @@ footer {
             height: 100%;
             object-fit: cover;
             z-index: 1;
+            pointer-events: none;
         }
 
         /* Left-side transparent gradient tint */
@@ -1036,7 +1038,15 @@ footer {
             }
 
             .seq-overlay-scrim {
-                background: linear-gradient(180deg, rgba(2, 21, 48, 0.75) 0%, rgba(2, 21, 48, 0.92) 100%);
+                background: linear-gradient(180deg,
+                    rgba(2, 21, 48, 0.55) 0%,
+                    rgba(2, 21, 48, 0.35) 45%,
+                    rgba(2, 21, 48, 0.65) 100%) !important;
+            }
+
+            .seq-slide h2,
+            .seq-slide p {
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85) !important;
             }
         }
 
@@ -1356,6 +1366,8 @@ footer {
         }
 
         #building-3d-frame {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             border: none;
@@ -2275,11 +2287,17 @@ footer {
             .partner-card {
                 padding: 2.2rem 1.5rem !important;
                 min-height: auto !important;
+                background: linear-gradient(145deg, rgba(6, 42, 88, 0.45) 0%, rgba(10, 110, 181, 0.35) 50%, rgba(66, 188, 113, 0.40) 100%) !important;
+                backdrop-filter: blur(8px) !important;
+                -webkit-backdrop-filter: blur(8px) !important;
+                border: 1px solid rgba(255, 255, 255, 0.25) !important;
+                box-shadow: 0 16px 40px rgba(2, 21, 48, 0.3) !important;
             }
 
             .partner-card h3 {
                 max-width: 100% !important;
                 font-size: 2.4rem !important;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
             }
 
             .partner-card .btn {
@@ -2287,10 +2305,20 @@ footer {
                 text-align: center !important;
             }
 
+            .partner-reveal-bg {
+                background-position: center center !important;
+            }
+
             .partner-scrim {
                 background: linear-gradient(180deg,
-                        rgba(2, 21, 48, 0.96) 0%,
-                        rgba(2, 21, 48, 0.88) 100%) !important;
+                        rgba(2, 21, 48, 0.65) 0%,
+                        rgba(2, 21, 48, 0.38) 45%,
+                        rgba(2, 21, 48, 0.70) 100%) !important;
+            }
+
+            .partner-copy h2,
+            .partner-copy p {
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
             }
 
             /* Building 3D Section, Gallery & CTA on mobile */
@@ -2299,7 +2327,9 @@ footer {
             }
 
             #building-container {
-                min-height: 420px !important;
+                position: relative !important;
+                height: 520px !important;
+                min-height: 480px !important;
                 aspect-ratio: auto !important;
             }
 
@@ -3107,9 +3137,13 @@ footer {
         }
 
         .status-badge.open {
-            background: rgba(245, 158, 11, 0.15);
-            color: #f59e0b;
-            border: 1px solid rgba(245, 158, 11, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .org-person-name.open-name {
+            color: #cbd5e1 !important;
         }
 
         /* 14 Goals & Graphic Stack Section */
@@ -3480,7 +3514,7 @@ footer {
         }
         .info-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lime); margin-bottom: 0.25rem; }
         .info-val { font-size: 1rem; color: rgba(255, 255, 255, 0.9); line-height: 1.5; }
-        .info-val a { color: var(--sky); transition: color 0.3s; }
+        .info-val a { color: #cbd5e1; transition: color 0.3s; }
         .info-val a:hover { color: var(--lime); text-decoration: underline; }
 
         /* Stealth Google Form Inputs */

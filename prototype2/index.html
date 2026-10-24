@@ -223,11 +223,11 @@
             </div>
         </section>
 
-        <!-- ═══════════════════ WHO WE ARE (60 Frames, 600vh Scroll Pacing) ═══════════════════ -->
+        <!-- ═══════════════════ WHO WE ARE (Scroll-Driven Video Scrubbing, 800vh) ═══════════════════ -->
         <section class="who-we-are-sequence" id="mission" aria-label="Who We Are - Our Journey">
             <div class="seq-sticky-viewport" id="seq-viewport">
-                <!-- Frame Rendering Canvas (60 frames) -->
-                <canvas id="construction-canvas"></canvas>
+                <!-- Video Scrubbing Element -->
+                <video id="construction-video" class="seq-bg-video" src="images/construction/construction.mp4" autoplay loop muted playsinline webkit-playsinline preload="auto" aria-hidden="true"></video>
                 <div class="seq-overlay-scrim"></div>
 
                 <div class="seq-content-wrap">
@@ -503,152 +503,152 @@
             <h2 class="reveal">Building momentum.</h2>
 
             <div class="gallery-grid" id="gallery-grid">
-                <!-- 1. Building momentum (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v5-scaled.jpg"
-                        alt="Building momentum — COREI™ Multi-Purpose Complex development in Mount Enterprise, Rusk County, East Texas" loading="lazy">
-                    <figcaption class="gallery-caption">Building momentum</figcaption>
-                </figure>
-
-                <!-- 2. East Texas Moving Forward (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="https://coreitex.com/wp-content/uploads/2025/12/4-Future-home-of-Corei-Multi-Purpose-Complex-scaled.jpg"
-                        alt="East Texas Moving Forward — COREI™ community complex rural development progress in Rusk County" loading="lazy">
-                    <figcaption class="gallery-caption">East Texas · Moving forward</figcaption>
-                </figure>
-
-                <!-- 3. Roots taking shape (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="https://coreitex.com/wp-content/uploads/2025/12/5-Future-home-of-Corei-Multi-Purpose-Complex.jpeg"
-                        alt="Roots Taking Shape — early construction progress on the COREI™ Multi-Purpose Complex site in Mount Enterprise, East Texas" loading="lazy">
-                    <figcaption class="gallery-caption">Roots taking shape</figcaption>
-                </figure>
-
-                <!-- 4. Community Complex - Blueprint (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="images/complex-blueprint.webp" alt="COREI™ Community Complex Blueprint — architectural site plan for the multi-purpose campus in Mount Enterprise, Rusk County, East Texas" loading="lazy"
-                        width="1536" height="1024">
-                    <figcaption class="gallery-caption">Community Complex · Blueprint</figcaption>
-                </figure>
-
-                <!-- 5. Master Campus · Aerial Overview (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="images/aerial_complex.webp" alt="Aerial rendering of the COREI™ Multi-Purpose Complex master campus planned for Mount Enterprise, Rusk County, East Texas — transforming rural development with healthcare, veteran services, education, and community facilities" loading="lazy"
-                        width="1920" height="1080">
-                    <figcaption class="gallery-caption">Master Campus · Aerial Overview</figcaption>
-                </figure>
-
-                <!-- 6. Complex Details Overview (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="images/overview-complex-details.webp" alt="COREI™ Multi-Purpose Complex detailed layout overview and architectural facility planning" loading="lazy"
-                        width="2080" height="1136">
-                    <figcaption class="gallery-caption">Complex Details · Master Layout</figcaption>
-                </figure>
-
-                <!-- 7. Medical Center (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="images/medical-center.webp" alt="COREI™ Rural Healthcare Medical Center — modern medical facility planned for Mount Enterprise, Rusk County, East Texas, expanding access to primary care and clinical services for underserved rural communities" loading="lazy"
-                        width="1672" height="941">
-                    <figcaption class="gallery-caption">Medical Center · Modern Facility</figcaption>
-                </figure>
-
-                <!-- 8. Complex Center (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="images/complex-center.webp" alt="COREI™ Multi-Purpose Complex Center — Central architectural rendering in Mount Enterprise, East Texas" loading="lazy"
-                        width="2048" height="1152">
-                    <figcaption class="gallery-caption">Complex Center · Main Hub</figcaption>
-                </figure>
-
-                <!-- 9. Future Complex Architectural Concept (VISIBLE) -->
-                <figure class="gallery-item reveal-scale">
-                    <img src="images/future-building.webp" alt="COREI Future Complex Architectural Concept"
-                        loading="lazy" width="1664" height="928">
-                    <figcaption class="gallery-caption">Future Complex · Architectural Concept</figcaption>
-                </figure>
-
-                <!-- ── HIDDEN ITEMS (revealed by Load More) ── -->
-
-                <!-- 10. Veteran Center & Plaza (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
-                    <img src="images/veteran-and-plaza.webp" alt="COREI Veteran Center and Community Plaza"
-                        loading="lazy" width="1920" height="1070">
-                    <figcaption class="gallery-caption">Veteran Center &amp; Plaza</figcaption>
-                </figure>
-
-                <!-- 11. Childcare Center (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
-                    <img src="images/childcare-center.webp" alt="COREI Childcare Center Modern Facility" loading="lazy"
-                        width="1699" height="926">
-                    <figcaption class="gallery-caption">Childcare Center · Modern Facility</figcaption>
-                </figure>
-
-                <!-- 12. Veteran Center (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
-                    <img src="images/veteran-center.webp" alt="COREI Veteran Center Dedicated Facility" loading="lazy"
-                        width="1920" height="1070">
-                    <figcaption class="gallery-caption">Veteran Center · Dedicated Facility</figcaption>
-                </figure>
-
-                <!-- 13. Expanded Market Plaza (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
-                    <img src="images/expanded-market-plaza.webp" alt="COREI™ Expanded Market Plaza — vibrant open-air market and community vendor pavilion" loading="lazy"
-                        width="1200" height="896">
-                    <figcaption class="gallery-caption">Market Plaza · Community Pavilion</figcaption>
-                </figure>
-
-                <!-- 14. Community Plaza (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
-                    <img src="images/community-plaza.webp" alt="COREI Community Plaza Gathering Space" loading="lazy"
-                        width="1920" height="1070">
-                    <figcaption class="gallery-caption">Community Plaza · Gathering Space</figcaption>
-                </figure>
-
-                <!-- 15. Community Garden Plots (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
-                    <img src="images/community-garden-plots.webp" alt="COREI™ Community Garden Plots — sustainable agriculture and local food initiative in East Texas" loading="lazy"
-                        width="1200" height="896">
-                    <figcaption class="gallery-caption">Community Garden · Plots &amp; Agriculture</figcaption>
-                </figure>
-
-                <!-- 16. One Park Garden (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
-                    <img src="images/one-park-garden.webp" alt="COREI™ One Park Garden — lush communal greenspace and outdoor recreation grounds" loading="lazy"
-                        width="1200" height="896">
-                    <figcaption class="gallery-caption">One Park Garden · Green Space</figcaption>
-                </figure>
-
-                <!-- 17. Butterfly Garden (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
-                    <img src="images/butterfly-garden.webp" alt="COREI™ Complex Butterfly Garden &amp; Nature Walk — serene pollinator habitat and wellness landscape" loading="lazy"
-                        width="1200" height="896">
-                    <figcaption class="gallery-caption">Butterfly Garden · Wellness Walk</figcaption>
-                </figure>
-
-                <!-- 18. Future home site vision (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
+                <!-- 1. Future Home-Site Vision (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="1" data-expanded-order="1">
                     <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v1-scaled.jpg"
                         alt="Future home site vision — planned location of the COREI™ Multi-Purpose Complex in Mount Enterprise, Rusk County, East Texas" loading="lazy">
                     <figcaption class="gallery-caption">Future home · Site vision</figcaption>
                 </figure>
 
-                <!-- 19. Community investment (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
+                <!-- 2. Roots Taking Shape (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="2" data-expanded-order="3">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/12/5-Future-home-of-Corei-Multi-Purpose-Complex.jpeg"
+                        alt="Roots Taking Shape — early construction progress on the COREI™ Multi-Purpose Complex site in Mount Enterprise, East Texas" loading="lazy">
+                    <figcaption class="gallery-caption">Roots taking shape</figcaption>
+                </figure>
+
+                <!-- 3. Community Complex Blueprint (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="3" data-expanded-order="6">
+                    <img src="images/complex-blueprint.webp" alt="COREI™ Community Complex Blueprint — architectural site plan for the multi-purpose campus in Mount Enterprise, Rusk County, East Texas" loading="lazy"
+                        width="1536" height="1024">
+                    <figcaption class="gallery-caption">Community Complex · Blueprint</figcaption>
+                </figure>
+
+                <!-- 4. Complex Details Master Layout (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="4" data-expanded-order="9">
+                    <img src="images/overview-complex-details.webp" alt="COREI™ Multi-Purpose Complex detailed layout overview and architectural facility planning" loading="lazy"
+                        width="2080" height="1136">
+                    <figcaption class="gallery-caption">Complex Details · Master Layout</figcaption>
+                </figure>
+
+                <!-- 5. Master Campus Aerial Overview (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="5" data-expanded-order="8">
+                    <img src="images/aerial_complex.webp" alt="Aerial rendering of the COREI™ Multi-Purpose Complex master campus planned for Mount Enterprise, Rusk County, East Texas — transforming rural development with healthcare, veteran services, education, and community facilities" loading="lazy"
+                        width="1920" height="1080">
+                    <figcaption class="gallery-caption">Master Campus · Aerial Overview</figcaption>
+                </figure>
+
+                <!-- 6. Complex Center Main Hub (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="6" data-expanded-order="10">
+                    <img src="images/complex-center.webp" alt="COREI™ Multi-Purpose Complex Center — Central architectural rendering in Mount Enterprise, East Texas" loading="lazy"
+                        width="2048" height="1152">
+                    <figcaption class="gallery-caption">Complex Center · Main Hub</figcaption>
+                </figure>
+
+                <!-- 7. Community Plaza Gathering Space (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="7" data-expanded-order="18">
+                    <img src="images/community-plaza.webp" alt="COREI Community Plaza Gathering Space" loading="lazy"
+                        width="1920" height="1070">
+                    <figcaption class="gallery-caption">Community Plaza · Gathering Space</figcaption>
+                </figure>
+
+                <!-- 8. Medical Center Modern Facility (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="8" data-expanded-order="16">
+                    <img src="images/medical-center.webp" alt="COREI™ Rural Healthcare Medical Center — modern medical facility planned for Mount Enterprise, Rusk County, East Texas, expanding access to primary care and clinical services for underserved rural communities" loading="lazy"
+                        width="1672" height="941">
+                    <figcaption class="gallery-caption">Medical Center · Modern Facility</figcaption>
+                </figure>
+
+                <!-- 9. Veteran Center Dedicated Facility (VISIBLE) -->
+                <figure class="gallery-item reveal-scale" data-initial-order="9" data-expanded-order="15">
+                    <img src="images/veteran-center.webp" alt="COREI Veteran Center Dedicated Facility" loading="lazy"
+                        width="1920" height="1070">
+                    <figcaption class="gallery-caption">Veteran Center · Dedicated Facility</figcaption>
+                </figure>
+
+                <!-- ── HIDDEN ITEMS (revealed by Load More) ── -->
+
+                <!-- 10. Building Momentum (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="10" data-expanded-order="2">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/07/Future-home-Corei-multipurpose-complex-of-Rusk-County-v5-scaled.jpg"
+                        alt="Building momentum — COREI™ Multi-Purpose Complex development in Mount Enterprise, Rusk County, East Texas" loading="lazy">
+                    <figcaption class="gallery-caption">Building momentum</figcaption>
+                </figure>
+
+                <!-- 11. East Texas Moving Forward (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="11" data-expanded-order="4">
+                    <img src="https://coreitex.com/wp-content/uploads/2025/12/4-Future-home-of-Corei-Multi-Purpose-Complex-scaled.jpg"
+                        alt="East Texas Moving Forward — COREI™ community complex rural development progress in Rusk County" loading="lazy">
+                    <figcaption class="gallery-caption">East Texas · Moving forward</figcaption>
+                </figure>
+
+                <!-- 12. Community Investment (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="12" data-expanded-order="5">
                     <img src="https://coreitex.com/wp-content/uploads/2025/12/3-Future-home-of-Corei-Multi-Purpose-Complex-scaled.jpg"
                         alt="Community investment in the COREI™ Multi-Purpose Complex — rural East Texas nonprofit development" loading="lazy">
                     <figcaption class="gallery-caption">Community investment</figcaption>
                 </figure>
 
-                <!-- 20. Complex Site Plan (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
+                <!-- 13. Complex Site Plan (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="13" data-expanded-order="7">
                     <img src="images/complex-plan.webp" alt="COREI™ Multi-Purpose Complex overhead site plan — Master plan layout for the rural community campus in Mount Enterprise, Rusk County, East Texas" loading="lazy">
                     <figcaption class="gallery-caption">Complex · Site Plan</figcaption>
                 </figure>
 
-                <!-- 21. Site Progress - Groundwork (HIDDEN) -->
-                <figure class="gallery-item reveal-scale gallery-hidden">
+                <!-- 14. Site Progress Groundwork (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="14" data-expanded-order="11">
                     <img src="images/phase2.webp" alt="Aerial view of active construction site progress and groundwork for the COREI™ Multi-Purpose Complex on County Road 482 South, Mount Enterprise, Rusk County, East Texas — rural community development underway" loading="lazy" width="1699"
                         height="926">
                     <figcaption class="gallery-caption">Site Progress · Groundwork</figcaption>
+                </figure>
+
+                <!-- 15. Future Complex Architectural Concept (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="15" data-expanded-order="12">
+                    <img src="images/future-building.webp" alt="COREI Future Complex Architectural Concept"
+                        loading="lazy" width="1664" height="928">
+                    <figcaption class="gallery-caption">Future Complex · Architectural Concept</figcaption>
+                </figure>
+
+                <!-- 16. Childcare Center Modern Facility (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="16" data-expanded-order="13">
+                    <img src="images/childcare-center.webp" alt="COREI Childcare Center Modern Facility" loading="lazy"
+                        width="1699" height="926">
+                    <figcaption class="gallery-caption">Childcare Center · Modern Facility</figcaption>
+                </figure>
+
+                <!-- 17. Veteran Center & Plaza (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="17" data-expanded-order="14">
+                    <img src="images/veteran-and-plaza.webp" alt="COREI Veteran Center and Community Plaza"
+                        loading="lazy" width="1920" height="1070">
+                    <figcaption class="gallery-caption">Veteran Center &amp; Plaza</figcaption>
+                </figure>
+
+                <!-- 18. Market Plaza Community Pavilion (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="18" data-expanded-order="17">
+                    <img src="images/expanded-market-plaza.webp" alt="COREI™ Expanded Market Plaza — vibrant open-air market and community vendor pavilion" loading="lazy"
+                        width="1200" height="896">
+                    <figcaption class="gallery-caption">Market Plaza · Community Pavilion</figcaption>
+                </figure>
+
+                <!-- 19. Community Garden Plots & Agriculture (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="19" data-expanded-order="19">
+                    <img src="images/community-garden-plots.webp" alt="COREI™ Community Garden Plots — sustainable agriculture and local food initiative in East Texas" loading="lazy"
+                        width="1200" height="896">
+                    <figcaption class="gallery-caption">Community Garden · Plots &amp; Agriculture</figcaption>
+                </figure>
+
+                <!-- 20. One Park Garden Green Space (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="20" data-expanded-order="20">
+                    <img src="images/one-park-garden.webp" alt="COREI™ One Park Garden — lush communal greenspace and outdoor recreation grounds" loading="lazy"
+                        width="1200" height="896">
+                    <figcaption class="gallery-caption">One Park Garden · Green Space</figcaption>
+                </figure>
+
+                <!-- 21. Butterfly Garden Wellness Walk (HIDDEN) -->
+                <figure class="gallery-item reveal-scale gallery-hidden" data-initial-order="21" data-expanded-order="21">
+                    <img src="images/butterfly-garden.webp" alt="COREI™ Complex Butterfly Garden &amp; Nature Walk — serene pollinator habitat and wellness landscape" loading="lazy"
+                        width="1200" height="896">
+                    <figcaption class="gallery-caption">Butterfly Garden · Wellness Walk</figcaption>
                 </figure>
             </div>
 
@@ -908,12 +908,6 @@
             touchMultiplier: 1.5,
         });
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
         /* Hook GSAP ScrollTrigger to Lenis */
         gsap.registerPlugin(ScrollTrigger);
         lenis.on('scroll', ScrollTrigger.update);
@@ -971,63 +965,19 @@
             }
         });
 
-        /* ── Who We Are: Scroll-Driven Frame Animation (60 Frames) ─── */
-        (function initFrameSequence() {
-            const canvas = document.getElementById('construction-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const totalFrames = 60;
-            const frames = [];
-            let currentFrameIndex = 0;
+        /* ── Who We Are: Scroll-Driven Video Scrubbing (800vh) ─── */
+        (function initVideoSequence() {
+            const video = document.getElementById('construction-video');
+            if (!video) return;
 
-            function padZero(num, size = 3) {
-                let s = num + '';
-                while (s.length < size) s = '0' + s;
-                return s;
-            }
+            // Ensure mobile video playback attributes
+            video.muted = true;
+            video.defaultMuted = true;
+            video.playsInline = true;
+            video.setAttribute('muted', '');
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
 
-            // Preload 60 frames
-            for (let i = 1; i <= totalFrames; i++) {
-                const img = new Image();
-                img.src = `images/construction/frame_${padZero(i)}.webp`;
-                frames.push(img);
-            }
-
-            function resizeCanvas() {
-                const dpr = Math.min(window.devicePixelRatio || 1, 2);
-                canvas.width = window.innerWidth * dpr;
-                canvas.height = window.innerHeight * dpr;
-                drawCurrentFrame();
-            }
-
-            function drawCurrentFrame() {
-                const img = frames[currentFrameIndex];
-                if (!img || !img.complete) return;
-
-                const cw = canvas.width;
-                const ch = canvas.height;
-
-                ctx.clearRect(0, 0, cw, ch);
-
-                const hRatio = cw / img.width;
-                const vRatio = ch / img.height;
-                const ratio = Math.max(hRatio, vRatio);
-
-                const renderW = img.width * ratio;
-                const renderH = img.height * ratio;
-                const renderX = (cw - renderW) / 2;
-                const renderY = (ch - renderH) / 2;
-
-                ctx.drawImage(img, renderX, renderY, renderW, renderH);
-            }
-
-            frames[0].onload = () => {
-                resizeCanvas();
-            };
-
-            window.addEventListener('resize', resizeCanvas);
-
-            // Slides & indicators
             const slides = document.querySelectorAll('.seq-slide');
             const steps = document.querySelectorAll('.seq-step');
 
@@ -1040,23 +990,106 @@
                 });
             }
 
-            // ScrollTrigger Pin & Scrub over 600vh
+            // Click navigation on HUD steps
+            steps.forEach((step, stepIdx) => {
+                step.style.cursor = 'pointer';
+                step.addEventListener('click', () => {
+                    const seqSection = document.querySelector('.who-we-are-sequence');
+                    if (!seqSection) return;
+                    const rect = seqSection.getBoundingClientRect();
+                    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                    const startY = scrollTop + rect.top;
+                    const totalDistance = seqSection.offsetHeight - window.innerHeight;
+                    const targetProgress = [0.05, 0.35, 0.65, 0.90][stepIdx] || 0;
+                    window.scrollTo({
+                        top: startY + totalDistance * targetProgress,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Priming function to unlock mobile media pipeline
+            let isPrimed = false;
+            function primeVideo() {
+                if (isPrimed) return;
+                isPrimed = true;
+                const p = video.play();
+                if (p !== undefined) {
+                    p.then(() => {
+                        video.pause();
+                    }).catch(() => {
+                        isPrimed = false;
+                    });
+                }
+            }
+
+            ['touchstart', 'touchend', 'scroll', 'click'].forEach((evt) => {
+                window.addEventListener(evt, primeVideo, { passive: true, once: true });
+            });
+
+            video.load();
+
+            let duration = 4.0;
+            const updateDuration = () => {
+                if (video.duration && isFinite(video.duration)) {
+                    duration = video.duration;
+                }
+            };
+            if (video.readyState >= 1) {
+                updateDuration();
+            } else {
+                video.addEventListener('loadedmetadata', updateDuration);
+            }
+
+            // Throttled seeking to prevent mobile decoder stalls
+            let isSeeking = false;
+            let pendingTime = null;
+
+            video.addEventListener('seeking', () => { isSeeking = true; });
+            video.addEventListener('seeked', () => {
+                isSeeking = false;
+                if (pendingTime !== null) {
+                    const t = pendingTime;
+                    pendingTime = null;
+                    try { video.currentTime = t; } catch (e) {}
+                }
+            });
+
+            function seekVideo(targetTime) {
+                if (!isSeeking) {
+                    try {
+                        video.currentTime = targetTime;
+                    } catch (e) {
+                        pendingTime = targetTime;
+                    }
+                } else {
+                    pendingTime = targetTime;
+                }
+            }
+
+            // ScrollTrigger Pin & Scrub over 800vh
             const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (!isReduced) {
+            if (isReduced) {
+                video.play().catch(() => {});
+            } else {
                 ScrollTrigger.create({
                     trigger: '.who-we-are-sequence',
                     start: 'top top',
                     end: 'bottom bottom',
-                    scrub: 0.6,
+                    scrub: 0.5,
+                    onEnter: () => primeVideo(),
+                    onEnterBack: () => primeVideo(),
                     onUpdate: (self) => {
                         const progress = self.progress;
-                        const frameIdx = Math.min(totalFrames - 1, Math.floor(progress * totalFrames));
-                        if (frameIdx !== currentFrameIndex) {
-                            currentFrameIndex = frameIdx;
-                            drawCurrentFrame();
+                        const dur = (video.duration && isFinite(video.duration)) ? video.duration : duration;
+                        if (dur > 0) {
+                            const targetTime = Math.min(dur - 0.04, Math.max(0.01, progress * dur));
+                            if (Math.abs(video.currentTime - targetTime) > 0.03) {
+                                seekVideo(targetTime);
+                            }
                         }
 
-                        // Generous 4-phase transition pace
+                        // Generous 4-phase transition pace across 800vh
                         let activeStep = 0;
                         if (progress >= 0.75) activeStep = 3;
                         else if (progress >= 0.50) activeStep = 2;
@@ -1196,7 +1229,7 @@
 
             ScrollTrigger.create({
                 trigger: section,
-                start: 'top 35%', // Delayed until comfortably centered in viewport
+                start: window.innerWidth < 768 ? 'top 70%' : 'top 35%',
                 onEnter: () => bg.classList.add('revealed'),
                 onLeaveBack: () => bg.classList.remove('revealed')
             });
@@ -1411,24 +1444,41 @@
             let currentIndex = 0;
             let isFullWidth = false;
 
-            // Collect gallery item data & enhance accessibility
-            const itemsData = galleryItems.map((item, index) => {
-                const img = item.querySelector('img');
-                const caption = item.querySelector('.gallery-caption');
-                const captionText = caption ? caption.textContent.trim() : (img ? img.alt : '');
+            function getGalleryItems() {
+                return Array.from(document.querySelectorAll('.gallery-grid .gallery-item'));
+            }
 
-                item.setAttribute('tabindex', '0');
-                item.setAttribute('role', 'button');
-                item.setAttribute('aria-haspopup', 'dialog');
-                item.setAttribute('aria-label', `Expand ${captionText || 'gallery image'}`);
+            function getItemsData() {
+                const items = getGalleryItems();
+                return items.map((item, index) => {
+                    const img = item.querySelector('img');
+                    const caption = item.querySelector('.gallery-caption');
+                    const captionText = caption ? caption.textContent.trim() : (img ? img.alt : '');
+                    return {
+                        element: item,
+                        src: img ? (img.currentSrc || img.src) : '',
+                        alt: img ? img.alt : '',
+                        caption: captionText,
+                        index: index
+                    };
+                });
+            }
 
-                return {
-                    src: img ? (img.currentSrc || img.src) : '',
-                    alt: img ? img.alt : '',
-                    caption: captionText,
-                    index: index
-                };
-            });
+            // Enhance accessibility on all items
+            function initAccessibility() {
+                const items = getGalleryItems();
+                items.forEach((item) => {
+                    const img = item.querySelector('img');
+                    const caption = item.querySelector('.gallery-caption');
+                    const captionText = caption ? caption.textContent.trim() : (img ? img.alt : '');
+
+                    item.setAttribute('tabindex', '0');
+                    item.setAttribute('role', 'button');
+                    item.setAttribute('aria-haspopup', 'dialog');
+                    item.setAttribute('aria-label', `Expand ${captionText || 'gallery image'}`);
+                });
+            }
+            initAccessibility();
 
             function setZoom(fullWidth) {
                 isFullWidth = fullWidth;
@@ -1448,6 +1498,7 @@
             }
 
             function openLightbox(index) {
+                const itemsData = getItemsData();
                 if (index < 0 || index >= itemsData.length) return;
                 currentIndex = index;
                 const data = itemsData[currentIndex];
@@ -1496,34 +1547,47 @@
                     lenis.start();
                 }
 
-                if (galleryItems[currentIndex]) {
-                    galleryItems[currentIndex].focus();
+                const items = getGalleryItems();
+                if (items[currentIndex]) {
+                    items[currentIndex].focus();
                 }
             }
 
             function showNext() {
+                const itemsData = getItemsData();
                 const nextIndex = (currentIndex + 1) % itemsData.length;
                 openLightbox(nextIndex);
             }
 
             function showPrev() {
+                const itemsData = getItemsData();
                 const prevIndex = (currentIndex - 1 + itemsData.length) % itemsData.length;
                 openLightbox(prevIndex);
             }
 
-            // Click & keyboard events on gallery items
-            galleryItems.forEach((item, index) => {
-                item.addEventListener('click', (e) => {
+            // Delegated click & keyboard events on gallery grid
+            const grid = document.getElementById('gallery-grid');
+            if (grid) {
+                grid.addEventListener('click', (e) => {
+                    const item = e.target.closest('.gallery-item');
+                    if (!item) return;
                     e.preventDefault();
-                    openLightbox(index);
+                    const items = getGalleryItems();
+                    const index = items.indexOf(item);
+                    if (index !== -1) openLightbox(index);
                 });
-                item.addEventListener('keydown', (e) => {
+
+                grid.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
+                        const item = e.target.closest('.gallery-item');
+                        if (!item) return;
                         e.preventDefault();
-                        openLightbox(index);
+                        const items = getGalleryItems();
+                        const index = items.indexOf(item);
+                        if (index !== -1) openLightbox(index);
                     }
                 });
-            });
+            }
 
             // Lightbox Controls
             closeBtn.addEventListener('click', closeLightbox);
@@ -1612,13 +1676,23 @@
             }
         })();
 
-        /* ── Gallery: Load More Toggle ────────────────── */
+        /* ── Gallery: Dynamic Reordering & Load More Toggle ────────────────── */
         (() => {
             const btn = document.getElementById('gallery-load-more');
             const grid = document.getElementById('gallery-grid');
             if (!btn || !grid) return;
 
             const label = btn.querySelector('.load-more-label');
+
+            function sortGallery(orderAttr) {
+                const items = Array.from(grid.querySelectorAll('.gallery-item'));
+                items.sort((a, b) => {
+                    const orderA = parseInt(a.getAttribute(orderAttr) || '999', 10);
+                    const orderB = parseInt(b.getAttribute(orderAttr) || '999', 10);
+                    return orderA - orderB;
+                });
+                items.forEach(item => grid.appendChild(item));
+            }
 
             btn.addEventListener('click', () => {
                 const isExpanded = grid.classList.toggle('gallery-expanded');
@@ -1627,6 +1701,7 @@
                 if (label) label.textContent = isExpanded ? 'Show Less' : 'Load More';
 
                 if (isExpanded) {
+                    sortGallery('data-expanded-order');
                     // Scroll to newly revealed items after short delay
                     setTimeout(() => {
                         const firstHidden = grid.querySelector('.gallery-hidden');
@@ -1634,6 +1709,12 @@
                             firstHidden.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }
                     }, 120);
+                } else {
+                    sortGallery('data-initial-order');
+                }
+
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.refresh();
                 }
             });
         })();

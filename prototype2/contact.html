@@ -197,12 +197,12 @@
                         Unable to send your message right now. Please check your connection or email us directly at <a href="mailto:info@coreitex.org" style="color:var(--lime); text-decoration:underline;">info@coreitex.org</a>.
                     </div>
 
-                    <!-- Stealth Google Form Wrapper -->
-                    <form class="contact-form" id="stealth-contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLScj3GRp-Dgj3FEulKTvwKBnOUL3zdHFFGeFmBvZIiQ15G9zTg/formResponse" method="POST" target="hidden_iframe">
-                        <!-- Anti-spam Honeypot -->
+                    <!-- Stealth Form Wrapper (Action dynamically constructed in JS) -->
+                    <form class="contact-form" id="stealth-contact-form" method="POST" target="hidden_iframe" novalidate>
+                        <!-- Stealth Anti-spam Honeypot -->
                         <div class="hp-field" aria-hidden="true">
-                            <label for="contact-hp">Leave this field blank</label>
-                            <input type="text" id="contact-hp" name="b_contact_website_hp" tabindex="-1" autocomplete="off" />
+                            <label for="contact-website-field">Leave this empty</label>
+                            <input type="text" id="contact-website-field" name="user_company_website_url" tabindex="-1" autocomplete="off" />
                         </div>
 
                         <div class="form-group">
@@ -225,7 +225,17 @@
                             <input type="checkbox" id="input-subscribe" name="entry.532123593" value="Yes" checked />
                             <label for="input-subscribe">Subscribe to our mailing list for construction updates</label>
                         </div>
-                        <button type="submit" id="submit-btn" class="btn btn-primary" style="margin-top:1rem; width:100%;">Send Message →</button>
+
+                        <!-- Dynamic Low-Tech Math Security Check -->
+                        <div class="form-group" id="challenge-container" style="background: rgba(255,255,255,0.03); border: 1px dashed var(--glass-border); border-radius: 0.75rem; padding: 1rem; margin-top: 0.5rem;">
+                            <label for="input-challenge" id="challenge-label" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
+                                <span>Security Check: What is <strong id="math-num1" style="color:var(--lime); font-size:1.05rem;">5</strong> + <strong id="math-num2" style="color:var(--lime); font-size:1.05rem;">3</strong>? *</span>
+                                <button type="button" id="refresh-math-btn" title="Get a new question" style="background:none; border:none; color:rgba(255,255,255,0.7); cursor:pointer; font-size:0.8rem; text-decoration:underline; padding:0;">🔄 Change</button>
+                            </label>
+                            <input type="number" id="input-challenge" class="form-control" placeholder="Enter answer" style="max-width: 150px;" required autocomplete="off" />
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn btn-primary" style="margin-top:0.75rem; width:100%;">Send Message →</button>
                     </form>
 
                     <!-- Success State Card -->
@@ -318,26 +328,115 @@
             cursorGlow.style.top = e.clientY + 'px';
         });
 
-        // Stealth Google Form Submission Handler
+        // =========================================================================
+        // Stealth Google Form & Multi-Layer Anti-Spam Engine
+        // =========================================================================
         const contactForm = document.getElementById('stealth-contact-form');
         const formSuccessCard = document.getElementById('form-success-card');
         const formError = document.getElementById('form-error');
         const submitBtn = document.getElementById('submit-btn');
         const resetFormBtn = document.getElementById('reset-form-btn');
-        const hpField = document.getElementById('contact-hp');
+        const hpField = document.getElementById('contact-website-field');
+        const challengeInput = document.getElementById('input-challenge');
+        const mathNum1 = document.getElementById('math-num1');
+        const mathNum2 = document.getElementById('math-num2');
+        const refreshMathBtn = document.getElementById('refresh-math-btn');
+
+        // Dynamic Math State
+        let currentMathSum = 0;
+        function generateMathChallenge() {
+            const n1 = Math.floor(Math.random() * 8) + 2; // 2 to 9
+            const n2 = Math.floor(Math.random() * 7) + 1; // 1 to 7
+            currentMathSum = n1 + n2;
+            if (mathNum1) mathNum1.textContent = n1;
+            if (mathNum2) mathNum2.textContent = n2;
+            if (challengeInput) challengeInput.value = '';
+        }
+        generateMathChallenge();
+
+        if (refreshMathBtn) {
+            refreshMathBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                generateMathChallenge();
+                if (challengeInput) challengeInput.focus();
+            });
+        }
+
+        // Time Gate & Human Interaction Tracking
+        let formInitTime = Date.now();
+        let hasHumanInteraction = false;
+        ['input', 'keydown', 'pointerdown', 'touchstart', 'focusin'].forEach((evt) => {
+            if (contactForm) {
+                contactForm.addEventListener(evt, () => {
+                    hasHumanInteraction = true;
+                }, { passive: true });
+            }
+        });
+
+        // Obfuscated Form Action Destination
+        function getSecureFormEndpoint() {
+            const domain = 'https://docs.google.com/forms/d/e/';
+            const formKey = '1FAIpQLScj3GRp-Dgj3FEulKTvwKBnOUL3zdHFFGeFmBvZIiQ15G9zTg';
+            return domain + formKey + '/formResponse';
+        }
+
+        // Error helper
+        function showFormError(message) {
+            if (formError) {
+                formError.innerHTML = message;
+                formError.classList.add('active');
+                formError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
 
         if (contactForm) {
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                if (formError) formError.classList.remove('active');
 
-                // Anti-spam Honeypot: silently drop if filled by bots
+                // Basic HTML5 validation trigger
+                const nameVal = (document.getElementById('input-name')?.value || '').trim();
+                const emailVal = (document.getElementById('input-email')?.value || '').trim();
+                const messageVal = (document.getElementById('input-message')?.value || '').trim();
+                const phoneVal = (document.getElementById('input-phone')?.value || '').trim();
+                const challengeVal = parseInt(challengeInput ? challengeInput.value.trim() : '0', 10);
+
+                if (!nameVal || !emailVal || !messageVal) {
+                    showFormError('Please fill out all required fields (*).');
+                    return;
+                }
+
+                // LAYER 1: Honeypot Check (Silently drop spam bots)
                 if (hpField && hpField.value) {
                     contactForm.style.display = 'none';
                     if (formSuccessCard) formSuccessCard.classList.add('active');
                     return;
                 }
 
-                if (formError) formError.classList.remove('active');
+                // LAYER 2: Time Gate & Headless Human Interaction Trap (< 3.5s or no physical interaction)
+                const elapsedSec = (Date.now() - formInitTime) / 1000;
+                if (!hasHumanInteraction || elapsedSec < 3.5) {
+                    // Silently show success without pinging backend so bot registers false completion
+                    contactForm.style.display = 'none';
+                    if (formSuccessCard) formSuccessCard.classList.add('active');
+                    contactForm.reset();
+                    return;
+                }
+
+                // LAYER 3: Link & Solicitation Filter (Blocks automated scams & link drop spam)
+                const urlOrPromoPattern = /(https?:\/\/|www\.|\.com\b|\.org\b|\.net\b|\.xyz\b|\.ru\b|\.top\b|\.io\b|\.biz\b|t\.me\/|wa\.me\/)/i;
+                if (urlOrPromoPattern.test(messageVal)) {
+                    showFormError('To protect against automated spam, website links and promotional URLs are not permitted in the message. Please describe your inquiry directly.');
+                    return;
+                }
+
+                // LAYER 4: Dynamic Math Verification Challenge
+                if (challengeVal !== currentMathSum) {
+                    showFormError('The security verification answer is incorrect. Please check your math and try again.');
+                    generateMathChallenge();
+                    if (challengeInput) challengeInput.focus();
+                    return;
+                }
 
                 // Visual loading state on submit button
                 const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Message →';
@@ -347,15 +446,12 @@
                     submitBtn.innerHTML = 'Sending Message...';
                 }
 
-                const GOOGLE_FORM_ACTION = contactForm.getAttribute('action');
-                const formData = new FormData(contactForm);
+                const GOOGLE_FORM_ACTION = getSecureFormEndpoint();
                 const params = new URLSearchParams();
-
-                // Append question parameters
-                params.append('emailAddress', formData.get('emailAddress') || '');
-                params.append('entry.2005620554', formData.get('entry.2005620554') || '');
-                params.append('entry.1166974658', formData.get('entry.1166974658') || '');
-                params.append('entry.839337160', formData.get('entry.839337160') || '');
+                params.append('emailAddress', emailVal);
+                params.append('entry.2005620554', nameVal);
+                params.append('entry.1166974658', phoneVal);
+                params.append('entry.839337160', messageVal);
 
                 const subscribeCheckbox = document.getElementById('input-subscribe');
                 if (subscribeCheckbox && subscribeCheckbox.checked) {
@@ -379,13 +475,14 @@
                 } catch (err) {
                     console.warn('Direct fetch error, executing iframe fallback:', err);
                     try {
+                        contactForm.setAttribute('action', GOOGLE_FORM_ACTION);
                         contactForm.submit();
                         contactForm.style.display = 'none';
                         if (formSuccessCard) formSuccessCard.classList.add('active');
                         contactForm.reset();
                     } catch (fallbackErr) {
                         console.error('Submission failed completely:', fallbackErr);
-                        if (formError) formError.classList.add('active');
+                        showFormError('Unable to send your message right now. Please check your connection or email us directly at <a href="mailto:info@coreitex.org" style="color:var(--lime); text-decoration:underline;">info@coreitex.org</a>.');
                     }
                 } finally {
                     if (submitBtn) {
@@ -402,6 +499,9 @@
                 if (formSuccessCard) formSuccessCard.classList.remove('active');
                 if (formError) formError.classList.remove('active');
                 contactForm.style.display = 'flex';
+                formInitTime = Date.now();
+                hasHumanInteraction = false;
+                generateMathChallenge();
                 const nameInput = document.getElementById('input-name');
                 if (nameInput) nameInput.focus();
             });

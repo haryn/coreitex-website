@@ -279,8 +279,8 @@
             visibility: hidden;
             transform: translate(-50%, -100%) translateY(4px) scale(0.96);
             transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-                        visibility 0.22s;
+                transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.22s;
         }
 
         #nav-popup-tile.visible {
@@ -778,7 +778,7 @@
                 category: 'Empowering Communities & Creating Change',
                 image: 'images/business-community.webp',
                 synopsis: 'The operational heart of COREI™. Here our team collaborates with strategic partners to design initiatives that strengthen rural and underserved areas — equipping residents with the tools, confidence, and resources to engage, learn, thrive, and become true champions for change.',
-                anchor: 'what-we-do.html#community-responsibility',
+                anchor: 'what-we-do.html',
                 pos: [-50, 12.5, -42],
                 camTarget: [-50, 4, -42],
                 camSph: { r: 72, th: 0.8, ph: 0.58 }
@@ -1085,8 +1085,10 @@
             box(0.18, 1.5, d - 4, GLASS, x + w / 2 + 0.06, wy, z);
             box(0.18, 1.5, d - 4, GLASS, x - w / 2 - 0.06, wy, z);
             /* accent panels on entry facade */
-            if (opts.accent === 'red') box(w * 0.3, h * 0.55, 0.22, RED, x - w * 0.28, hLow + h * 0.28, z + d / 2 + 0.1);
-            if (opts.accent === 'blue') box(w * 0.3, h * 0.55, 0.22, BLUE, x + w * 0.28, hLow + h * 0.28, z + d / 2 + 0.1);
+            const accentSide = opts.accentSide || (opts.accent === 'blue' ? 'right' : 'left');
+            const s = accentSide === 'left' ? -1 : 1;
+            if (opts.accent === 'red') box(w * 0.3, h * 0.55, 0.22, RED, x + s * w * 0.28, hLow + h * 0.28, z + d / 2 + 0.1);
+            if (opts.accent === 'blue') box(w * 0.3, h * 0.55, 0.22, BLUE, x + s * w * 0.28, hLow + h * 0.28, z + d / 2 + 0.1);
             if (opts.accent === 'both') {
                 box(w * 0.26, h * 0.5, 0.22, RED, x - w * 0.3, hLow + h * 0.26, z + d / 2 + 0.1);
                 box(w * 0.26, h * 0.5, 0.22, BLUE, x + w * 0.3, hLow + h * 0.26, z + d / 2 + 0.1);
@@ -1250,7 +1252,7 @@
         /* 1 — CORE Administration Building (north-west):
            long E-W bar with a south entry wing, per plan */
         (function administration() {
-            building(-52, -44, 34, 14, 9, { accent: 'blue', canopyW: 8, ac: 3 });
+            building(-52, -44, 34, 14, 9, { accent: 'blue', accentSide: 'left', canopyW: 8, ac: 3 });
             building(-44, -33, 12, 9, 7, { accent: 'red', canopyW: 5, ac: 1 });
         })();
 

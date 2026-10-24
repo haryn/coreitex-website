@@ -1,4 +1,4 @@
-﻿-:Thumbs.db
+-:Thumbs.db
 -:desktop.ini
 -:~*
 -:.*
@@ -6,3 +6,49 @@
 -:*.crdownload
 -:*.sb-????????-??????
 -:*.tmp
+
+# Node / Frontend packages & build artifacts
+-d:node_modules
+-d:.next
+-d:.nuxt
+-d:.cache
+-d:.turbo
+-d:.parcel-cache
+-d:dist
+-d:build
+-d:coverage
+-d:.output
+-d:.firebase
+
+# Python environments, bytecode & testing
+-d:venv
+-d:.venv
+-d:env
+-d:__pycache__
+-d:.pytest_cache
+-d:.mypy_cache
+-d:.ruff_cache
+-d:*.egg-info
+-f:*.pyc
+-f:*.pyo
+-f:*.pyd
+
+# Logs & temp files
+-:*.log
+-:*.tmp
+
+# Tests, fixtures & test reports
+-d:test
+-d:tests
+-d:__tests__
+-d:spec
+-d:specs
+-d:test-results
+-d:playwright-report
+-d:.nyc_output
+-f:*.test.*
+-f:*.spec.*
+-f:test_*.py
+-f:*_test.py
+-f:test_*.ps1
+
