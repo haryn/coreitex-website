@@ -1,7 +1,7 @@
 # ADR-0004: Astryx Design System
 
-**Date**: 2026-07-21
-**Status**: Accepted
+**Date**: 2026-07-21 (Updated: 2026-10-24)
+**Status**: Accepted (Scaffold Target; Production utilizes custom vanilla CSS glassmorphic system in `prototype2/css/styles.css`)
 
 ## Decision
 

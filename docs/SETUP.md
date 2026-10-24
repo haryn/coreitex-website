@@ -131,31 +131,30 @@ coreitex-website/
 
 ## 🔗 Key References
 
-- **Current Site**: https://coreitex.com/
-- **Design Inspiration**: https://www.jubileecenter.org/donate/
-- **Project Folder**: `/home/ubuntu/.openclaw/workspace/coreitex-website/`
-- **Docs Folder**: `/home/ubuntu/.openclaw/workspace/coreitex-website/docs/`
+- **Live Production Domain**: https://coreitex.org
+- **Firebase Live URL**: https://corei-org.web.app
+- **Staging Preview**: https://rising-lasso-t9ge.here.now/
+- **Client Portal**: https://floral-quail-fty4.here.now/
+- **GitHub Repository**: https://github.com/haryn/coreitex-website
+- **Project Folder**: `c:/Users/haryn/projects/_client-work/coreitex-website/`
+- **Docs Folder**: `c:/Users/haryn/projects/_client-work/coreitex-website/docs/`
 
 ---
 
-## 📊 Timeline Overview
+## 📊 Timeline & Milestone Status
 
-| Week | Phase | Status |
-|------|-------|--------|
-| Week 1 | Discovery & Analysis | ⏳ Waiting for HTML files |
-| Week 2 | Design & Mockups | ⏳ Pending |
-| Week 3-5 | Development | ⏳ Pending |
-| Week 6 | Testing & QA | ⏳ Pending |
-| Week 7 | Deployment & Handover | ⏳ Pending |
-
----
-
-## 💬 Communication Channel
-
-All project updates and approvals will be handled through this Discord channel (#coreitex).
+| Phase | Milestone | Status |
+|-------|-----------|--------|
+| Phase 1 | Discovery & Content Analysis | ✅ Completed |
+| Phase 2 | Design & Prototype 2 Creation | ✅ Completed |
+| Phase 3 | 3D Interactive Simulation & Three.js Rebuild | ✅ Completed |
+| Phase 4 | Stealth Google Forms Backend & Contact Form | ✅ Completed |
+| Phase 5 | Production Firebase Deployment & DNS | ✅ Completed |
+| Phase 6 | Client Portal, SEO Audit & Retainer Billing | ✅ Completed |
+| Phase 7 | MP4 Video Scrub Temporal Compression & GitHub Sync | ✅ Completed |
 
 ---
 
-**Document Status**: Setup Complete
-**Last Updated**: 2026-07-21
-**Author**: AI_Claw
+**Document Status**: Production Deployed & Maintained
+**Last Updated**: 2026-10-24
+**Author**: Haryn Murillo

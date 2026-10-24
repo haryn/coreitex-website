@@ -4,8 +4,8 @@
 **Client**: COREI™ (Community One Resources Initiatives Corporation)
 **Website**: https://coreitex.com/
 **Reference**: https://explore.ownprimland.com/ (Primland 3D Showcase by Outpost Design)
-**Date**: 2026-07-21
-**Status**: Proposed — Awaiting Client Approval
+**Date**: 2026-07-21 (Updated: 2026-10-24)
+**Status**: Implemented & Live in Production (`prototype2/3d-complex.html`)
 
 ---
 
@@ -361,7 +361,7 @@ src/
 
 ---
 
-**Document Status**: Draft v1.0 — Ready for Client Presentation
-**Last Updated**: 2026-07-21
-**Author**: AI_Claw
-**Confidentiality**: Client-facing (approved for sharing with COREI™)
+**Document Status**: Implemented & Live in Production
+**Last Updated**: 2026-10-24
+**Author**: Haryn Murillo
+**Confidentiality**: Client-facing

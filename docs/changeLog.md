@@ -4,6 +4,17 @@ This file records all architectural decisions, design evolutions, asset optimiza
 
 ---
 
+## [2026-10-24] - Gallery Reordering, Asset Modernization & GitHub Sync
+
+### Milestone: Dynamic Lightbox Ordering, Repository Streamlining & GitHub Remote Sync
+- **Dynamic Gallery Reordering**: Added dynamic sorting functions (`sortGallery('data-expanded-order')` / `sortGallery('data-initial-order')`) to `prototype2/index.html` ensuring clean layout reflow and preserved accessibility indexing during load-more toggles.
+- **Responsive Scroll Triggers**: Updated ScrollTrigger start bounds dynamically for mobile viewports (`window.innerWidth < 768 ? 'top 70%' : 'top 35%'`).
+- **Legacy Pruning & Hygiene**: Streamlined repository by archiving legacy prototypes (`proto-qwen/`, `prototype/`), old WordPress raw copies (`Assets/`, `Original HTML/`), and legacy content mocks (`content/`) into Git history, reducing working tree footprint.
+- **Local Backup Protection**: Configured `.gitignore` to protect raw local video dumps (`construction_backup.mp4`).
+- **GitHub Synchronization**: Pushed unified production commit [`ebd4715`](https://github.com/haryn/coreitex-website/commit/ebd4715) to `main`.
+
+---
+
 ## [2026-09-26] - Construction Scroll Animation Upgrade (`prototype2/index.html`)
 
 ### Milestone: Direct Audio-Stripped Web-Optimized MP4 Scroll Scrubbing

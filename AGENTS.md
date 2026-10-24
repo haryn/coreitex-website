@@ -20,7 +20,8 @@ This document provides operational directives, design standards, and technical g
    - Keep project overview and structure up to date in [`README.md`](./README.md).
 
 2. **Asset Management & Performance Rules**:
-   - All active web graphics **must** reside in `prototype2/images/`. Do not create subdirectories for page-specific assets unless structured (e.g., `prototype2/images/frames/`).
+   - All active web graphics **must** reside in `prototype2/images/`.
+   - Construction scroll scrub video resides in `prototype2/images/construction/construction.mp4`.
    - Convert all raster images to `.webp` format.
    - **Resolution Cap**: Max resolution must not exceed **2K** (`2048px` on longest edge) to maintain sub-second page loads.
    - Use SVG for logos, brand marks, and icons.
@@ -35,9 +36,10 @@ This document provides operational directives, design standards, and technical g
 
 ## 📁 Key Files & Directories
 
-- `prototype2/`: Active modern website pages (`index.html`, `what-we-do.html`, `about.html`, `contact.html`, `get-involved.html`, `ways-to-give.html`).
+- `prototype2/`: Active modern website pages (`index.html`, `3d-complex.html`, `what-we-do.html`, `about.html`, `contact.html`, `get-involved.html`, `ways-to-give.html`).
 - `prototype2/images/`: Consolidated and optimized WebP / SVG asset library.
-- `Assets/`: Raw source client media, brand PDFs (`board.pdf`), and credentials.
+- `prototype2/images/construction/`: Web-optimized MP4 construction scrubbing video.
+- `client-portal/`: Client Dashboard, Retainer Reports, and Invoices (`index.html`, `invoice.html`, `invoice-september.html`, `seo-report.html`).
 - `docs/changeLog.md`: Project-specific change log.
 - `docs/PRD.md` & `docs/PLAN.md`: Product requirements and migration roadmap.
 
